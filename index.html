@@ -1,158 +1,1437 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sentra DLP — Silent Guardian of Your Data</title>
-    <meta name="description" content="Sentra DLP là tiện ích Chrome bảo vệ dữ liệu cá nhân trong thời gian thực.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentra DLP — Người bảo vệ thầm lặng</title>
+    <meta
+      name="description"
+      content="Sentra DLP là tiện ích Chrome bảo vệ dữ liệu cá nhân trong thời gian thực. Phát hiện rò rỉ, chặn tracker, ngăn canvas fingerprinting."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      :root {
-        --bg: #060a12; --bg2: #0d1421; --bg3: #111827; --navy: #205b94;
-        --navy-dk: #133863; --teal: #4ed1d8; --teal-dim: rgba(78, 209, 216, 0.15);
-        --accent: #3b82f6; --danger: #ef4444; --warn: #f59e0b; --success: #10b981;
-        --text: #f1f5f9; --muted: #94a3b8; --border: rgba(255, 255, 255, 0.07);
-        --font: "Plus Jakarta Sans", sans-serif; --mono: "JetBrains Mono", monospace; --r: 12px;
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-      html { scroll-behavior: smooth; }
-      body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-      body::before { content: ""; position: fixed; inset: 0; z-index: -2; background-image: linear-gradient(rgba(78, 209, 216, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(78, 209, 216, 0.03) 1px, transparent 1px); background-size: 60px 60px; }
-      body::after { content: ""; position: fixed; top: -300px; left: 50%; transform: translateX(-50%); width: 900px; height: 600px; z-index: -1; background: radial-gradient(ellipse at center, rgba(32, 91, 148, 0.25) 0%, transparent 70%); pointer-events: none; }
-      nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; background: rgba(6, 10, 18, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
-      .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-      .logo-svg { width: 32px; height: 32px; }
-      .brand-text { font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; color: var(--text); }
-      .brand-text span { color: var(--teal); }
-      .nav-links { display: flex; align-items: center; gap: 28px; }
-      .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-      .nav-links a:hover { color: var(--text); }
-      .btn-outline { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 8px; border: 1px solid var(--teal); color: var(--teal); font-size: 0.82rem; font-weight: 700; text-decoration: none; transition: all 0.2s; cursor: pointer; }
-      .btn-outline:hover { background: var(--teal-dim); }
-      .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 10px; background: linear-gradient(135deg, var(--navy), var(--teal)); color: #fff; font-size: 0.9rem; font-weight: 700; text-decoration: none; transition: all 0.25s; box-shadow: 0 4px 24px rgba(78, 209, 216, 0.25); }
-      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(78, 209, 216, 0.35); }
-      .hero { display: flex; flex-direction: column; align-items: center; padding: 100px 24px 80px; text-align: center; }
-      .tagline { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 99px; border: 1px solid var(--border); background: rgba(255, 255, 255, 0.04); font-size: 0.72rem; font-weight: 700; color: var(--teal); margin-bottom: 28px; }
-      .hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.15; max-width: 760px; letter-spacing: -0.02em; }
-      .hero h1 em { font-style: normal; color: var(--teal); }
-      .hero p { margin-top: 20px; font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.75; }
-      .hero-actions { display: flex; gap: 14px; margin-top: 40px; flex-wrap: wrap; justify-content: center; }
-      .story-section { padding: 60px 24px; text-align: center; max-width: 800px; margin: 0 auto; }
-      .story-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 40px; }
-      .story-text { font-size: 1.1rem; line-height: 1.8; color: var(--text); font-style: italic; opacity: 0.9; }
-      section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
-      .section-tag { font-size: 0.7rem; font-weight: 800; color: var(--teal); text-transform: uppercase; margin-bottom: 12px; }
-      .section-title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; }
-      .section-sub { font-size: 0.95rem; color: var(--muted); margin-top: 10px; line-height: 1.7; max-width: 540px; }
-      .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 48px; }
-      .feature-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 28px; transition: all 0.25s; position: relative; overflow: hidden; }
-      .feature-card:hover { border-color: rgba(78, 209, 216, 0.25); transform: translateY(-4px); }
-      .feature-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 16px; }
-      .feature-title { font-size: 0.95rem; font-weight: 700; }
-      .feature-desc { font-size: 0.83rem; color: var(--muted); margin-top: 8px; line-height: 1.65; }
-      .arch-flow { display: flex; align-items: center; gap: 0; margin-top: 48px; flex-wrap: wrap; justify-content: center; }
-      .arch-node { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 24px; min-width: 150px; text-align: center; }
-      .preview-wrap { margin-top: 48px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); background: var(--bg2); }
-      .preview-bar { display: flex; align-items: center; gap: 6px; padding: 12px 16px; background: var(--bg3); }
-      .dot { width: 10px; height: 10px; border-radius: 50%; }
-      footer { border-top: 1px solid var(--border); padding: 32px 48px; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); flex-wrap: wrap; gap: 16px; }
-      .lang-toggle { background: transparent; border: 1px solid var(--teal); color: var(--teal); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; transition: 0.2s; }
-      .lang-toggle:hover { background: var(--teal-dim); }
-      [lang="en"] .t-vi { display: none; }
-      [lang="en"] .t-en { display: inline; }
-      [lang="vi"] .t-en { display: none; }
-      [lang="vi"] .t-vi { display: inline; }
-      @media (max-width: 768px) { nav { padding: 14px 20px; } .hero { padding: 60px 20px; } footer { flex-direction: column; } }
+
+      :root {
+        --bg: #060a12;
+        --bg2: #0d1421;
+        --bg3: #111827;
+        --navy: #205b94;
+        --navy-dk: #133863;
+        --teal: #4ed1d8;
+        --teal-dim: rgba(78, 209, 216, 0.15);
+        --accent: #3b82f6;
+        --danger: #ef4444;
+        --warn: #f59e0b;
+        --success: #10b981;
+        --text: #f1f5f9;
+        --muted: #94a3b8;
+        --border: rgba(255, 255, 255, 0.07);
+        --font: "Plus Jakarta Sans", sans-serif;
+        --mono: "JetBrains Mono", monospace;
+        --r: 12px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        background-image:
+          linear-gradient(rgba(78, 209, 216, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(78, 209, 216, 0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        top: -300px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 900px;
+        height: 600px;
+        z-index: -1;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(32, 91, 148, 0.25) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+
+      /* ── Nav ── */
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 48px;
+        background: rgba(6, 10, 18, 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .logo-svg {
+        width: 32px;
+        height: 32px;
+      }
+      .brand-text {
+        font-weight: 800;
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        color: var(--text);
+      }
+      .brand-text span {
+        color: var(--teal);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+      }
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      /* Language toggle */
+      .lang-toggle {
+        display: flex;
+        align-items: center;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+      .lang-btn {
+        padding: 6px 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: var(--muted);
+        background: transparent;
+        border: none;
+        font-family: var(--font);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+      .lang-btn.active {
+        background: var(--teal-dim);
+        color: var(--teal);
+      }
+      .lang-btn:hover:not(.active) {
+        color: var(--text);
+      }
+
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 18px;
+        border-radius: 8px;
+        border: 1px solid var(--teal);
+        color: var(--teal);
+        font-family: var(--font);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .btn-outline:hover {
+        background: var(--teal-dim);
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--navy), var(--teal));
+        color: #fff;
+        font-family: var(--font);
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-decoration: none;
+        transition: all 0.25s;
+        box-shadow: 0 4px 24px rgba(78, 209, 216, 0.25);
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px rgba(78, 209, 216, 0.35);
+      }
+
+      /* ── Hero ── */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px 24px 80px;
+        text-align: center;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 99px;
+        border: 1px solid var(--border);
+        background: rgba(255, 255, 255, 0.04);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--teal);
+        text-transform: uppercase;
+        margin-bottom: 28px;
+      }
+      .hero-badge span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--teal);
+        animation: pulse 2s infinite;
+        display: inline-block;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(1.3);
+        }
+      }
+      .hero h1 {
+        font-size: clamp(2.2rem, 5vw, 3.6rem);
+        font-weight: 800;
+        line-height: 1.15;
+        max-width: 760px;
+        letter-spacing: -0.02em;
+      }
+      .hero h1 em {
+        font-style: normal;
+        color: var(--teal);
+      }
+      .hero p {
+        margin-top: 20px;
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 560px;
+        line-height: 1.75;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      /* ── Shield visual ── */
+      .shield-hero {
+        margin: 56px auto 0;
+        position: relative;
+        width: 180px;
+        height: 180px;
+      }
+      .shield-hero svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 0 32px rgba(78, 209, 216, 0.4));
+      }
+      .ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(78, 209, 216, 0.15);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: ringPulse 3s ease-in-out infinite;
+      }
+      .ring1 {
+        width: 220px;
+        height: 220px;
+      }
+      .ring2 {
+        width: 280px;
+        height: 280px;
+        animation-delay: 0.5s;
+      }
+      .ring3 {
+        width: 340px;
+        height: 340px;
+        animation-delay: 1s;
+      }
+      @keyframes ringPulse {
+        0%,
+        100% {
+          opacity: 0.6;
+        }
+        50% {
+          opacity: 0.15;
+        }
+      }
+
+      /* ── Stats bar ── */
+      .stats-bar {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        margin: 80px auto 0;
+        max-width: 720px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+      .stat-item {
+        flex: 1;
+        padding: 28px 20px;
+        text-align: center;
+        border-right: 1px solid var(--border);
+      }
+      .stat-item:last-child {
+        border-right: none;
+      }
+      .stat-val {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--teal);
+        letter-spacing: -0.02em;
+      }
+      .stat-lbl {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-top: 4px;
+        text-transform: uppercase;
+      }
+
+      /* ── Section ── */
+      section {
+        padding: 80px 24px;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .section-tag {
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        color: var(--teal);
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: clamp(1.6rem, 3vw, 2.4rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+      }
+      .section-sub {
+        font-size: 0.95rem;
+        color: var(--muted);
+        margin-top: 10px;
+        line-height: 1.7;
+        max-width: 540px;
+      }
+
+      /* ── Story section ── */
+      .story-section {
+        padding: 80px 24px;
+        max-width: 1100px;
+        margin: 0 auto;
+        border-top: 1px solid var(--border);
+      }
+      .story-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        margin-top: 48px;
+        align-items: center;
+      }
+      .story-text h3 {
+        font-size: 1.35rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 16px;
+      }
+      .story-text p {
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 0.95rem;
+        margin-bottom: 14px;
+      }
+      .story-text p:last-child {
+        margin-bottom: 0;
+      }
+      .story-quote {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--teal);
+        border-radius: var(--r);
+        padding: 32px;
+      }
+      .story-quote blockquote {
+        font-size: 1.05rem;
+        font-style: italic;
+        color: var(--text);
+        line-height: 1.75;
+        opacity: 0.9;
+      }
+      .story-quote cite {
+        display: block;
+        margin-top: 16px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: var(--teal);
+        font-style: normal;
+      }
+
+      /* ── How it works cards ── */
+      .flow-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-top: 48px;
+      }
+      .flow-card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 24px;
+        text-align: center;
+        transition: all 0.25s;
+      }
+      .flow-card:hover {
+        border-color: rgba(78, 209, 216, 0.25);
+        transform: translateY(-4px);
+      }
+      .flow-card-icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+      }
+      .flow-card-title {
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .flow-card-desc {
+        font-size: 0.78rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* ── Feature grid ── */
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+        margin-top: 48px;
+      }
+      .feature-card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 28px;
+        transition: all 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--grad);
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+      .feature-card:hover {
+        border-color: rgba(78, 209, 216, 0.25);
+        transform: translateY(-4px);
+      }
+      .feature-card:hover::before {
+        opacity: 1;
+      }
+      .feature-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        margin-bottom: 16px;
+      }
+      .feature-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+      .feature-desc {
+        font-size: 0.83rem;
+        color: var(--muted);
+        margin-top: 8px;
+        line-height: 1.65;
+      }
+      .sev-badge {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+      }
+      .sev-h {
+        background: rgba(239, 68, 68, 0.15);
+        color: #ef4444;
+      }
+      .sev-m {
+        background: rgba(245, 158, 11, 0.15);
+        color: #f59e0b;
+      }
+      .sev-l {
+        background: rgba(16, 185, 129, 0.15);
+        color: #10b981;
+      }
+
+      /* ── Architecture flow ── */
+      .arch-flow {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin-top: 48px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .arch-node {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--r);
+        padding: 20px 24px;
+        min-width: 150px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .arch-node-icon {
+        font-size: 1.6rem;
+      }
+      .arch-node-name {
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        margin-top: 8px;
+      }
+      .arch-node-sub {
+        font-size: 0.68rem;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+      .arch-arrow {
+        font-size: 1.2rem;
+        color: var(--teal);
+        padding: 0 12px;
+        opacity: 0.6;
+        flex-shrink: 0;
+      }
+
+      /* ── Dashboard preview ── */
+      .preview-wrap {
+        margin-top: 48px;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+        background: var(--bg2);
+      }
+      .preview-bar {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 16px;
+        background: var(--bg3);
+        border-bottom: 1px solid var(--border);
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .dot-r {
+        background: #ef4444;
+      }
+      .dot-y {
+        background: #f59e0b;
+      }
+      .dot-g {
+        background: #10b981;
+      }
+      .preview-url {
+        margin-left: 12px;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 4px 12px;
+        border-radius: 6px;
+      }
+      .preview-body {
+        padding: 24px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .preview-card {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px;
+      }
+      .preview-num {
+        font-size: 1.6rem;
+        font-weight: 800;
+      }
+      .preview-lbl {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      /* ── Tech stack ── */
+      .tech-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 36px;
+      }
+      .tech-tag {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--bg2);
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+      }
+      .tech-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+
+      /* ── CTA ── */
+      .cta-section {
+        padding: 80px 24px;
+        text-align: center;
+      }
+      .cta-box {
+        max-width: 680px;
+        margin: 0 auto;
+        background: linear-gradient(
+          135deg,
+          rgba(32, 91, 148, 0.3),
+          rgba(78, 209, 216, 0.1)
+        );
+        border: 1px solid rgba(78, 209, 216, 0.2);
+        border-radius: 20px;
+        padding: 60px 40px;
+      }
+      .cta-box h2 {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+      .cta-box p {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+      .cta-actions {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        margin-top: 32px;
+        flex-wrap: wrap;
+      }
+
+      /* ── Footer ── */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 32px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.8rem;
+        color: var(--muted);
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 768px) {
+        nav {
+          padding: 14px 20px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero {
+          padding: 60px 20px 60px;
+        }
+        .stats-bar {
+          flex-direction: column;
+        }
+        .stat-item {
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .story-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .preview-body {
+          grid-template-columns: 1fr;
+        }
+        .arch-flow {
+          flex-direction: column;
+        }
+        .arch-arrow {
+          transform: rotate(90deg);
+        }
+        footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      /* ── i18n hidden ── */
+      [data-lang="en"] {
+        display: none;
+      }
+      html[lang="en"] [data-lang="vi"] {
+        display: none;
+      }
+      html[lang="en"] [data-lang="en"] {
+        display: revert;
+      }
     </style>
-</head>
-<body lang="vi">
+  </head>
+  <body>
+    <!-- ── NAV ── -->
     <nav>
       <a class="brand" href="#">
-        <svg class="logo-svg" viewBox="0 0 100 100"><path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"></path><path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"></path><text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text></svg>
+        <svg
+          class="logo-svg"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z"
+            fill="#205B94"
+          />
+          <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863" />
+          <text
+            x="50"
+            y="72"
+            font-family="'Plus Jakarta Sans',sans-serif"
+            font-weight="700"
+            font-size="62"
+            fill="#4ED1D8"
+            text-anchor="middle"
+          >
+            S
+          </text>
+        </svg>
         <span class="brand-text">SENTRA <span>DLP</span></span>
       </a>
       <div class="nav-links">
-        <a href="#features"><span class="t-vi">tính năng</span><span class="t-en" style="display:none">features</span></a>
-        <a href="#architecture"><span class="t-vi">kiến trúc</span><span class="t-en" style="display:none">architecture</span></a>
-        <a href="#dashboard"><span class="t-vi">bảng điều khiển</span><span class="t-en" style="display:none">dashboard</span></a>
-        <button class="lang-toggle" onclick="toggleLang()">EN | VI</button>
-        <a class="btn-outline" href="http://104.219.55.50:3456/dashboard" target="_blank"><span class="t-vi">xem live →</span><span class="t-en" style="display:none">live view →</span></a>
+        <a href="#story" data-lang="vi">Câu chuyện</a>
+        <a href="#story" data-lang="en">Our story</a>
+        <a href="#features" data-lang="vi">Tính năng</a>
+        <a href="#features" data-lang="en">Features</a>
+        <a href="#architecture" data-lang="vi">Kiến trúc</a>
+        <a href="#architecture" data-lang="en">Architecture</a>
+        <a href="#dashboard" data-lang="vi">Dashboard</a>
+        <a href="#dashboard" data-lang="en">Dashboard</a>
+        <div class="lang-toggle">
+          <button class="lang-btn active" id="btn-vi" onclick="setLang('vi')">
+            VI
+          </button>
+          <button class="lang-btn" id="btn-en" onclick="setLang('en')">
+            EN
+          </button>
+        </div>
+        <a
+          class="btn-outline"
+          href="http://104.219.55.50:3456/dashboard"
+          target="_blank"
+          >Live dashboard →</a
+        >
       </div>
     </nav>
 
+    <!-- ── HERO ── -->
     <div class="hero">
-      <div class="tagline"><span class="t-vi">bảo vệ quyền riêng tư thế hệ mới</span><span class="t-en" style="display:none">next-gen privacy protection</span></div>
-      <h1><span class="t-vi">bảo vệ dữ liệu cá nhân</span><span class="t-en" style="display:none">protecting personal data</span><br><span class="t-vi">với</span><span class="t-en" style="display:none">with</span> <em><span class="t-vi">trí tuệ nhân tạo</span><span class="t-en" style="display:none">artificial intelligence</span></em></h1>
-      <p>
-        <span class="t-vi">Sentra DLP là tiện ích Chrome thế hệ mới, phát hiện và ngăn chặn rò rỉ dữ liệu, theo dõi trái phép trong thời gian thực.</span><span class="t-en" style="display:none">Sentra DLP is a next-gen Chrome extension that detects and prevents data leaks and unauthorized tracking in real-time.</span>
+      <div class="hero-badge">
+        <span></span>
+        <span data-lang="vi">Bảo vệ quyền riêng tư</span>
+        <span data-lang="en">Privacy protection</span>
+      </div>
+      <h1 data-lang="vi">
+        An toàn trên mạng —<br />không phải là <em>đặc quyền</em>
+      </h1>
+      <h1 data-lang="en">
+        Staying safe online<br />shouldn't be a <em>privilege</em>
+      </h1>
+      <p data-lang="vi">
+        Mỗi ngày bạn lướt web, hàng chục trang web thu thập dữ liệu về bạn mà
+        không hỏi một câu. Sentra DLP đứng giữa bạn và điều đó — âm thầm, liên
+        tục, không cần bạn làm gì thêm.
+      </p>
+      <p data-lang="en">
+        Every day you browse the web, dozens of sites collect data about you
+        without asking. Sentra DLP stands between you and that — quietly,
+        continuously, without you lifting a finger.
       </p>
       <div class="hero-actions">
-        <a class="btn-primary" href="http://104.219.55.50:3456/dashboard" target="_blank"><span class="t-vi">xem live dashboard</span><span class="t-en" style="display:none">view live dashboard</span></a>
-        <a class="btn-outline" href="https://github.com/TwiththeG/privacy" target="_blank">GITHUB</a>
+        <a
+          class="btn-primary"
+          href="http://104.219.55.50:3456/dashboard"
+          target="_blank"
+        >
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+            <path
+              d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"
+            />
+          </svg>
+          <span data-lang="vi">Xem live dashboard</span>
+          <span data-lang="en">Open live dashboard</span>
+        </a>
+        <a
+          class="btn-outline"
+          href="https://github.com/TwiththeG/privacy"
+          target="_blank"
+        >
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"
+            />
+          </svg>
+          GitHub
+        </a>
+      </div>
+
+      <!-- Shield visual -->
+      <div class="shield-hero">
+        <div class="ring ring1"></div>
+        <div class="ring ring2"></div>
+        <div class="ring ring3"></div>
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z"
+            fill="#205B94"
+          />
+          <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863" />
+          <text
+            x="50"
+            y="72"
+            font-family="'Plus Jakarta Sans',sans-serif"
+            font-weight="700"
+            font-size="62"
+            fill="#4ED1D8"
+            text-anchor="middle"
+          >
+            S
+          </text>
+        </svg>
+      </div>
+
+      <!-- Stats bar -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <div class="stat-val">6</div>
+          <div class="stat-lbl" data-lang="vi">Loại mối đe dọa</div>
+          <div class="stat-lbl" data-lang="en">Threat types detected</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">2</div>
+          <div class="stat-lbl">SOAR playbooks</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">&lt;50ms</div>
+          <div class="stat-lbl" data-lang="vi">Thời gian phát hiện</div>
+          <div class="stat-lbl" data-lang="en">Detection time</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">100%</div>
+          <div class="stat-lbl">Client-side detection</div>
+        </div>
       </div>
     </div>
 
-    <div class="story-section">
-      <div class="story-card">
-        <div class="section-tag"><span class="t-vi">tâm sự của chúng tôi</span><span class="t-en" style="display:none">our story</span></div>
-        <p class="story-text">
-          <span class="t-vi">chúng tôi tin rằng mỗi người dùng internet đều xứng đáng có một không gian mạng an toàn. Sentra ra đời không chỉ là một dự án kỹ thuật, mà là mong muốn bảo vệ bạn khỏi những rình rập thầm lặng và rò rỉ dữ liệu ngoài ý muốn. hãy để chúng tôi là người gác cửa thầm lặng cho dữ liệu của bạn.</span><span class="t-en" style="display:none">we believe every internet user deserves a safe digital space. sentra was born not just as a technical project, but as a commitment to protect you from silent tracking and unintended data leaks. let us be the silent guardian of your data.</span>
-        </p>
-      </div>
-    </div>
+    <!-- ── STORY ── -->
+    <section id="story" class="story-section">
+      <div class="section-tag" data-lang="vi">Câu chuyện của chúng tôi</div>
+      <div class="section-tag" data-lang="en">Our story</div>
+      <div class="section-title" data-lang="vi">Tại sao Sentra ra đời?</div>
+      <div class="section-title" data-lang="en">Why Sentra exists</div>
 
-    <section id="features">
-      <div class="section-tag"><span class="t-vi">tính năng</span><span class="t-en" style="display:none">features</span></div>
-      <div class="section-title"><span class="t-vi">bảo vệ toàn diện</span><span class="t-en" style="display:none">comprehensive protection</span><br><span class="t-vi">mọi lớp rủi ro</span><span class="t-en" style="display:none">at every risk layer</span></div>
+      <div class="story-grid">
+        <div class="story-text">
+          <h3 data-lang="vi">Mỗi lần bạn lướt web, ai đó đang lắng nghe</h3>
+          <h3 data-lang="en">Every time you browse, someone is listening</h3>
+          <p data-lang="vi">
+            Có một điều ít người để ý: khi bạn mở một trang tin tức, vào một
+            shop online, hay chỉ tìm kiếm một bài nhạc — hàng chục đoạn script
+            vô hình đang chạy nền, ghi lại mọi thứ về bạn. Thiết bị bạn dùng.
+            Màn hình hiển thị. Cách bạn cuộn trang.
+          </p>
+          <p data-lang="en">
+            There's something most people don't notice: when you open a news
+            site, browse an online shop, or just look up a song — dozens of
+            invisible scripts run in the background, recording everything about
+            you. The device you use. Your screen. How you scroll.
+          </p>
+          <p data-lang="vi">
+            Không ai hỏi ý kiến bạn. Không có nút "từ chối" thực sự. Dữ liệu đó
+            được bán đi, tổng hợp lại, và dùng để xây dựng một "hồ sơ kỹ thuật
+            số" về bạn mà chính bạn cũng không biết trông như thế nào.
+          </p>
+          <p data-lang="en">
+            Nobody asks for your permission. There's no real "decline" button.
+            That data gets sold, aggregated, and used to build a digital profile
+            of you — one you've never seen.
+          </p>
+          <p data-lang="vi">
+            Chúng tôi xây dựng Sentra vì tin rằng
+            <strong>mọi người đều xứng đáng được an toàn khi lướt web</strong> —
+            dù họ có hiểu về công nghệ hay không.
+          </p>
+          <p data-lang="en">
+            We built Sentra because we believe
+            <strong>everyone deserves to browse safely</strong> — whether or not
+            they understand technology.
+          </p>
+        </div>
+
+        <div class="story-quote">
+          <blockquote data-lang="vi">
+            "Internet không nên là nơi bạn phải cảnh giác từng bước. Chúng tôi
+            muốn nó trở thành không gian bạn có thể tự do khám phá — mà không lo
+            dữ liệu của mình bị âm thầm mang đi."
+          </blockquote>
+          <blockquote data-lang="en">
+            "The internet shouldn't be a place where you have to watch your
+            every step. We want it to be a space you can freely explore —
+            without worrying that your data is being quietly taken away."
+          </blockquote>
+          <cite>— Nhóm phát triển Sentra DLP</cite>
+        </div>
+      </div>
+
+      <!-- How it works -->
+      <div style="margin-top: 64px">
+        <div class="section-tag" data-lang="vi">Cách Sentra bảo vệ bạn</div>
+        <div class="section-tag" data-lang="en">How Sentra protects you</div>
+        <div class="flow-cards">
+          <div class="flow-card">
+            <div class="flow-card-icon">👁️</div>
+            <div class="flow-card-title" data-lang="vi">Giám sát hành vi</div>
+            <div class="flow-card-title" data-lang="en">
+              Behavior monitoring
+            </div>
+            <div class="flow-card-desc" data-lang="vi">
+              Tiện ích chạy ngầm trong trình duyệt, liên tục kiểm tra hành vi
+              bất thường trên mọi trang bạn truy cập.
+            </div>
+            <div class="flow-card-desc" data-lang="en">
+              The extension runs silently in the browser, continuously scanning
+              for abnormal behavior on every page you visit.
+            </div>
+          </div>
+          <div class="flow-card">
+            <div class="flow-card-icon">🔍</div>
+            <div class="flow-card-title" data-lang="vi">Phân tích rủi ro</div>
+            <div class="flow-card-title" data-lang="en">Risk analysis</div>
+            <div class="flow-card-desc" data-lang="vi">
+              Hành vi đáng nghi được phân loại theo mức độ: Cao, Trung bình hoặc
+              Thấp — để bạn biết điều gì quan trọng.
+            </div>
+            <div class="flow-card-desc" data-lang="en">
+              Suspicious behavior is classified by risk level: High, Medium, or
+              Low — so you know what matters.
+            </div>
+          </div>
+          <div class="flow-card">
+            <div class="flow-card-icon">🛡️</div>
+            <div class="flow-card-title" data-lang="vi">Ngăn chặn tức thì</div>
+            <div class="flow-card-title" data-lang="en">Instant blocking</div>
+            <div class="flow-card-desc" data-lang="vi">
+              Vi phạm bị chặn ngay lập tức — trước khi bất kỳ dữ liệu nào rời
+              khỏi thiết bị của bạn.
+            </div>
+            <div class="flow-card-desc" data-lang="en">
+              Violations are blocked immediately — before any data can leave
+              your device.
+            </div>
+          </div>
+          <div class="flow-card">
+            <div class="flow-card-icon">🔔</div>
+            <div class="flow-card-title" data-lang="vi">
+              Cảnh báo người dùng
+            </div>
+            <div class="flow-card-title" data-lang="en">User notification</div>
+            <div class="flow-card-desc" data-lang="vi">
+              Bạn nhận thông báo chi tiết: loại rủi ro, mức nghiêm trọng và
+              trang web gây ra. Cảnh báo cao còn gửi qua Telegram.
+            </div>
+            <div class="flow-card-desc" data-lang="en">
+              You get a detailed alert: risk type, severity, and the offending
+              site. High-severity alerts are also sent via Telegram.
+            </div>
+          </div>
+          <div class="flow-card">
+            <div class="flow-card-icon">📋</div>
+            <div class="flow-card-title" data-lang="vi">
+              Ghi nhật ký & thống kê
+            </div>
+            <div class="flow-card-title" data-lang="en">
+              Logging & statistics
+            </div>
+            <div class="flow-card-desc" data-lang="vi">
+              Mọi sự kiện được lưu lại và hiển thị trực quan để bạn theo dõi
+              lịch sử bảo mật của mình.
+            </div>
+            <div class="flow-card-desc" data-lang="en">
+              Every event is stored and visualized so you can review your
+              personal security history at any time.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURES ── -->
+    <section id="features" style="border-top: 1px solid var(--border)">
+      <div class="section-tag" data-lang="vi">Tính năng</div>
+      <div class="section-tag" data-lang="en">Features</div>
+      <div class="section-title" data-lang="vi">
+        Bảo vệ toàn diện,<br />mọi lớp rủi ro
+      </div>
+      <div class="section-title" data-lang="en">
+        Comprehensive protection<br />across every risk layer
+      </div>
+      <div class="section-sub" data-lang="vi">
+        Tiện ích phân tích trình duyệt theo thời gian thực, phân loại mối nguy
+        theo mức độ và gửi cảnh báo tức thì.
+      </div>
+      <div class="section-sub" data-lang="en">
+        The extension analyzes your browser in real time, classifies threats by
+        severity, and sends instant alerts.
+      </div>
+
       <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🔒</div>
-          <div class="feature-title">DLP Engine</div>
-          <div class="feature-desc"><span class="t-vi">phát hiện thẻ tín dụng, căn cước và email nhạy cảm.</span><span class="t-en" style="display:none">detects credit cards, id cards, and sensitive emails.</span></div>
+        <div
+          class="feature-card"
+          style="--grad: linear-gradient(90deg, #ef4444, #f59e0b)"
+        >
+          <div class="feature-icon" style="background: rgba(239, 68, 68, 0.12)">
+            🔒
+          </div>
+          <div class="feature-title">DLP engine</div>
+          <div class="feature-desc" data-lang="vi">
+            Phát hiện thẻ tín dụng (Luhn check), CMND/CCCD, email nhạy cảm bị
+            gửi qua form không an toàn.
+          </div>
+          <div class="feature-desc" data-lang="en">
+            Detects credit cards (Luhn check), national IDs, and sensitive
+            emails submitted through insecure forms.
+          </div>
+          <span class="sev-badge sev-h">High severity</span>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🌐</div>
-          <div class="feature-title">WebRTC Guard</div>
-          <div class="feature-desc"><span class="t-vi">ngăn chặn rò rỉ địa chỉ IP thật qua các kết nối WebRTC.</span><span class="t-en" style="display:none">prevents real IP leaks through WebRTC connections.</span></div>
+        <div
+          class="feature-card"
+          style="--grad: linear-gradient(90deg, #f59e0b, #10b981)"
+        >
+          <div
+            class="feature-icon"
+            style="background: rgba(245, 158, 11, 0.12)"
+          >
+            🌐
+          </div>
+          <div class="feature-title">WebRTC IP leak</div>
+          <div class="feature-desc" data-lang="vi">
+            Chặn RTCPeerConnection lộ địa chỉ IP thật qua STUN server ngay cả
+            khi dùng VPN.
+          </div>
+          <div class="feature-desc" data-lang="en">
+            Blocks RTCPeerConnection from leaking your real IP through STUN
+            servers — even when using a VPN.
+          </div>
+          <span class="sev-badge sev-h">High severity</span>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎨</div>
-          <div class="feature-title">Fingerprint Shield</div>
-          <div class="feature-desc"><span class="t-vi">chống lại việc lấy dấu vân tay trình duyệt qua canvas.</span><span class="t-en" style="display:none">protects against browser fingerprinting via canvas.</span></div>
+        <div
+          class="feature-card"
+          style="--grad: linear-gradient(90deg, #8b5cf6, #3b82f6)"
+        >
+          <div
+            class="feature-icon"
+            style="background: rgba(139, 92, 246, 0.12)"
+          >
+            🎨
+          </div>
+          <div class="feature-title">Canvas fingerprint</div>
+          <div class="feature-desc" data-lang="vi">
+            Phát hiện Fingerprintjs2, CanvasBlocker và các script lấy unique
+            hash từ GPU renderer.
+          </div>
+          <div class="feature-desc" data-lang="en">
+            Detects Fingerprintjs2, CanvasBlocker, and scripts that extract
+            unique hashes from your GPU renderer.
+          </div>
+          <span class="sev-badge sev-m">Medium severity</span>
+        </div>
+        <div
+          class="feature-card"
+          style="--grad: linear-gradient(90deg, #3b82f6, #4ed1d8)"
+        >
+          <div
+            class="feature-icon"
+            style="background: rgba(59, 130, 246, 0.12)"
+          >
+            📡
+          </div>
+          <div class="feature-title">Tracker shield</div>
+          <div class="feature-desc" data-lang="vi">
+            Chặn Google Analytics, Facebook Pixel, Criteo, Outbrain và hàng chục
+            SDK theo dõi quảng cáo.
+          </div>
+          <div class="feature-desc" data-lang="en">
+            Blocks Google Analytics, Facebook Pixel, Criteo, Outbrain, and
+            dozens of ad-tracking SDKs.
+          </div>
+          <span class="sev-badge sev-m">Medium severity</span>
+        </div>
+        <div
+          class="feature-card"
+          style="--grad: linear-gradient(90deg, #10b981, #4ed1d8)"
+        >
+          <div
+            class="feature-icon"
+            style="background: rgba(16, 185, 129, 0.12)"
+          >
+            🍪
+          </div>
+          <div class="feature-title">Cookie monitor</div>
+          <div class="feature-desc" data-lang="vi">
+            Giám sát cookie bên thứ ba từ doubleclick.net, fbcdn.net,
+            taboola.com chia sẻ dữ liệu phiên.
+          </div>
+          <div class="feature-desc" data-lang="en">
+            Monitors third-party cookies from doubleclick.net, fbcdn.net, and
+            taboola.com sharing session data.
+          </div>
+          <span class="sev-badge sev-l">Low severity</span>
+        </div>
+        <div
+          class="feature-card"
+          style="--grad: linear-gradient(90deg, #64748b, #94a3b8)"
+        >
+          <div
+            class="feature-icon"
+            style="background: rgba(100, 116, 139, 0.12)"
+          >
+            💾
+          </div>
+          <div class="feature-title">Storage abuse</div>
+          <div class="feature-desc" data-lang="vi">
+            Phát hiện localStorage / IndexedDB lưu device_id, browser
+            fingerprint mà không có sự đồng ý.
+          </div>
+          <div class="feature-desc" data-lang="en">
+            Detects localStorage / IndexedDB storing device IDs and browser
+            fingerprints without consent.
+          </div>
+          <span class="sev-badge sev-m">Medium severity</span>
         </div>
       </div>
     </section>
 
+    <!-- ── ARCHITECTURE ── -->
+    <section id="architecture" style="border-top: 1px solid var(--border)">
+      <div class="section-tag" data-lang="vi">Kiến trúc hệ thống</div>
+      <div class="section-tag" data-lang="en">System architecture</div>
+      <div class="section-title" data-lang="vi">
+        Từ trình duyệt<br />đến phản ứng tự động
+      </div>
+      <div class="section-title" data-lang="en">
+        From the browser<br />to automated response
+      </div>
+      <div class="section-sub" data-lang="vi">
+        Hành trình của một sự kiện bảo mật — từ lúc phát hiện đến khi SOAR phân
+        tích và tạo alert.
+      </div>
+      <div class="section-sub" data-lang="en">
+        The journey of a security event — from detection to SOAR analysis and
+        alert generation.
+      </div>
+
+      <div class="arch-flow">
+        <div class="arch-node">
+          <div class="arch-node-icon">🌐</div>
+          <div class="arch-node-name">Chrome extension</div>
+          <div class="arch-node-sub">Content script detect</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-icon">⚡</div>
+          <div class="arch-node-name">Node.js backend</div>
+          <div class="arch-node-sub">POST /api/v1/events</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-icon">🔀</div>
+          <div class="arch-node-name">Shuffle SOAR</div>
+          <div class="arch-node-sub">Webhook playbook</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-icon">📊</div>
+          <div class="arch-node-name">Risk analyzer</div>
+          <div class="arch-node-sub">Score ≥ 70 → alert</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-icon">🔔</div>
+          <div class="arch-node-name">Telegram bot</div>
+          <div class="arch-node-sub">@SentryDLP_bot</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DASHBOARD ── -->
     <section id="dashboard" style="border-top: 1px solid var(--border)">
-      <div class="section-tag">Dashboard</div>
-      <div class="section-title"><span class="t-vi">quan sát hoạt động</span><span class="t-en" style="display:none">monitor activity</span><br><span class="t-vi">trong thời gian thực</span><span class="t-en" style="display:none">in real-time</span></div>
+      <div class="section-tag" data-lang="vi">Live dashboard</div>
+      <div class="section-tag" data-lang="en">Live dashboard</div>
+      <div class="section-title" data-lang="vi">
+        Quan sát mọi hoạt động<br />trong thời gian thực
+      </div>
+      <div class="section-title" data-lang="en">
+        Monitor all activity<br />in real time
+      </div>
+      <div class="section-sub" data-lang="vi">
+        Dashboard tập hợp sự kiện từ tất cả người dùng, hiển thị biểu đồ, bảng
+        sự kiện và cho phép xuất báo cáo Word/CSV.
+      </div>
+      <div class="section-sub" data-lang="en">
+        The dashboard aggregates events from all users, displays charts, event
+        tables, and lets you export Word/CSV reports.
+      </div>
+
       <div class="preview-wrap">
-        <div class="preview-bar"><div class="dot" style="background:#ef4444"></div><div class="dot" style="background:#f59e0b"></div><div class="dot" style="background:#10b981"></div></div>
-        <div style="padding: 40px; text-align: center; color: var(--muted)">
-          <span class="t-vi">truy cập live dashboard để xem các sự kiện bảo mật đang được xử lý.</span><span class="t-en" style="display:none">access the live dashboard to view security events being processed.</span>
+        <div class="preview-bar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <div class="preview-url">104.219.55.50:3456/dashboard</div>
+        </div>
+        <div class="preview-body">
+          <div class="preview-card">
+            <div class="preview-num" style="color: var(--accent)">24</div>
+            <div class="preview-lbl" data-lang="vi">Tổng sự kiện</div>
+            <div class="preview-lbl" data-lang="en">Total events</div>
+          </div>
+          <div class="preview-card">
+            <div class="preview-num" style="color: var(--danger)">8</div>
+            <div class="preview-lbl" data-lang="vi">Mức cao hôm nay</div>
+            <div class="preview-lbl" data-lang="en">High severity today</div>
+          </div>
+          <div class="preview-card">
+            <div class="preview-num" style="color: var(--success)">3</div>
+            <div class="preview-lbl" data-lang="vi">Người dùng online</div>
+            <div class="preview-lbl" data-lang="en">Users online</div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- ── TECH ── -->
+    <section id="tech" style="border-top: 1px solid var(--border)">
+      <div class="section-tag" data-lang="vi">Công nghệ</div>
+      <div class="section-tag" data-lang="en">Tech stack</div>
+      <div class="section-title" data-lang="vi">
+        Stack hiện đại,<br />triển khai thực tế
+      </div>
+      <div class="section-title" data-lang="en">
+        Modern stack,<br />real-world deployment
+      </div>
+      <div class="tech-list">
+        <span class="tech-tag"
+          ><span class="tech-dot" style="background: #f7df1e"></span>Chrome
+          extension MV3</span
+        >
+        <span class="tech-tag"
+          ><span class="tech-dot" style="background: #68a063"></span>Node.js +
+          Express</span
+        >
+        <span class="tech-tag"
+          ><span class="tech-dot" style="background: #4ed1d8"></span>Shuffle
+          SOAR</span
+        >
+        <span class="tech-tag"
+          ><span class="tech-dot" style="background: #24a1de"></span>Telegram
+          Bot API</span
+        >
+        <span class="tech-tag"
+          ><span class="tech-dot" style="background: #3b82f6"></span
+          >Chart.js</span
+        >
+        <span class="tech-tag"
+          ><span class="tech-dot" style="background: #10b981"></span>PM2 +
+          VPS</span
+        >
+        <span class="tech-tag"
+          ><span class="tech-dot" style="background: #8b5cf6"></span>Helmet.js
+          CSP</span
+        >
+        <span class="tech-tag"
+          ><span class="tech-dot" style="background: #ef4444"></span>GitHub
+          Actions</span
+        >
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <div class="cta-section">
+      <div class="cta-box">
+        <h2 data-lang="vi">Bắt đầu bảo vệ<br />quyền riêng tư của bạn</h2>
+        <h2 data-lang="en">Start protecting<br />your privacy today</h2>
+        <p data-lang="vi">
+          Sentra hoạt động âm thầm trong nền — bạn không cần cài đặt gì thêm.
+          Chỉ cần cài và để nó lo phần còn lại.
+        </p>
+        <p data-lang="en">
+          Sentra works silently in the background — no configuration needed.
+          Just install it and let it handle the rest.
+        </p>
+        <div class="cta-actions">
+          <a
+            class="btn-primary"
+            href="http://104.219.55.50:3456/dashboard"
+            target="_blank"
+          >
+            <span data-lang="vi">Xem dashboard live</span>
+            <span data-lang="en">Open live dashboard</span>
+          </a>
+          <a
+            class="btn-outline"
+            href="https://github.com/TwiththeG/privacy"
+            target="_blank"
+            >Privacy policy</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FOOTER ── -->
     <footer>
       <div style="display: flex; align-items: center; gap: 10px">
+        <svg
+          width="22"
+          height="22"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z"
+            fill="#205B94"
+          />
+          <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863" />
+          <text
+            x="50"
+            y="72"
+            font-family="sans-serif"
+            font-weight="700"
+            font-size="62"
+            fill="#4ED1D8"
+            text-anchor="middle"
+          >
+            S
+          </text>
+        </svg>
         <span style="font-weight: 700; letter-spacing: 0.06em">SENTRA DLP</span>
       </div>
-      <span><span class="t-vi">bảo vệ quyền riêng tư người dùng</span><span class="t-en" style="display:none">protecting user privacy</span></span>
-      <span style="font-family: var(--mono); font-size: 0.72rem">v2.1.0</span>
+      <span data-lang="vi">Bảo vệ quyền riêng tư người dùng trên Internet</span>
+      <span data-lang="en">Protecting user privacy on the Internet</span>
+      <span style="font-family: var(--mono); font-size: 0.72rem">v2.0.0</span>
     </footer>
 
     <script>
-      function toggleLang() {
-        const body = document.body;
-        const current = body.getAttribute('lang');
-        body.setAttribute('lang', current === 'vi' ? 'en' : 'vi');
-        localStorage.setItem('lang', body.getAttribute('lang'));
+      function setLang(lang) {
+        document.documentElement.lang = lang;
+        document
+          .getElementById("btn-vi")
+          .classList.toggle("active", lang === "vi");
+        document
+          .getElementById("btn-en")
+          .classList.toggle("active", lang === "en");
       }
-      const savedLang = localStorage.getItem('lang');
-      if (savedLang) document.body.setAttribute('lang', savedLang);
     </script>
-</body>
+  </body>
 </html>
