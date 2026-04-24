@@ -224,13 +224,14 @@
         text-transform: uppercase;
         margin-bottom: 28px;
       }
-      .hero-badge span {
+      .hero-badge .dot-pulse {
         width: 6px;
         height: 6px;
         border-radius: 50%;
         background: var(--teal);
         animation: pulse 2s infinite;
         display: inline-block;
+        flex-shrink: 0;
       }
       @keyframes pulse {
         0%,
@@ -760,16 +761,18 @@
         }
       }
 
-      /* ── i18n hidden ── */
-      [data-lang="en"] {
-        display: none;
-      }
-      html[lang="en"] [data-lang="vi"] {
-        display: none;
-      }
-      html[lang="en"] [data-lang="en"] {
-        display: revert;
-      }
+      /* ── i18n ── */
+      [data-lang="en"] { display: none !important; }
+      html[lang="en"] [data-lang="vi"] { display: none !important; }
+      html[lang="en"] span[data-lang="en"],
+      html[lang="en"] a[data-lang="en"],
+      html[lang="en"] cite[data-lang="en"] { display: inline !important; }
+      html[lang="en"] div[data-lang="en"],
+      html[lang="en"] p[data-lang="en"],
+      html[lang="en"] h1[data-lang="en"],
+      html[lang="en"] h2[data-lang="en"],
+      html[lang="en"] h3[data-lang="en"],
+      html[lang="en"] blockquote[data-lang="en"] { display: block !important; }
     </style>
   </head>
   <body>
@@ -829,7 +832,7 @@
     <!-- ── HERO ── -->
     <div class="hero">
       <div class="hero-badge">
-        <span></span>
+        <span class="dot-pulse"></span>
         <span data-lang="vi">Bảo vệ quyền riêng tư</span>
         <span data-lang="en">Privacy protection</span>
       </div>
@@ -959,12 +962,12 @@
             of you — one you've never seen.
           </p>
           <p data-lang="vi">
-            Chúng tôi xây dựng Sentra vì tin rằng
+            Sentra ra đời vì một niềm tin đơn giản:
             <strong>mọi người đều xứng đáng được an toàn khi lướt web</strong> —
             dù họ có hiểu về công nghệ hay không.
           </p>
           <p data-lang="en">
-            We built Sentra because we believe
+            Sentra was built on a simple belief:
             <strong>everyone deserves to browse safely</strong> — whether or not
             they understand technology.
           </p>
@@ -972,16 +975,16 @@
 
         <div class="story-quote">
           <blockquote data-lang="vi">
-            "Internet không nên là nơi bạn phải cảnh giác từng bước. Chúng tôi
-            muốn nó trở thành không gian bạn có thể tự do khám phá — mà không lo
-            dữ liệu của mình bị âm thầm mang đi."
+            "Internet không nên là nơi bạn phải cảnh giác từng bước.
+            Tôi muốn nó trở thành không gian bạn có thể tự do khám phá —
+            mà không lo dữ liệu của mình bị âm thầm mang đi."
           </blockquote>
           <blockquote data-lang="en">
             "The internet shouldn't be a place where you have to watch your
-            every step. We want it to be a space you can freely explore —
+            every step. I want it to be a space you can freely explore —
             without worrying that your data is being quietly taken away."
           </blockquote>
-          <cite>— Nhóm phát triển Sentra DLP</cite>
+          <cite>— Tác giả, Sentra DLP</cite>
         </div>
       </div>
 
@@ -1215,52 +1218,60 @@
 
     <!-- ── ARCHITECTURE ── -->
     <section id="architecture" style="border-top: 1px solid var(--border)">
-      <div class="section-tag" data-lang="vi">Kiến trúc hệ thống</div>
-      <div class="section-tag" data-lang="en">System architecture</div>
+      <div class="section-tag" data-lang="vi">Cách hoạt động</div>
+      <div class="section-tag" data-lang="en">How it works</div>
       <div class="section-title" data-lang="vi">
-        Từ trình duyệt<br />đến phản ứng tự động
+        Bạn lướt web —<br />Sentra lo phần còn lại
       </div>
       <div class="section-title" data-lang="en">
-        From the browser<br />to automated response
+        You browse —<br />Sentra handles the rest
       </div>
       <div class="section-sub" data-lang="vi">
-        Hành trình của một sự kiện bảo mật — từ lúc phát hiện đến khi SOAR phân
-        tích và tạo alert.
+        Mọi thứ diễn ra tự động trong nền. Bạn chỉ nhận thông báo khi có điều gì đó thực sự đáng lo ngại.
       </div>
       <div class="section-sub" data-lang="en">
-        The journey of a security event — from detection to SOAR analysis and
-        alert generation.
+        Everything happens automatically in the background. You only get notified when something is genuinely worth your attention.
       </div>
 
       <div class="arch-flow">
         <div class="arch-node">
           <div class="arch-node-icon">🌐</div>
-          <div class="arch-node-name">Chrome extension</div>
-          <div class="arch-node-sub">Content script detect</div>
+          <div class="arch-node-name" data-lang="vi">Bạn lướt web</div>
+          <div class="arch-node-name" data-lang="en">You browse</div>
+          <div class="arch-node-sub" data-lang="vi">Bất kỳ trang nào</div>
+          <div class="arch-node-sub" data-lang="en">Any website</div>
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node">
-          <div class="arch-node-icon">⚡</div>
-          <div class="arch-node-name">Node.js backend</div>
-          <div class="arch-node-sub">POST /api/v1/events</div>
+          <div class="arch-node-icon">🔍</div>
+          <div class="arch-node-name" data-lang="vi">Extension quét</div>
+          <div class="arch-node-name" data-lang="en">Extension scans</div>
+          <div class="arch-node-sub" data-lang="vi">Phát hiện bất thường</div>
+          <div class="arch-node-sub" data-lang="en">Detects anomalies</div>
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node">
-          <div class="arch-node-icon">🔀</div>
-          <div class="arch-node-name">Shuffle SOAR</div>
-          <div class="arch-node-sub">Webhook playbook</div>
-        </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-node">
-          <div class="arch-node-icon">📊</div>
-          <div class="arch-node-name">Risk analyzer</div>
-          <div class="arch-node-sub">Score ≥ 70 → alert</div>
+          <div class="arch-node-icon">⚖️</div>
+          <div class="arch-node-name" data-lang="vi">Tính điểm rủi ro</div>
+          <div class="arch-node-name" data-lang="en">Risk scored</div>
+          <div class="arch-node-sub" data-lang="vi">Cao / Trung bình / Thấp</div>
+          <div class="arch-node-sub" data-lang="en">High / Medium / Low</div>
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node">
           <div class="arch-node-icon">🔔</div>
-          <div class="arch-node-name">Telegram bot</div>
-          <div class="arch-node-sub">@SentryDLP_bot</div>
+          <div class="arch-node-name" data-lang="vi">Bạn được cảnh báo</div>
+          <div class="arch-node-name" data-lang="en">You're alerted</div>
+          <div class="arch-node-sub" data-lang="vi">Popup + icon đổi màu</div>
+          <div class="arch-node-sub" data-lang="en">Popup + icon color change</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-icon">📋</div>
+          <div class="arch-node-name" data-lang="vi">Sự kiện được lưu</div>
+          <div class="arch-node-name" data-lang="en">Event logged</div>
+          <div class="arch-node-sub" data-lang="vi">Xem lại trên dashboard</div>
+          <div class="arch-node-sub" data-lang="en">Review on dashboard</div>
         </div>
       </div>
     </section>
