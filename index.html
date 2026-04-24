@@ -765,8 +765,8 @@
       [data-lang="en"] { display: none !important; }
       html[lang="en"] [data-lang="vi"] { display: none !important; }
       html[lang="en"] span[data-lang="en"],
-      html[lang="en"] a[data-lang="en"],
       html[lang="en"] cite[data-lang="en"] { display: inline !important; }
+      html[lang="en"] a[data-lang="en"] { display: inline-flex !important; }
       html[lang="en"] div[data-lang="en"],
       html[lang="en"] p[data-lang="en"],
       html[lang="en"] h1[data-lang="en"],
@@ -930,8 +930,8 @@
 
     <!-- ── STORY ── -->
     <section id="story" class="story-section">
-      <div class="section-tag" data-lang="vi">Câu chuyện của chúng tôi</div>
-      <div class="section-tag" data-lang="en">Our story</div>
+      <div class="section-tag" data-lang="vi">Câu chuyện</div>
+      <div class="section-tag" data-lang="en">The story</div>
       <div class="section-title" data-lang="vi">Tại sao Sentra ra đời?</div>
       <div class="section-title" data-lang="en">Why Sentra exists</div>
 
@@ -1392,10 +1392,12 @@
           </a>
           <a
             class="btn-outline"
-            href="https://github.com/TwiththeG/privacy"
+            href="https://twiththeg.github.io/privacy"
             target="_blank"
-            >Privacy policy</a
           >
+            <span data-lang="vi">Chính sách riêng tư</span>
+            <span data-lang="en">Privacy policy</span>
+          </a>
         </div>
       </div>
     </div>
