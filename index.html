@@ -1,1610 +1,540 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sentra DLP — Silent Guardian of Your Data</title>
-    <meta
-      name="description"
-      content="Sentra DLP là tiện ích Chrome bảo vệ dữ liệu cá nhân trong thời gian thực. Phát hiện rò rỉ, chặn tracker, ngăn canvas fingerprinting."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Sentra DLP — Silent Guardian of Your Data</title>
+  <meta name="description" content="Sentra DLP bảo vệ quyền riêng tư khi duyệt web — phát hiện rò rỉ dữ liệu, tracker, canvas fingerprinting trong thời gian thực."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#060a12;--bg2:#0d1421;--bg3:#111827;
+      --navy:#205B94;--navy-dk:#133863;
+      --teal:#4ED1D8;--teal-dim:rgba(78,209,216,.15);
+      --accent:#3b82f6;--danger:#ef4444;--warn:#f59e0b;--success:#10b981;
+      --text:#f1f5f9;--muted:#94a3b8;--border:rgba(255,255,255,.07);
+      --font:'Plus Jakarta Sans',sans-serif;--mono:'JetBrains Mono',monospace;--r:12px;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;z-index:-2;
+      background-image:linear-gradient(rgba(78,209,216,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(78,209,216,.03) 1px,transparent 1px);
+      background-size:60px 60px}
+    body::after{content:'';position:fixed;top:-300px;left:50%;transform:translateX(-50%);
+      width:900px;height:600px;z-index:-1;
+      background:radial-gradient(ellipse at center,rgba(32,91,148,.25) 0%,transparent 70%);pointer-events:none}
 
-      :root {
-        --bg: #060a12;
-        --bg2: #0d1421;
-        --bg3: #111827;
-        --navy: #205b94;
-        --navy-dk: #133863;
-        --teal: #4ed1d8;
-        --teal-dim: rgba(78, 209, 216, 0.15);
-        --accent: #3b82f6;
-        --danger: #ef4444;
-        --warn: #f59e0b;
-        --success: #10b981;
-        --text: #f1f5f9;
-        --muted: #94a3b8;
-        --border: rgba(255, 255, 255, 0.07);
-        --font: "Plus Jakarta Sans", sans-serif;
-        --mono: "JetBrains Mono", monospace;
-        --r: 12px;
-      }
+    /* ── NAV ── */
+    nav{display:flex;align-items:center;justify-content:space-between;
+      padding:16px 48px;background:rgba(6,10,18,.85);backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+    .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .logo-svg{width:30px;height:30px}
+    .brand-text{font-weight:800;font-size:.95rem;letter-spacing:.05em;color:var(--text)}
+    .brand-text span{color:var(--teal)}
+    .nav-links{display:flex;align-items:center;gap:24px}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.83rem;font-weight:500;letter-spacing:.04em;transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    .lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);
+      background:rgba(255,255,255,.05);color:var(--teal);font-family:var(--mono);
+      font-size:.72rem;font-weight:700;letter-spacing:.1em;cursor:pointer;transition:all .2s}
+    .lang-btn:hover{border-color:var(--teal);background:var(--teal-dim)}
+    .btn-outline{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;border-radius:8px;
+      border:1px solid var(--teal);color:var(--teal);font-family:var(--font);font-size:.8rem;
+      font-weight:700;letter-spacing:.05em;text-decoration:none;transition:all .2s}
+    .btn-outline:hover{background:var(--teal-dim)}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;
+      background:linear-gradient(135deg,var(--navy),var(--teal));color:#fff;font-family:var(--font);
+      font-size:.88rem;font-weight:700;letter-spacing:.05em;text-decoration:none;transition:all .25s;
+      box-shadow:0 4px 24px rgba(78,209,216,.25)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(78,209,216,.35)}
 
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: var(--font);
-        background: var(--bg);
-        color: var(--text);
-        min-height: 100vh;
-        overflow-x: hidden;
-      }
+    /* ── HERO ── */
+    .hero{display:flex;flex-direction:column;align-items:center;padding:90px 24px 70px;text-align:center}
+    .hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;line-height:1.15;max-width:720px;letter-spacing:-.02em}
+    .hero h1 em{font-style:normal;color:var(--teal)}
+    .hero p{margin-top:18px;font-size:1rem;color:var(--muted);max-width:540px;line-height:1.75}
+    .hero-actions{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;justify-content:center}
+    .shield-hero{margin:50px auto 0;position:relative;width:160px;height:160px}
+    .shield-hero svg{width:100%;height:100%;filter:drop-shadow(0 0 28px rgba(78,209,216,.4))}
+    .ring{position:absolute;border-radius:50%;border:1px solid rgba(78,209,216,.15);
+      top:50%;left:50%;transform:translate(-50%,-50%);animation:ringP 3s ease-in-out infinite}
+    .ring1{width:210px;height:210px}.ring2{width:270px;height:270px;animation-delay:.5s}.ring3{width:330px;height:330px;animation-delay:1s}
+    @keyframes ringP{0%,100%{opacity:.6}50%{opacity:.12}}
+    @keyframes pulseD{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 
-      /* ── Background grid ── */
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -2;
-        background-image:
-          linear-gradient(rgba(78, 209, 216, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(78, 209, 216, 0.03) 1px, transparent 1px);
-        background-size: 60px 60px;
-      }
-      body::after {
-        content: "";
-        position: fixed;
-        top: -300px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 900px;
-        height: 600px;
-        z-index: -1;
-        background: radial-gradient(
-          ellipse at center,
-          rgba(32, 91, 148, 0.25) 0%,
-          transparent 70%
-        );
-        pointer-events: none;
-      }
+    /* ── STATS ── */
+    .stats-bar{display:flex;justify-content:center;margin:70px auto 0;max-width:720px;
+      background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+    .stat-item{flex:1;padding:26px 18px;text-align:center;border-right:1px solid var(--border)}
+    .stat-item:last-child{border-right:none}
+    .stat-val{font-size:1.9rem;font-weight:800;color:var(--teal);letter-spacing:-.02em}
+    .stat-lbl{font-size:.7rem;font-weight:600;letter-spacing:.1em;color:var(--muted);margin-top:4px;text-transform:uppercase}
 
-      /* ── Nav ── */
-      nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 18px 48px;
-        background: rgba(6, 10, 18, 0.8);
-        backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-      }
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-      }
-      .logo-svg {
-        width: 32px;
-        height: 32px;
-      }
-      .brand-text {
-        font-weight: 800;
-        font-size: 1rem;
-        letter-spacing: 0.05em;
-        color: var(--text);
-      }
-      .brand-text span {
-        color: var(--teal);
-      }
-      .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 28px;
-      }
-      .nav-links a {
-        color: var(--muted);
-        text-decoration: none;
-        font-size: 0.85rem;
-        font-weight: 500;
-        letter-spacing: 0.04em;
-        transition: color 0.2s;
-      }
-      .nav-links a:hover {
-        color: var(--text);
-      }
-      .btn-outline {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 18px;
-        border-radius: 8px;
-        border: 1px solid var(--teal);
-        color: var(--teal);
-        font-family: var(--font);
-        font-size: 0.82rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-decoration: none;
-        transition: all 0.2s;
-      }
-      .btn-outline:hover {
-        background: var(--teal-dim);
-      }
-      .btn-primary {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 14px 28px;
-        border-radius: 10px;
-        background: linear-gradient(135deg, var(--navy), var(--teal));
-        color: #fff;
-        font-family: var(--font);
-        font-size: 0.9rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-decoration: none;
-        transition: all 0.25s;
-        box-shadow: 0 4px 24px rgba(78, 209, 216, 0.25);
-      }
-      .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 32px rgba(78, 209, 216, 0.35);
-      }
+    /* ── SECTIONS ── */
+    section{padding:72px 24px;max-width:1100px;margin:0 auto}
+    .section-tag{font-size:.68rem;font-weight:800;letter-spacing:.15em;color:var(--teal);text-transform:uppercase;margin-bottom:10px}
+    .section-title{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.2}
+    .section-sub{font-size:.93rem;color:var(--muted);margin-top:10px;line-height:1.7;max-width:520px}
 
-      /* ── Hero ── */
-      .hero {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 100px 24px 80px;
-        text-align: center;
-      }
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 6px 14px;
-        border-radius: 99px;
-        border: 1px solid var(--border);
-        background: rgba(255, 255, 255, 0.04);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        color: var(--teal);
-        text-transform: uppercase;
-        margin-bottom: 28px;
-      }
-      .hero-badge span {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--teal);
-        animation: pulse 2s infinite;
-        display: inline-block;
-      }
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
-        50% {
-          opacity: 0.5;
-          transform: scale(1.3);
-        }
-      }
+    /* ── FEATURE GRID ── */
+    .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:44px}
+    .feature-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+      padding:26px;transition:all .25s;position:relative;overflow:hidden}
+    .feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:var(--grad);opacity:0;transition:opacity .25s}
+    .feature-card:hover{border-color:rgba(78,209,216,.25);transform:translateY(-4px)}
+    .feature-card:hover::before{opacity:1}
+    .feature-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;
+      justify-content:center;font-size:1.2rem;margin-bottom:14px}
+    .feature-title{font-size:.9rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .feature-desc{font-size:.81rem;color:var(--muted);margin-top:7px;line-height:1.65}
+    .sev-badge{display:inline-block;margin-top:11px;padding:2px 7px;border-radius:4px;
+      font-family:var(--mono);font-size:.66rem;font-weight:600;letter-spacing:.08em}
+    .sev-h{background:rgba(239,68,68,.15);color:#ef4444}
+    .sev-m{background:rgba(245,158,11,.15);color:#f59e0b}
+    .sev-l{background:rgba(16,185,129,.15);color:#10b981}
 
-      .hero h1 {
-        font-size: clamp(2.2rem, 5vw, 3.6rem);
-        font-weight: 800;
-        line-height: 1.15;
-        max-width: 760px;
-        letter-spacing: -0.02em;
-      }
-      .hero h1 em {
-        font-style: normal;
-        color: var(--teal);
-      }
-      .hero p {
-        margin-top: 20px;
-        font-size: 1.05rem;
-        color: var(--muted);
-        max-width: 560px;
-        line-height: 1.75;
-      }
-      .hero-actions {
-        display: flex;
-        gap: 14px;
-        margin-top: 40px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+    /* ── STORY ── */
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:44px;align-items:start}
+    .story-quote{font-size:1.15rem;font-weight:600;line-height:1.7;color:var(--text);
+      border-left:3px solid var(--teal);padding-left:20px;margin-bottom:20px}
+    .story-body{font-size:.88rem;color:var(--muted);line-height:1.8}
+    .story-values{display:flex;flex-direction:column;gap:14px;}
+    .story-val-item{display:flex;gap:14px;align-items:flex-start;
+      background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px}
+    .story-val-icon{font-size:1.4rem;flex-shrink:0;width:36px;text-align:center}
+    .story-val-title{font-size:.83rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .story-val-desc{font-size:.78rem;color:var(--muted);margin-top:4px;line-height:1.6}
 
-      /* ── Shield visual ── */
-      .shield-hero {
-        margin: 56px auto 0;
-        position: relative;
-        width: 180px;
-        height: 180px;
-      }
-      .shield-hero svg {
-        width: 100%;
-        height: 100%;
-        filter: drop-shadow(0 0 32px rgba(78, 209, 216, 0.4));
-      }
-      .ring {
-        position: absolute;
-        border-radius: 50%;
-        border: 1px solid rgba(78, 209, 216, 0.15);
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        animation: ringPulse 3s ease-in-out infinite;
-      }
-      .ring1 {
-        width: 220px;
-        height: 220px;
-      }
-      .ring2 {
-        width: 280px;
-        height: 280px;
-        animation-delay: 0.5s;
-      }
-      .ring3 {
-        width: 340px;
-        height: 340px;
-        animation-delay: 1s;
-      }
-      @keyframes ringPulse {
-        0%,
-        100% {
-          opacity: 0.6;
-        }
-        50% {
-          opacity: 0.15;
-        }
-      }
+    /* ── ARCH USER ── */
+    .arch-user-flow{display:flex;flex-direction:column;gap:0;margin-top:44px;max-width:700px}
+    .arch-user-step{display:flex;gap:20px;align-items:flex-start;padding:22px 0;
+      border-bottom:1px solid var(--border);position:relative}
+    .arch-user-step:last-child{border-bottom:none}
+    .arch-step-num{min-width:44px;height:44px;border-radius:50%;flex-shrink:0;
+      background:linear-gradient(135deg,var(--navy),var(--teal));
+      display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:800}
+    .arch-step-icon{font-size:1.2rem;margin-right:4px}
+    .arch-step-title{font-size:.9rem;font-weight:700;letter-spacing:.03em}
+    .arch-step-desc{font-size:.8rem;color:var(--muted);margin-top:5px;line-height:1.65}
+    .arch-step-tag{display:inline-block;margin-top:8px;padding:2px 8px;border-radius:5px;
+      font-family:var(--mono);font-size:.65rem;font-weight:600;letter-spacing:.08em;
+      background:rgba(78,209,216,.1);border:1px solid rgba(78,209,216,.2);color:var(--teal)}
 
-      /* ── Stats bar ── */
-      .stats-bar {
-        display: flex;
-        justify-content: center;
-        gap: 0;
-        margin: 80px auto 0;
-        max-width: 720px;
-        background: var(--bg2);
-        border: 1px solid var(--border);
-        border-radius: var(--r);
-        overflow: hidden;
-      }
-      .stat-item {
-        flex: 1;
-        padding: 28px 20px;
-        text-align: center;
-        border-right: 1px solid var(--border);
-      }
-      .stat-item:last-child {
-        border-right: none;
-      }
-      .stat-val {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--teal);
-        letter-spacing: -0.02em;
-      }
-      .stat-lbl {
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        color: var(--muted);
-        margin-top: 4px;
-        text-transform: uppercase;
-      }
+    /* ── DASHBOARD PREVIEW ── */
+    .preview-wrap{margin-top:44px;border-radius:14px;overflow:hidden;
+      border:1px solid var(--border);box-shadow:0 20px 80px rgba(0,0,0,.5);background:var(--bg2)}
+    .preview-bar{display:flex;align-items:center;gap:6px;padding:11px 16px;
+      background:var(--bg3);border-bottom:1px solid var(--border)}
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot-r{background:#ef4444}.dot-y{background:#f59e0b}.dot-g{background:#10b981}
+    .preview-url{margin-left:10px;font-family:var(--mono);font-size:.7rem;color:var(--muted);
+      background:rgba(255,255,255,.05);padding:3px 11px;border-radius:5px}
+    .preview-body{padding:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .preview-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:18px}
+    .preview-num{font-size:1.5rem;font-weight:800}
+    .preview-lbl{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 
-      /* ── Section ── */
-      section {
-        padding: 80px 24px;
-        max-width: 1100px;
-        margin: 0 auto;
-      }
-      .section-tag {
-        font-size: 0.7rem;
-        font-weight: 800;
-        letter-spacing: 0.15em;
-        color: var(--teal);
-        text-transform: uppercase;
-        margin-bottom: 12px;
-      }
-      .section-title {
-        font-size: clamp(1.6rem, 3vw, 2.4rem);
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1.2;
-      }
-      .section-sub {
-        font-size: 0.95rem;
-        color: var(--muted);
-        margin-top: 10px;
-        line-height: 1.7;
-        max-width: 540px;
-      }
+    /* ── TECH ── */
+    .tech-list{display:flex;flex-wrap:wrap;gap:9px;margin-top:32px}
+    .tech-tag{display:flex;align-items:center;gap:6px;padding:5px 13px;border-radius:8px;
+      border:1px solid var(--border);background:var(--bg2);font-size:.76rem;font-weight:600;
+      letter-spacing:.04em;color:var(--muted)}
+    .tech-dot{width:6px;height:6px;border-radius:50%}
 
-      /* ── Feature grid ── */
-      .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 18px;
-        margin-top: 48px;
-      }
-      .feature-card {
-        background: var(--bg2);
-        border: 1px solid var(--border);
-        border-radius: var(--r);
-        padding: 28px;
-        transition: all 0.25s;
-        position: relative;
-        overflow: hidden;
-      }
-      .feature-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--grad);
-        opacity: 0;
-        transition: opacity 0.25s;
-      }
-      .feature-card:hover {
-        border-color: rgba(78, 209, 216, 0.25);
-        transform: translateY(-4px);
-      }
-      .feature-card:hover::before {
-        opacity: 1;
-      }
-      .feature-icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.3rem;
-        margin-bottom: 16px;
-      }
-      .feature-title {
-        font-size: 0.95rem;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-      }
-      .feature-desc {
-        font-size: 0.83rem;
-        color: var(--muted);
-        margin-top: 8px;
-        line-height: 1.65;
-      }
-      .sev-badge {
-        display: inline-block;
-        margin-top: 12px;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-family: var(--mono);
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-      }
-      .sev-h {
-        background: rgba(239, 68, 68, 0.15);
-        color: #ef4444;
-      }
-      .sev-m {
-        background: rgba(245, 158, 11, 0.15);
-        color: #f59e0b;
-      }
-      .sev-l {
-        background: rgba(16, 185, 129, 0.15);
-        color: #10b981;
-      }
+    /* ── ABOUT (NO PERSONAL) ── */
+    .about-info{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px}
+    .about-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:22px}
+    .about-card-title{font-size:.68rem;font-weight:800;letter-spacing:.12em;color:var(--teal);
+      text-transform:uppercase;margin-bottom:14px}
+    .kv-row{display:flex;justify-content:space-between;align-items:center;
+      padding:7px 0;border-bottom:1px solid var(--border);font-size:.8rem}
+    .kv-row:last-child{border-bottom:none}
+    .kv-k{color:var(--muted);font-weight:500}.kv-v{font-weight:700;color:var(--teal)}
+    .tech-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .tc{padding:3px 8px;border-radius:5px;background:rgba(78,209,216,.1);
+      border:1px solid rgba(78,209,216,.2);font-size:.68rem;font-weight:600;color:var(--teal)}
 
-      /* ── Architecture flow ── */
-      .arch-flow {
-        display: flex;
-        align-items: center;
-        gap: 0;
-        margin-top: 48px;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      .arch-node {
-        background: var(--bg2);
-        border: 1px solid var(--border);
-        border-radius: var(--r);
-        padding: 20px 24px;
-        min-width: 150px;
-        text-align: center;
-        flex-shrink: 0;
-      }
-      .arch-node-icon {
-        font-size: 1.6rem;
-      }
-      .arch-node-name {
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        margin-top: 8px;
-      }
-      .arch-node-sub {
-        font-size: 0.68rem;
-        color: var(--muted);
-        margin-top: 3px;
-      }
-      .arch-arrow {
-        font-size: 1.2rem;
-        color: var(--teal);
-        padding: 0 12px;
-        opacity: 0.6;
-        flex-shrink: 0;
-      }
+    /* ── CTA ── */
+    .cta-section{padding:72px 24px;text-align:center}
+    .cta-box{max-width:640px;margin:0 auto;
+      background:linear-gradient(135deg,rgba(32,91,148,.3),rgba(78,209,216,.1));
+      border:1px solid rgba(78,209,216,.2);border-radius:18px;padding:56px 36px}
+    .cta-box h2{font-size:1.9rem;font-weight:800;letter-spacing:-.02em}
+    .cta-box p{margin-top:12px;color:var(--muted);font-size:.93rem;line-height:1.7}
+    .cta-actions{display:flex;gap:14px;justify-content:center;margin-top:28px;flex-wrap:wrap}
 
-      /* ── Dashboard preview ── */
-      .preview-wrap {
-        margin-top: 48px;
-        border-radius: 14px;
-        overflow: hidden;
-        border: 1px solid var(--border);
-        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
-        background: var(--bg2);
-      }
-      .preview-bar {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 12px 16px;
-        background: var(--bg3);
-        border-bottom: 1px solid var(--border);
-      }
-      .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-      }
-      .dot-r {
-        background: #ef4444;
-      }
-      .dot-y {
-        background: #f59e0b;
-      }
-      .dot-g {
-        background: #10b981;
-      }
-      .preview-url {
-        margin-left: 12px;
-        font-family: var(--mono);
-        font-size: 0.72rem;
-        color: var(--muted);
-        background: rgba(255, 255, 255, 0.05);
-        padding: 4px 12px;
-        border-radius: 6px;
-      }
-      .preview-body {
-        padding: 24px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
-      }
-      .preview-card {
-        background: var(--bg);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 18px;
-      }
-      .preview-num {
-        font-size: 1.6rem;
-        font-weight: 800;
-      }
-      .preview-lbl {
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-top: 4px;
-      }
+    /* ── FOOTER ── */
+    footer{border-top:1px solid var(--border);padding:28px 48px;
+      display:flex;align-items:center;justify-content:space-between;
+      font-size:.78rem;color:var(--muted);flex-wrap:wrap;gap:14px}
 
-      /* ── Tech stack ── */
-      .tech-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 36px;
-      }
-      .tech-tag {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 14px;
-        border-radius: 8px;
-        border: 1px solid var(--border);
-        background: var(--bg2);
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        color: var(--muted);
-      }
-      .tech-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-      }
+    /* ── RESPONSIVE ── */
+    @media(max-width:860px){
+      nav{padding:13px 18px}.nav-links{display:none}
+      .hero{padding:56px 18px 56px}.stats-bar{flex-direction:column}
+      .stat-item{border-right:none;border-bottom:1px solid var(--border)}
+      .preview-body{grid-template-columns:1fr}.story-grid{grid-template-columns:1fr}
+      .about-info{grid-template-columns:1fr}footer{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
 
-      /* ── CTA ── */
-      .cta-section {
-        padding: 80px 24px;
-        text-align: center;
-      }
-      .cta-box {
-        max-width: 680px;
-        margin: 0 auto;
-        background: linear-gradient(
-          135deg,
-          rgba(32, 91, 148, 0.3),
-          rgba(78, 209, 216, 0.1)
-        );
-        border: 1px solid rgba(78, 209, 216, 0.2);
-        border-radius: 20px;
-        padding: 60px 40px;
-      }
-      .cta-box h2 {
-        font-size: 2rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-      }
-      .cta-box p {
-        margin-top: 12px;
-        color: var(--muted);
-        font-size: 0.95rem;
-        line-height: 1.7;
-      }
-      .cta-actions {
-        display: flex;
-        gap: 14px;
-        justify-content: center;
-        margin-top: 32px;
-        flex-wrap: wrap;
-      }
+<!-- ── NAV ── -->
+<nav>
+  <a class="brand" href="#">
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
+      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
+      <text x="50" y="72" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+    </svg>
+    <span class="brand-text">SENTRA <span>DLP</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#story" data-vi="CÂU CHUYỆN" data-en="OUR STORY">CÂU CHUYỆN</a>
+    <a href="#features" data-vi="TÍNH NĂNG" data-en="FEATURES">TÍNH NĂNG</a>
+    <a href="#how-it-works" data-vi="HOẠT ĐỘNG" data-en="HOW IT WORKS">HOẠT ĐỘNG</a>
+    <a href="#dashboard" data-vi="DASHBOARD" data-en="DASHBOARD">DASHBOARD</a>
+    <a class="btn-outline" href="http://104.219.55.50:3456/dashboard" target="_blank">
+      <span data-vi="LIVE DEMO →" data-en="LIVE DEMO →">LIVE DEMO →</span>
+    </a>
+  </div>
+  <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
+</nav>
 
-      /* ── Footer ── */
-      footer {
-        border-top: 1px solid var(--border);
-        padding: 32px 48px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 0.8rem;
-        color: var(--muted);
-        flex-wrap: wrap;
-        gap: 16px;
-      }
+<!-- ── HERO ── -->
+<div class="hero">
+  <h1>
+    <span data-vi="Lá Chắn Vô Hình<br/>Bảo Vệ <em>Dữ Liệu Của Bạn</em>" data-en="The Invisible Shield<br/>Guarding <em>Your Data</em>">
+      Lá Chắn Vô Hình<br/>Bảo Vệ <em>Dữ Liệu Của Bạn</em>
+    </span>
+  </h1>
+  <p data-vi="Sentra DLP phát hiện và ngăn chặn rò rỉ dữ liệu, theo dõi trái phép, và canvas fingerprinting trong thời gian thực — hoàn toàn miễn phí cho cộng đồng."
+     data-en="Sentra DLP detects and blocks data leaks, unauthorized tracking, and canvas fingerprinting in real time — completely free for the community.">
+    Sentra DLP phát hiện và ngăn chặn rò rỉ dữ liệu, theo dõi trái phép, và canvas fingerprinting trong thời gian thực — hoàn toàn miễn phí cho cộng đồng.
+  </p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="http://104.219.55.50:3456/dashboard" target="_blank">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+      <span data-vi="XEM DASHBOARD LIVE" data-en="VIEW LIVE DASHBOARD">XEM DASHBOARD LIVE</span>
+    </a>
+    <a class="btn-outline" href="https://TwiththeG.github.io/privacy/" target="_blank">
+      <span data-vi="CHÍNH SÁCH BẢO MẬT" data-en="PRIVACY POLICY">CHÍNH SÁCH BẢO MẬT</span>
+    </a>
+  </div>
 
-      /* ── Responsive ── */
-      @media (max-width: 768px) {
-        nav {
-          padding: 14px 20px;
-        }
-        .nav-links {
-          display: none;
-        }
-        .hero {
-          padding: 60px 20px 60px;
-        }
-        .stats-bar {
-          flex-direction: column;
-        }
-        .stat-item {
-          border-right: none;
-          border-bottom: 1px solid var(--border);
-        }
-        .preview-body {
-          grid-template-columns: 1fr;
-        }
-        .arch-flow {
-          flex-direction: column;
-        }
-        .arch-arrow {
-          transform: rotate(90deg);
-        }
-        footer {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- ── NAV ── -->
-    <nav>
-      <a class="brand" href="#">
-        <svg
-          class="logo-svg"
-          viewBox="0 0 100 100"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z"
-            fill="#205B94"
-          />
-          <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863" />
-          <text
-            x="50"
-            y="72"
-            font-family="'Plus Jakarta Sans',sans-serif"
-            font-weight="700"
-            font-size="62"
-            fill="#4ED1D8"
-            text-anchor="middle"
-          >
-            S
-          </text>
-        </svg>
-        <span class="brand-text">SENTRA <span>DLP</span></span>
-      </a>
-      <div class="nav-links">
-        <a href="#features">TÍNH NĂNG</a>
-        <a href="#architecture">KIẾN TRÚC</a>
-        <a href="#dashboard">DASHBOARD</a>
-        <a href="#tech">CÔNG NGHỆ</a>
-        <a
-          class="btn-outline"
-          href="http://104.219.55.50:3456/dashboard"
-          target="_blank"
-          >LIVE DASHBOARD →</a
-        >
-      </div>
-    </nav>
+  <div class="shield-hero">
+    <div class="ring ring1"></div><div class="ring ring2"></div><div class="ring ring3"></div>
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
+      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
+      <text x="50" y="72" font-family="'Plus Jakarta Sans',sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+    </svg>
+  </div>
 
-    <!-- ── HERO ── -->
-    <div class="hero">
-      <div class="hero-badge"><span></span> Luận Văn Tốt Nghiệp 2026</div>
-      <h1>Bảo Vệ Dữ Liệu Cá Nhân<br />với <em>Trí Tuệ Nhân Tạo</em></h1>
-      <p>
-        Sentra DLP là tiện ích Chrome thế hệ mới, phát hiện và ngăn chặn rò rỉ
-        dữ liệu, theo dõi trái phép, và canvas fingerprinting trong thời gian
-        thực — tích hợp hệ thống phản ứng tự động SOAR.
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-val">6</div>
+      <div class="stat-lbl" data-vi="Loại Mối Đe Dọa" data-en="Threat Types">Loại Mối Đe Dọa</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">&lt;50ms</div>
+      <div class="stat-lbl" data-vi="Thời Gian Phát Hiện" data-en="Detection Time">Thời Gian Phát Hiện</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">100%</div>
+      <div class="stat-lbl" data-vi="Client-side, Riêng Tư" data-en="Client-side, Private">Client-side, Riêng Tư</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">Free</div>
+      <div class="stat-lbl" data-vi="Miễn Phí Mãi Mãi" data-en="Free Forever">Miễn Phí Mãi Mãi</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STORY ── -->
+<section id="story" style="border-top:1px solid var(--border)">
+  <div class="section-tag" data-vi="Câu Chuyện" data-en="Our Story">Câu Chuyện</div>
+  <div class="section-title" data-vi="Tại Sao Chúng Tôi<br/>Xây Dựng Sentra?" data-en="Why We<br/>Built Sentra?">Tại Sao Chúng Tôi<br/>Xây Dựng Sentra?</div>
+
+  <div class="story-grid">
+    <div>
+      <p class="story-quote" data-vi='"Mỗi trang web bạn truy cập đều có thể biết bạn là ai — trước cả khi bạn kịp đăng nhập."'
+         data-en='"Every website you visit may already know who you are — before you even log in."'>
+        "Mỗi trang web bạn truy cập đều có thể biết bạn là ai — trước cả khi bạn kịp đăng nhập."
       </p>
-      <div class="hero-actions">
-        <a
-          class="btn-primary"
-          href="http://104.219.55.50:3456/dashboard"
-          target="_blank"
-        >
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-            <path
-              d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"
-            />
-          </svg>
-          XEM LIVE DASHBOARD
-        </a>
-        <a
-          class="btn-outline"
-          href="https://github.com/TwiththeG/privacy"
-          target="_blank"
-        >
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-            <path
-              d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"
-            />
-          </svg>
-          GITHUB
-        </a>
-      </div>
-
-      <!-- Shield visual -->
-      <div class="shield-hero">
-        <div class="ring ring1"></div>
-        <div class="ring ring2"></div>
-        <div class="ring ring3"></div>
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z"
-            fill="#205B94"
-          />
-          <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863" />
-          <text
-            x="50"
-            y="72"
-            font-family="'Plus Jakarta Sans',sans-serif"
-            font-weight="700"
-            font-size="62"
-            fill="#4ED1D8"
-            text-anchor="middle"
-          >
-            S
-          </text>
-        </svg>
-      </div>
-
-      <!-- Stats bar -->
-      <div class="stats-bar">
-        <div class="stat-item">
-          <div class="stat-val">6</div>
-          <div class="stat-lbl">Loại Mối Đe Dọa Phát Hiện</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val">2</div>
-          <div class="stat-lbl">SOAR Playbooks</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val">&lt;50ms</div>
-          <div class="stat-lbl">Thời Gian Phát Hiện</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-val">100%</div>
-          <div class="stat-lbl">Client-side Detection</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── FEATURES ── -->
-    <section id="features">
-      <div class="section-tag">Tính Năng</div>
-      <div class="section-title">Bảo Vệ Toàn Diện<br />Mọi Lớp Rủi Ro</div>
-      <div class="section-sub">
-        Extension phân tích trình duyệt theo thời gian thực, phân loại mối nguy
-        theo mức độ và gửi cảnh báo tức thì.
-      </div>
-
-      <div class="feature-grid">
-        <div
-          class="feature-card"
-          style="--grad: linear-gradient(90deg, #ef4444, #f59e0b)"
-        >
-          <div class="feature-icon" style="background: rgba(239, 68, 68, 0.12)">
-            🔒
-          </div>
-          <div class="feature-title">DLP Engine</div>
-          <div class="feature-desc">
-            Phát hiện thẻ tín dụng (Luhn check), CMND/CCCD, email nhạy cảm bị
-            gửi qua form không an toàn.
-          </div>
-          <span class="sev-badge sev-h">HIGH SEVERITY</span>
-        </div>
-        <div
-          class="feature-card"
-          style="--grad: linear-gradient(90deg, #f59e0b, #10b981)"
-        >
-          <div
-            class="feature-icon"
-            style="background: rgba(245, 158, 11, 0.12)"
-          >
-            🌐
-          </div>
-          <div class="feature-title">WebRTC IP Leak</div>
-          <div class="feature-desc">
-            Chặn RTCPeerConnection lộ địa chỉ IP thật qua STUN server ngay cả
-            khi dùng VPN.
-          </div>
-          <span class="sev-badge sev-h">HIGH SEVERITY</span>
-        </div>
-        <div
-          class="feature-card"
-          style="--grad: linear-gradient(90deg, #8b5cf6, #3b82f6)"
-        >
-          <div
-            class="feature-icon"
-            style="background: rgba(139, 92, 246, 0.12)"
-          >
-            🎨
-          </div>
-          <div class="feature-title">Canvas Fingerprint</div>
-          <div class="feature-desc">
-            Phát hiện Fingerprintjs2, CanvasBlocker, và các script lấy unique
-            hash từ GPU renderer.
-          </div>
-          <span class="sev-badge sev-m">MEDIUM SEVERITY</span>
-        </div>
-        <div
-          class="feature-card"
-          style="--grad: linear-gradient(90deg, #3b82f6, #4ed1d8)"
-        >
-          <div
-            class="feature-icon"
-            style="background: rgba(59, 130, 246, 0.12)"
-          >
-            📡
-          </div>
-          <div class="feature-title">Tracker Shield</div>
-          <div class="feature-desc">
-            Chặn Google Analytics, Facebook Pixel, Criteo, Outbrain và hàng chục
-            SDK theo dõi quảng cáo.
-          </div>
-          <span class="sev-badge sev-m">MEDIUM SEVERITY</span>
-        </div>
-        <div
-          class="feature-card"
-          style="--grad: linear-gradient(90deg, #10b981, #4ed1d8)"
-        >
-          <div
-            class="feature-icon"
-            style="background: rgba(16, 185, 129, 0.12)"
-          >
-            🍪
-          </div>
-          <div class="feature-title">Cookie Monitor</div>
-          <div class="feature-desc">
-            Giám sát cookie bên thứ 3 từ doubleclick.net, fbcdn.net, taboola.com
-            chia sẻ dữ liệu phiên.
-          </div>
-          <span class="sev-badge sev-l">LOW SEVERITY</span>
-        </div>
-        <div
-          class="feature-card"
-          style="--grad: linear-gradient(90deg, #64748b, #94a3b8)"
-        >
-          <div
-            class="feature-icon"
-            style="background: rgba(100, 116, 139, 0.12)"
-          >
-            💾
-          </div>
-          <div class="feature-title">Storage Abuse</div>
-          <div class="feature-desc">
-            Phát hiện localStorage / IndexedDB lưu device_id, browser
-            fingerprint không cần đồng ý.
-          </div>
-          <span class="sev-badge sev-m">MEDIUM SEVERITY</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── ARCHITECTURE ── -->
-    <section id="architecture" style="border-top: 1px solid var(--border)">
-      <div class="section-tag">Kiến Trúc Hệ Thống</div>
-      <div class="section-title">Từ Trình Duyệt<br />Đến Phản Ứng Tự Động</div>
-      <div class="section-sub">
-        Hành trình của một sự kiện bảo mật — từ lúc phát hiện đến khi SOAR phân
-        tích và tạo alert.
-      </div>
-
-      <div class="arch-flow">
-        <div class="arch-node">
-          <div class="arch-node-icon">🌐</div>
-          <div class="arch-node-name">Chrome Extension</div>
-          <div class="arch-node-sub">Content Script detect</div>
-        </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-node">
-          <div class="arch-node-icon">⚡</div>
-          <div class="arch-node-name">Node.js Backend</div>
-          <div class="arch-node-sub">POST /api/v1/events</div>
-        </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-node">
-          <div class="arch-node-icon">🔀</div>
-          <div class="arch-node-name">Shuffle SOAR</div>
-          <div class="arch-node-sub">Webhook Playbook</div>
-        </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-node">
-          <div class="arch-node-icon">📊</div>
-          <div class="arch-node-name">Risk Analyzer</div>
-          <div class="arch-node-sub">Score ≥ 70 → Alert</div>
-        </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-node">
-          <div class="arch-node-icon">🔔</div>
-          <div class="arch-node-name">Telegram Bot</div>
-          <div class="arch-node-sub">@SentryDLP_bot</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── DASHBOARD ── -->
-    <section id="dashboard" style="border-top: 1px solid var(--border)">
-      <div class="section-tag">Live Dashboard</div>
-      <div class="section-title">
-        Quan Sát Mọi Hoạt Động<br />Trong Thời Gian Thực
-      </div>
-      <div class="section-sub">
-        Dashboard web tập hợp sự kiện từ tất cả người dùng, hiển thị biểu đồ,
-        bảng sự kiện, và cho phép xuất báo cáo Word/CSV.
-      </div>
-
-      <div class="preview-wrap">
-        <div class="preview-bar">
-          <div class="dot dot-r"></div>
-          <div class="dot dot-y"></div>
-          <div class="dot dot-g"></div>
-          <div class="preview-url">104.219.55.50:3456/dashboard</div>
-        </div>
-        <div class="preview-body">
-          <div class="preview-card">
-            <div class="preview-num" style="color: var(--accent)">24</div>
-            <div class="preview-lbl">Tổng Sự Kiện</div>
-          </div>
-          <div class="preview-card">
-            <div class="preview-num" style="color: var(--danger)">8</div>
-            <div class="preview-lbl">Mức Cao Hôm Nay</div>
-          </div>
-          <div class="preview-card">
-            <div class="preview-num" style="color: var(--success)">3</div>
-            <div class="preview-lbl">Người Dùng Online</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── TECH ── -->
-    <section id="tech" style="border-top: 1px solid var(--border)">
-      <div class="section-tag">Công Nghệ</div>
-      <div class="section-title">Stack Hiện Đại,<br />Triển Khai Thực Tế</div>
-      <div class="tech-list">
-        <span class="tech-tag"
-          ><span class="tech-dot" style="background: #f7df1e"></span>Chrome
-          Extension MV3</span
-        >
-        <span class="tech-tag"
-          ><span class="tech-dot" style="background: #68a063"></span>Node.js +
-          Express</span
-        >
-        <span class="tech-tag"
-          ><span class="tech-dot" style="background: #4ed1d8"></span>Shuffle
-          SOAR</span
-        >
-        <span class="tech-tag"
-          ><span class="tech-dot" style="background: #24a1de"></span>Telegram
-          Bot API</span
-        >
-        <span class="tech-tag"
-          ><span class="tech-dot" style="background: #3b82f6"></span
-          >Chart.js</span
-        >
-        <span class="tech-tag"
-          ><span class="tech-dot" style="background: #10b981"></span>PM2 +
-          VPS</span
-        >
-        <span class="tech-tag"
-          ><span class="tech-dot" style="background: #8b5cf6"></span>Helmet.js
-          CSP</span
-        >
-        <span class="tech-tag"
-          ><span class="tech-dot" style="background: #ef4444"></span>GitHub
-          Actions</span
-        >
-      </div>
-    </section>
-
-    <!-- ── ABOUT ── -->
-    <section id="about" style="border-top: 1px solid var(--border)">
-      <div class="section-tag">Giới Thiệu</div>
-      <div class="section-title">Thông Tin Dự Án</div>
-      <div
-        style="
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 28px;
-          margin-top: 40px;
-        "
-      >
-        <!-- Cách hoạt động -->
-        <div
-          style="
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: 28px;
-          "
-        >
-          <div
-            style="
-              font-size: 0.7rem;
-              font-weight: 800;
-              letter-spacing: 0.12em;
-              color: var(--teal);
-              text-transform: uppercase;
-              margin-bottom: 20px;
-            "
-          >
-            Cách Hoạt Động
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 16px">
-            <div style="display: flex; gap: 14px; align-items: flex-start">
-              <div
-                style="
-                  min-width: 28px;
-                  height: 28px;
-                  border-radius: 50%;
-                  background: linear-gradient(135deg, var(--navy), var(--teal));
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 0.75rem;
-                  font-weight: 800;
-                  flex-shrink: 0;
-                "
-              >
-                1
-              </div>
-              <div>
-                <div style="font-size: 0.82rem; font-weight: 700">
-                  Giám sát hành vi
-                </div>
-                <div
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--muted);
-                    margin-top: 3px;
-                    line-height: 1.6;
-                  "
-                >
-                  Tiện ích hoạt động ngầm, liên tục kiểm tra các hành vi bất
-                  thường trên mỗi trang web.
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 14px; align-items: flex-start">
-              <div
-                style="
-                  min-width: 28px;
-                  height: 28px;
-                  border-radius: 50%;
-                  background: linear-gradient(135deg, var(--navy), var(--teal));
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 0.75rem;
-                  font-weight: 800;
-                  flex-shrink: 0;
-                "
-              >
-                2
-              </div>
-              <div>
-                <div style="font-size: 0.82rem; font-weight: 700">
-                  Phân tích rủi ro
-                </div>
-                <div
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--muted);
-                    margin-top: 3px;
-                    line-height: 1.6;
-                  "
-                >
-                  Phân loại theo mức nguy hiểm: Cao, Trung bình hoặc Thấp.
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 14px; align-items: flex-start">
-              <div
-                style="
-                  min-width: 28px;
-                  height: 28px;
-                  border-radius: 50%;
-                  background: linear-gradient(135deg, var(--navy), var(--teal));
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 0.75rem;
-                  font-weight: 800;
-                  flex-shrink: 0;
-                "
-              >
-                3
-              </div>
-              <div>
-                <div style="font-size: 0.82rem; font-weight: 700">
-                  Ngăn chặn tức thì
-                </div>
-                <div
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--muted);
-                    margin-top: 3px;
-                    line-height: 1.6;
-                  "
-                >
-                  Vi phạm bị chặn ngay trước khi bất kỳ dữ liệu nào rời khỏi
-                  thiết bị.
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 14px; align-items: flex-start">
-              <div
-                style="
-                  min-width: 28px;
-                  height: 28px;
-                  border-radius: 50%;
-                  background: linear-gradient(135deg, var(--navy), var(--teal));
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 0.75rem;
-                  font-weight: 800;
-                  flex-shrink: 0;
-                "
-              >
-                4
-              </div>
-              <div>
-                <div style="font-size: 0.82rem; font-weight: 700">
-                  Cảnh báo &amp; SOAR
-                </div>
-                <div
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--muted);
-                    margin-top: 3px;
-                    line-height: 1.6;
-                  "
-                >
-                  Thông báo chi tiết qua popup + Telegram. Mức Cao kích hoạt
-                  SOAR Playbook tự động.
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; gap: 14px; align-items: flex-start">
-              <div
-                style="
-                  min-width: 28px;
-                  height: 28px;
-                  border-radius: 50%;
-                  background: linear-gradient(135deg, var(--navy), var(--teal));
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-size: 0.75rem;
-                  font-weight: 800;
-                  flex-shrink: 0;
-                "
-              >
-                5
-              </div>
-              <div>
-                <div style="font-size: 0.82rem; font-weight: 700">
-                  Ghi nhật ký &amp; Thống kê
-                </div>
-                <div
-                  style="
-                    font-size: 0.78rem;
-                    color: var(--muted);
-                    margin-top: 3px;
-                    line-height: 1.6;
-                  "
-                >
-                  Mọi sự kiện được lưu và hiển thị trực quan để theo dõi lịch sử
-                  bảo mật cá nhân.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Thông tin nhóm -->
-        <div style="display: flex; flex-direction: column; gap: 16px">
-          <div
-            style="
-              background: var(--bg2);
-              border: 1px solid var(--border);
-              border-radius: var(--r);
-              padding: 24px;
-            "
-          >
-            <div
-              style="
-                font-size: 0.7rem;
-                font-weight: 800;
-                letter-spacing: 0.12em;
-                color: var(--teal);
-                text-transform: uppercase;
-                margin-bottom: 16px;
-              "
-            >
-              Học Viên Thực Hiện
-            </div>
-            <div style="display: flex; gap: 14px; align-items: center">
-              <div
-                style="
-                  width: 44px;
-                  height: 44px;
-                  border-radius: 50%;
-                  background: linear-gradient(135deg, var(--navy), var(--teal));
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-weight: 800;
-                  font-size: 1.1rem;
-                  flex-shrink: 0;
-                "
-              >
-                T
-              </div>
-              <div>
-                <div style="font-weight: 700; font-size: 0.95rem">
-                  Trần Lê Duy Tùng
-                </div>
-                <div
-                  style="
-                    font-size: 0.75rem;
-                    color: var(--muted);
-                    margin-top: 3px;
-                  "
-                >
-                  Lớp LT07 · Khoa Công nghệ và An toàn thông tin
-                </div>
-                <div style="font-size: 0.75rem; color: var(--muted)">
-                  Học viện Kỹ thuật và Công nghệ CAND
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            style="
-              background: var(--bg2);
-              border: 1px solid var(--border);
-              border-radius: var(--r);
-              padding: 24px;
-            "
-          >
-            <div
-              style="
-                font-size: 0.7rem;
-                font-weight: 800;
-                letter-spacing: 0.12em;
-                color: var(--teal);
-                text-transform: uppercase;
-                margin-bottom: 16px;
-              "
-            >
-              Giảng Viên Hướng Dẫn
-            </div>
-            <div style="display: flex; gap: 14px; align-items: center">
-              <div
-                style="
-                  width: 44px;
-                  height: 44px;
-                  border-radius: 50%;
-                  background: rgba(32, 91, 148, 0.3);
-                  border: 1px solid var(--border);
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  font-weight: 800;
-                  font-size: 1.1rem;
-                  flex-shrink: 0;
-                "
-              >
-                M
-              </div>
-              <div>
-                <div style="font-weight: 700; font-size: 0.95rem">
-                  TS. Nguyễn Văn Minh
-                </div>
-                <div
-                  style="
-                    font-size: 0.75rem;
-                    color: var(--muted);
-                    margin-top: 3px;
-                  "
-                >
-                  Khoa Công nghệ và An toàn thông tin
-                </div>
-                <div style="font-size: 0.75rem; color: var(--muted)">
-                  Học viện Kỹ thuật và Công nghệ CAND
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            style="
-              background: var(--bg2);
-              border: 1px solid var(--border);
-              border-radius: var(--r);
-              padding: 24px;
-            "
-          >
-            <div
-              style="
-                font-size: 0.7rem;
-                font-weight: 800;
-                letter-spacing: 0.12em;
-                color: var(--teal);
-                text-transform: uppercase;
-                margin-bottom: 14px;
-              "
-            >
-              Phiên Bản
-            </div>
-            <div style="display: flex; gap: 28px; margin-bottom: 14px">
-              <div>
-                <div
-                  style="
-                    font-size: 0.68rem;
-                    color: var(--muted);
-                    text-transform: uppercase;
-                    letter-spacing: 0.08em;
-                  "
-                >
-                  Extension
-                </div>
-                <div
-                  style="
-                    font-size: 0.95rem;
-                    font-weight: 700;
-                    color: var(--teal);
-                  "
-                >
-                  v2.1.0
-                </div>
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 0.68rem;
-                    color: var(--muted);
-                    text-transform: uppercase;
-                    letter-spacing: 0.08em;
-                  "
-                >
-                  Dashboard
-                </div>
-                <div
-                  style="
-                    font-size: 0.95rem;
-                    font-weight: 700;
-                    color: var(--teal);
-                  "
-                >
-                  v2.0.0
-                </div>
-              </div>
-              <div>
-                <div
-                  style="
-                    font-size: 0.68rem;
-                    color: var(--muted);
-                    text-transform: uppercase;
-                    letter-spacing: 0.08em;
-                  "
-                >
-                  Manifest
-                </div>
-                <div
-                  style="
-                    font-size: 0.9rem;
-                    font-weight: 600;
-                    color: var(--muted);
-                  "
-                >
-                  MV3 · Chrome 90+
-                </div>
-              </div>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 6px">
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >Chrome Extension MV3</span
-              >
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >JavaScript ES2022</span
-              >
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >Node.js 18</span
-              >
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >Express.js</span
-              >
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >Shuffle SOAR</span
-              >
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >Telegram Bot</span
-              >
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >Chart.js 4</span
-              >
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >WebRTC API</span
-              >
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >Canvas API</span
-              >
-              <span
-                style="
-                  padding: 3px 9px;
-                  border-radius: 6px;
-                  background: rgba(78, 209, 216, 0.1);
-                  border: 1px solid rgba(78, 209, 216, 0.2);
-                  font-size: 0.7rem;
-                  font-weight: 600;
-                  color: var(--teal);
-                "
-                >PM2</span
-              >
-            </div>
-          </div>
-
-          <div
-            style="
-              text-align: center;
-              padding: 14px;
-              background: rgba(78, 209, 216, 0.05);
-              border: 1px solid rgba(78, 209, 216, 0.12);
-              border-radius: 10px;
-              font-size: 0.75rem;
-              color: var(--muted);
-              line-height: 1.8;
-            "
-          >
-            Đồ án tốt nghiệp &nbsp;·&nbsp; Hoàn toàn miễn phí &nbsp;·&nbsp; Phi
-            thương mại<br />
-            Mọi quyền thuộc về tác giả và Học viện Kỹ thuật và Công nghệ CAND<br />
-            <span style="color: var(--teal); font-weight: 600">© 2026</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── CTA ── -->
-    <div class="cta-section">
-      <div class="cta-box">
-        <h2>Sentra — Silent Guardian<br />of Your Data</h2>
-        <p>
-          Hệ thống bảo mật dữ liệu cá nhân thế hệ mới, kết hợp trí tuệ nhân tạo
-          và tự động hóa SOAR cho trải nghiệm an toàn nhất.
+      <div class="story-body">
+        <p data-vi="Hàng triệu người dùng internet bị theo dõi mỗi ngày mà không hay biết. Cookie ẩn từ bên thứ ba, fingerprinting qua Canvas API, địa chỉ IP bị lộ qua WebRTC, dữ liệu nhạy cảm bị gửi đi qua form — tất cả diễn ra trong im lặng, ngay trên trình duyệt của bạn."
+             data-en="Millions of internet users are tracked every day without their knowledge. Hidden third-party cookies, Canvas API fingerprinting, IP leaks through WebRTC, sensitive data sent through forms — all happening silently, right in your browser.">
+          Hàng triệu người dùng internet bị theo dõi mỗi ngày mà không hay biết. Cookie ẩn từ bên thứ ba, fingerprinting qua Canvas API, địa chỉ IP bị lộ qua WebRTC, dữ liệu nhạy cảm bị gửi đi qua form — tất cả diễn ra trong im lặng, ngay trên trình duyệt của bạn.
         </p>
-        <div class="cta-actions">
-          <a
-            class="btn-primary"
-            href="http://104.219.55.50:3456/dashboard"
-            target="_blank"
-            >XEM DASHBOARD LIVE</a
-          >
-          <a
-            class="btn-outline"
-            href="https://github.com/TwiththeG/privacy"
-            target="_blank"
-            >PRIVACY POLICY</a
-          >
-        </div>
+        <br/>
+        <p data-vi="Sentra DLP ra đời từ mong muốn đơn giản: <strong>mọi người dùng, dù không am hiểu kỹ thuật, đều xứng đáng được bảo vệ quyền riêng tư.</strong> Không cần cấu hình phức tạp, không cần kiến thức bảo mật — chỉ cần cài đặt và để Sentra lo phần còn lại."
+             data-en="Sentra DLP was built from a simple desire: <strong>every user, regardless of technical background, deserves to have their privacy protected.</strong> No complex configuration, no security expertise required — just install and let Sentra handle the rest.">
+          Sentra DLP ra đời từ mong muốn đơn giản: <strong>mọi người dùng, dù không am hiểu kỹ thuật, đều xứng đáng được bảo vệ quyền riêng tư.</strong> Không cần cấu hình phức tạp, không cần kiến thức bảo mật — chỉ cần cài đặt và để Sentra lo phần còn lại.
+        </p>
+        <br/>
+        <p data-vi="Đây không chỉ là một tiện ích kỹ thuật. Đây là cam kết của chúng tôi đối với một internet công bằng hơn — nơi quyền riêng tư không phải là đặc quyền của người hiểu công nghệ."
+             data-en="This is not just a technical extension. It is our commitment to a fairer internet — where privacy is not a privilege reserved for the tech-savvy.">
+          Đây không chỉ là một tiện ích kỹ thuật. Đây là cam kết của chúng tôi đối với một internet công bằng hơn — nơi quyền riêng tư không phải là đặc quyền của người hiểu công nghệ.
+        </p>
       </div>
     </div>
 
-    <!-- ── FOOTER ── -->
-    <footer>
-      <div style="display: flex; align-items: center; gap: 10px">
-        <svg
-          width="22"
-          height="22"
-          viewBox="0 0 100 100"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z"
-            fill="#205B94"
-          />
-          <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863" />
-          <text
-            x="50"
-            y="72"
-            font-family="sans-serif"
-            font-weight="700"
-            font-size="62"
-            fill="#4ED1D8"
-            text-anchor="middle"
-          >
-            S
-          </text>
-        </svg>
-        <span style="font-weight: 700; letter-spacing: 0.06em">SENTRA DLP</span>
+    <div class="story-values">
+      <div class="story-val-item">
+        <div class="story-val-icon">🔓</div>
+        <div>
+          <div class="story-val-title" data-vi="Miễn Phí Mãi Mãi" data-en="Free Forever">Miễn Phí Mãi Mãi</div>
+          <div class="story-val-desc" data-vi="Sentra DLP luôn miễn phí. Quyền riêng tư không phải thứ cần trả phí mới có." data-en="Sentra DLP will always be free. Privacy is not something you should have to pay for.">Sentra DLP luôn miễn phí. Quyền riêng tư không phải thứ cần trả phí mới có.</div>
+        </div>
       </div>
-      <span
-        >Luận Văn Tốt Nghiệp CNTT 2026 &mdash; Bảo vệ quyền riêng tư người
-        dùng</span
-      >
-      <span style="font-family: var(--mono); font-size: 0.72rem">v2.0.0</span>
-    </footer>
-  </body>
+      <div class="story-val-item">
+        <div class="story-val-icon">🤝</div>
+        <div>
+          <div class="story-val-title" data-vi="Vì Cộng Đồng" data-en="For the Community">Vì Cộng Đồng</div>
+          <div class="story-val-desc" data-vi="Phi thương mại, không thu thập dữ liệu người dùng. Mọi tính năng đều phục vụ người dùng cuối." data-en="Non-commercial, no user data collected. Every feature serves the end user.">Phi thương mại, không thu thập dữ liệu người dùng. Mọi tính năng đều phục vụ người dùng cuối.</div>
+        </div>
+      </div>
+      <div class="story-val-item">
+        <div class="story-val-icon">🌏</div>
+        <div>
+          <div class="story-val-title" data-vi="Dành Cho Mọi Người" data-en="For Everyone">Dành Cho Mọi Người</div>
+          <div class="story-val-desc" data-vi="Không yêu cầu kiến thức kỹ thuật. Giao diện thân thiện, hoạt động ngay sau khi cài đặt." data-en="No technical knowledge required. Friendly interface, works immediately after installation.">Không yêu cầu kiến thức kỹ thuật. Giao diện thân thiện, hoạt động ngay sau khi cài đặt.</div>
+        </div>
+      </div>
+      <div class="story-val-item">
+        <div class="story-val-icon">🔍</div>
+        <div>
+          <div class="story-val-title" data-vi="Minh Bạch Hoàn Toàn" data-en="Fully Transparent">Minh Bạch Hoàn Toàn</div>
+          <div class="story-val-desc" data-vi="Bạn luôn biết Sentra đang làm gì và phát hiện gì. Không có hộp đen, không có ẩn ý." data-en="You always know what Sentra is doing and detecting. No black boxes, no hidden agendas.">Bạn luôn biết Sentra đang làm gì và phát hiện gì. Không có hộp đen, không có ẩn ý.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURES ── -->
+<section id="features" style="border-top:1px solid var(--border)">
+  <div class="section-tag" data-vi="Tính Năng" data-en="Features">Tính Năng</div>
+  <div class="section-title" data-vi="Bảo Vệ Toàn Diện<br/>Mọi Lớp Rủi Ro" data-en="Comprehensive Protection<br/>Against Every Threat">Bảo Vệ Toàn Diện<br/>Mọi Lớp Rủi Ro</div>
+
+  <div class="feature-grid">
+    <div class="feature-card" style="--grad:linear-gradient(90deg,#ef4444,#f59e0b)">
+      <div class="feature-icon" style="background:rgba(239,68,68,.12)">🔒</div>
+      <div class="feature-title" data-vi="Chống Rò Rỉ Dữ Liệu" data-en="Data Leak Prevention">Chống Rò Rỉ Dữ Liệu</div>
+      <div class="feature-desc" data-vi="Phát hiện thẻ tín dụng (Luhn check), CMND/CCCD, email bị gửi qua form không an toàn." data-en="Detects credit cards (Luhn check), ID numbers, emails sent through insecure forms.">Phát hiện thẻ tín dụng (Luhn check), CMND/CCCD, email bị gửi qua form không an toàn.</div>
+      <span class="sev-badge sev-h">HIGH SEVERITY</span>
+    </div>
+    <div class="feature-card" style="--grad:linear-gradient(90deg,#f59e0b,#10b981)">
+      <div class="feature-icon" style="background:rgba(245,158,11,.12)">🌐</div>
+      <div class="feature-title" data-vi="Ngăn Lộ IP WebRTC" data-en="WebRTC IP Shield">Ngăn Lộ IP WebRTC</div>
+      <div class="feature-desc" data-vi="Chặn RTCPeerConnection lộ địa chỉ IP thật qua STUN — kể cả khi bạn đang dùng VPN." data-en="Blocks RTCPeerConnection from leaking your real IP via STUN — even when using a VPN.">Chặn RTCPeerConnection lộ địa chỉ IP thật qua STUN — kể cả khi bạn đang dùng VPN.</div>
+      <span class="sev-badge sev-h">HIGH SEVERITY</span>
+    </div>
+    <div class="feature-card" style="--grad:linear-gradient(90deg,#8b5cf6,#3b82f6)">
+      <div class="feature-icon" style="background:rgba(139,92,246,.12)">🎨</div>
+      <div class="feature-title" data-vi="Phát Hiện Fingerprint" data-en="Fingerprint Detection">Phát Hiện Fingerprint</div>
+      <div class="feature-desc" data-vi="Phát hiện Fingerprintjs2, CanvasBlocker và các script tạo định danh duy nhất từ GPU." data-en="Detects Fingerprintjs2, CanvasBlocker, and scripts creating unique GPU-based identifiers.">Phát hiện Fingerprintjs2, CanvasBlocker và các script tạo định danh duy nhất từ GPU.</div>
+      <span class="sev-badge sev-m">MEDIUM</span>
+    </div>
+    <div class="feature-card" style="--grad:linear-gradient(90deg,#3b82f6,#4ED1D8)">
+      <div class="feature-icon" style="background:rgba(59,130,246,.12)">📡</div>
+      <div class="feature-title" data-vi="Chặn Tracker" data-en="Tracker Blocker">Chặn Tracker</div>
+      <div class="feature-desc" data-vi="Nhận diện Google Analytics, Facebook Pixel, Criteo, Outbrain và hàng chục SDK quảng cáo." data-en="Identifies Google Analytics, Facebook Pixel, Criteo, Outbrain, and dozens of ad SDKs.">Nhận diện Google Analytics, Facebook Pixel, Criteo, Outbrain và hàng chục SDK quảng cáo.</div>
+      <span class="sev-badge sev-m">MEDIUM</span>
+    </div>
+    <div class="feature-card" style="--grad:linear-gradient(90deg,#10b981,#4ED1D8)">
+      <div class="feature-icon" style="background:rgba(16,185,129,.12)">🍪</div>
+      <div class="feature-title" data-vi="Giám Sát Cookie" data-en="Cookie Monitor">Giám Sát Cookie</div>
+      <div class="feature-desc" data-vi="Phát hiện cookie bên thứ 3 từ doubleclick.net, fbcdn.net, taboola.com chia sẻ phiên." data-en="Detects third-party cookies from doubleclick.net, fbcdn.net, taboola.com sharing sessions.">Phát hiện cookie bên thứ 3 từ doubleclick.net, fbcdn.net, taboola.com chia sẻ phiên.</div>
+      <span class="sev-badge sev-l">LOW</span>
+    </div>
+    <div class="feature-card" style="--grad:linear-gradient(90deg,#64748b,#94a3b8)">
+      <div class="feature-icon" style="background:rgba(100,116,139,.12)">💾</div>
+      <div class="feature-title" data-vi="Phát Hiện Storage Abuse" data-en="Storage Abuse Detection">Phát Hiện Storage Abuse</div>
+      <div class="feature-desc" data-vi="Phát hiện localStorage / IndexedDB lưu device_id, browser fingerprint không cần đồng ý." data-en="Detects localStorage / IndexedDB storing device_id, browser fingerprints without consent.">Phát hiện localStorage / IndexedDB lưu device_id, browser fingerprint không cần đồng ý.</div>
+      <span class="sev-badge sev-m">MEDIUM</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS (USER VIEW) ── -->
+<section id="how-it-works" style="border-top:1px solid var(--border)">
+  <div class="section-tag" data-vi="Trải Nghiệm Người Dùng" data-en="User Experience">Trải Nghiệm Người Dùng</div>
+  <div class="section-title" data-vi="Bạn Duyệt Web Bình Thường,<br/>Sentra Lo Phần Còn Lại" data-en="You Browse Normally,<br/>Sentra Handles the Rest">Bạn Duyệt Web Bình Thường,<br/>Sentra Lo Phần Còn Lại</div>
+  <div class="section-sub" data-vi="Sentra hoạt động hoàn toàn trong nền — bạn không cần làm gì, nhưng được bảo vệ mọi lúc." data-en="Sentra operates entirely in the background — you don't need to do anything, but you're protected at all times.">Sentra hoạt động hoàn toàn trong nền — bạn không cần làm gì, nhưng được bảo vệ mọi lúc.</div>
+
+  <div class="arch-user-flow">
+    <div class="arch-user-step">
+      <div class="arch-step-num">1</div>
+      <div>
+        <div class="arch-step-title" data-vi="🌐 Bạn truy cập một trang web" data-en="🌐 You visit a website">🌐 Bạn truy cập một trang web</div>
+        <div class="arch-step-desc" data-vi="Sentra tự động kích hoạt và bắt đầu phân tích nền trang — scripts, cookies, kết nối mạng, các truy cập vào API nhạy cảm." data-en="Sentra automatically activates and starts analyzing the page background — scripts, cookies, network connections, accesses to sensitive APIs.">Sentra tự động kích hoạt và bắt đầu phân tích nền trang — scripts, cookies, kết nối mạng, các truy cập vào API nhạy cảm.</div>
+        <span class="arch-step-tag">Background monitoring</span>
+      </div>
+    </div>
+    <div class="arch-user-step">
+      <div class="arch-step-num">2</div>
+      <div>
+        <div class="arch-step-title" data-vi="⚡ Mối đe dọa bị phát hiện trong &lt;50ms" data-en="⚡ Threat detected in &lt;50ms">⚡ Mối đe dọa bị phát hiện trong &lt;50ms</div>
+        <div class="arch-step-desc" data-vi="Nếu phát hiện hành vi đáng ngờ — WebRTC leak, canvas fingerprint, rò rỉ dữ liệu — Sentra phân loại ngay lập tức theo mức độ: CAO / TRUNG BÌNH / THẤP." data-en="If suspicious behavior is detected — WebRTC leak, canvas fingerprint, data leak — Sentra immediately classifies it by severity: HIGH / MEDIUM / LOW.">Nếu phát hiện hành vi đáng ngờ — WebRTC leak, canvas fingerprint, rò rỉ dữ liệu — Sentra phân loại ngay lập tức theo mức độ: CAO / TRUNG BÌNH / THẤP.</div>
+        <span class="arch-step-tag">Real-time detection</span>
+      </div>
+    </div>
+    <div class="arch-user-step">
+      <div class="arch-step-num">3</div>
+      <div>
+        <div class="arch-step-title" data-vi="🔔 Bạn nhận thông báo rõ ràng" data-en="🔔 You receive a clear notification">🔔 Bạn nhận thông báo rõ ràng</div>
+        <div class="arch-step-desc" data-vi="Icon badge trên trình duyệt thay đổi màu. Khi mở popup, bạn thấy ngay: trang nào có vấn đề gì, mức độ nghiêm trọng ra sao — bằng ngôn ngữ dễ hiểu." data-en="The browser badge icon changes color. When you open the popup, you see immediately: which page has what problem, how severe it is — in plain language.">Icon badge trên trình duyệt thay đổi màu. Khi mở popup, bạn thấy ngay: trang nào có vấn đề gì, mức độ nghiêm trọng ra sao — bằng ngôn ngữ dễ hiểu.</div>
+        <span class="arch-step-tag">Instant alert</span>
+      </div>
+    </div>
+    <div class="arch-user-step">
+      <div class="arch-step-num">4</div>
+      <div>
+        <div class="arch-step-title" data-vi="🛡 Dữ liệu của bạn được bảo vệ" data-en="🛡 Your data is protected">🛡 Dữ liệu của bạn được bảo vệ</div>
+        <div class="arch-step-desc" data-vi="Với mức CAO, Sentra không chỉ cảnh báo bạn — hệ thống SOAR tự động can thiệp, ghi nhật ký và gửi cảnh báo đến quản trị viên. Dữ liệu của bạn không rời khỏi thiết bị." data-en="For HIGH severity, Sentra doesn't just warn you — the SOAR system automatically intervenes, logs the incident, and sends alerts to administrators. Your data never leaves your device.">Với mức CAO, Sentra không chỉ cảnh báo bạn — hệ thống SOAR tự động can thiệp, ghi nhật ký và gửi cảnh báo đến quản trị viên. Dữ liệu của bạn không rời khỏi thiết bị.</div>
+        <span class="arch-step-tag">SOAR automated response</span>
+      </div>
+    </div>
+    <div class="arch-user-step">
+      <div class="arch-step-num">5</div>
+      <div>
+        <div class="arch-step-title" data-vi="📊 Lịch sử bảo mật của bạn" data-en="📊 Your security history">📊 Lịch sử bảo mật của bạn</div>
+        <div class="arch-step-desc" data-vi="Mọi sự kiện được lưu lại và hiển thị tại Dashboard. Bạn có thể xem lại toàn bộ lịch sử, lọc theo loại rủi ro, và xuất báo cáo bất cứ lúc nào." data-en="Every event is saved and displayed on the Dashboard. You can review your entire history, filter by risk type, and export reports at any time.">Mọi sự kiện được lưu lại và hiển thị tại Dashboard. Bạn có thể xem lại toàn bộ lịch sử, lọc theo loại rủi ro, và xuất báo cáo bất cứ lúc nào.</div>
+        <span class="arch-step-tag">Cross-device dashboard</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DASHBOARD PREVIEW ── -->
+<section id="dashboard" style="border-top:1px solid var(--border)">
+  <div class="section-tag" data-vi="Dashboard Trực Tiếp" data-en="Live Dashboard">Dashboard Trực Tiếp</div>
+  <div class="section-title" data-vi="Xem Mọi Thứ Đang Xảy Ra,<br/>Trong Thời Gian Thực" data-en="See Everything Happening,<br/>In Real Time">Xem Mọi Thứ Đang Xảy Ra,<br/>Trong Thời Gian Thực</div>
+  <div class="section-sub" data-vi="Dashboard tập hợp sự kiện từ tất cả thiết bị, hiển thị biểu đồ, bảng sự kiện, và cho phép xuất báo cáo Word/CSV." data-en="The dashboard aggregates events from all devices, shows charts, event tables, and allows exporting Word/CSV reports.">Dashboard tập hợp sự kiện từ tất cả thiết bị, hiển thị biểu đồ, bảng sự kiện, và cho phép xuất báo cáo Word/CSV.</div>
+  <div class="preview-wrap">
+    <div class="preview-bar">
+      <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+      <div class="preview-url">104.219.55.50:3456/dashboard</div>
+    </div>
+    <div class="preview-body">
+      <div class="preview-card">
+        <div class="preview-num" style="color:var(--accent)">24</div>
+        <div class="preview-lbl" data-vi="Tổng Sự Kiện" data-en="Total Events">Tổng Sự Kiện</div>
+      </div>
+      <div class="preview-card">
+        <div class="preview-num" style="color:var(--danger)">8</div>
+        <div class="preview-lbl" data-vi="Mức Cao" data-en="High Severity">Mức Cao</div>
+      </div>
+      <div class="preview-card">
+        <div class="preview-num" style="color:var(--success)">3</div>
+        <div class="preview-lbl" data-vi="Người Dùng Online" data-en="Users Online">Người Dùng Online</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TECH ── -->
+<section id="tech" style="border-top:1px solid var(--border)">
+  <div class="section-tag" data-vi="Công Nghệ" data-en="Technology">Công Nghệ</div>
+  <div class="section-title" data-vi="Stack Hiện Đại,<br/>Triển Khai Thực Tế" data-en="Modern Stack,<br/>Real Deployment">Stack Hiện Đại,<br/>Triển Khai Thực Tế</div>
+  <div class="tech-list">
+    <span class="tech-tag"><span class="tech-dot" style="background:#f7df1e"></span>Chrome Extension MV3</span>
+    <span class="tech-tag"><span class="tech-dot" style="background:#68a063"></span>Node.js 18 + Express</span>
+    <span class="tech-tag"><span class="tech-dot" style="background:#4ED1D8"></span>Shuffle SOAR</span>
+    <span class="tech-tag"><span class="tech-dot" style="background:#24a1de"></span>Telegram Bot API</span>
+    <span class="tech-tag"><span class="tech-dot" style="background:#3b82f6"></span>Chart.js 4</span>
+    <span class="tech-tag"><span class="tech-dot" style="background:#10b981"></span>PM2 + VPS</span>
+    <span class="tech-tag"><span class="tech-dot" style="background:#8b5cf6"></span>Helmet.js CSP</span>
+    <span class="tech-tag"><span class="tech-dot" style="background:#f59e0b"></span>JavaScript ES2022</span>
+    <span class="tech-tag"><span class="tech-dot" style="background:#ef4444"></span>WebRTC API</span>
+    <span class="tech-tag"><span class="tech-dot" style="background:#94a3b8"></span>Canvas API</span>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about" style="border-top:1px solid var(--border)">
+  <div class="section-tag" data-vi="Thông Tin" data-en="About">Thông Tin</div>
+  <div class="section-title" data-vi="Phiên Bản &amp; Thông Số" data-en="Versions &amp; Specs">Phiên Bản &amp; Thông Số</div>
+  <div class="about-info">
+    <div class="about-card">
+      <div class="about-card-title" data-vi="Phiên Bản" data-en="Versions">Phiên Bản</div>
+      <div class="kv-row"><span class="kv-k">Extension</span><span class="kv-v">v2.1.0</span></div>
+      <div class="kv-row"><span class="kv-k">Dashboard</span><span class="kv-v">v2.0.0</span></div>
+      <div class="kv-row"><span class="kv-k">Manifest</span><span class="kv-v" style="color:var(--muted)">MV3 · Chrome 90+</span></div>
+      <div class="kv-row"><span class="kv-k">Backend</span><span class="kv-v" style="color:var(--muted)">Node.js 18 / Express</span></div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-title" data-vi="Công Nghệ Sử Dụng" data-en="Technology Stack">Công Nghệ Sử Dụng</div>
+      <div class="tech-chips">
+        <span class="tc">Chrome Extension MV3</span><span class="tc">JavaScript ES2022</span>
+        <span class="tc">Node.js 18</span><span class="tc">Express.js</span>
+        <span class="tc">Shuffle SOAR</span><span class="tc">Telegram Bot</span>
+        <span class="tc">Chart.js 4</span><span class="tc">WebRTC API</span>
+        <span class="tc">Canvas API</span><span class="tc">PM2</span>
+        <span class="tc">Helmet.js</span>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:18px;text-align:center;padding:14px;background:rgba(78,209,216,.05);border:1px solid rgba(78,209,216,.12);border-radius:10px;font-size:.75rem;color:var(--muted);line-height:1.8">
+    <span data-vi="Phi thương mại · Hoàn toàn miễn phí · Không thu thập dữ liệu người dùng" data-en="Non-commercial · Completely free · No user data collected">Phi thương mại · Hoàn toàn miễn phí · Không thu thập dữ liệu người dùng</span>
+    &nbsp;·&nbsp; <span style="color:var(--teal);font-weight:600">© 2026</span>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<div class="cta-section">
+  <div class="cta-box">
+    <h2 data-vi="Bảo Vệ Quyền Riêng Tư<br/>Của Bạn Ngay Hôm Nay" data-en="Protect Your Privacy<br/>Starting Today">Bảo Vệ Quyền Riêng Tư<br/>Của Bạn Ngay Hôm Nay</h2>
+    <p data-vi="Miễn phí, không cần tài khoản, không thu thập dữ liệu. Cài đặt và để Sentra bảo vệ bạn từ phút đầu tiên." data-en="Free, no account required, no data collected. Install and let Sentra protect you from the very first minute.">Miễn phí, không cần tài khoản, không thu thập dữ liệu. Cài đặt và để Sentra bảo vệ bạn từ phút đầu tiên.</p>
+    <div class="cta-actions">
+      <a class="btn-primary" href="http://104.219.55.50:3456/dashboard" target="_blank">
+        <span data-vi="XEM DASHBOARD LIVE" data-en="VIEW LIVE DASHBOARD">XEM DASHBOARD LIVE</span>
+      </a>
+      <a class="btn-outline" href="https://TwiththeG.github.io/privacy/" target="_blank">
+        <span data-vi="CHÍNH SÁCH BẢO MẬT" data-en="PRIVACY POLICY">CHÍNH SÁCH BẢO MẬT</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div style="display:flex;align-items:center;gap:10px">
+    <svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
+      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
+      <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+    </svg>
+    <span style="font-weight:700;letter-spacing:.06em">SENTRA DLP</span>
+  </div>
+  <span data-vi="Bảo vệ quyền riêng tư trên không gian mạng" data-en="Protecting privacy in cyberspace">Bảo vệ quyền riêng tư trên không gian mạng</span>
+  <div style="display:flex;gap:14px;align-items:center">
+    <a href="https://TwiththeG.github.io/privacy/" target="_blank" style="color:var(--muted);text-decoration:none;font-size:.75rem;transition:color .2s" onmouseover="this.style.color='#4ED1D8'" onmouseout="this.style.color=''">
+      <span data-vi="Chính Sách Bảo Mật" data-en="Privacy Policy">Chính Sách Bảo Mật</span>
+    </a>
+    <a href="http://104.219.55.50:3456/dashboard" target="_blank" style="color:var(--muted);text-decoration:none;font-size:.75rem;transition:color .2s" onmouseover="this.style.color='#4ED1D8'" onmouseout="this.style.color=''">Dashboard</a>
+  </div>
+</footer>
+
+<script>
+  let lang = 'vi';
+  function toggleLang() {
+    lang = lang === 'vi' ? 'en' : 'vi';
+    document.getElementById('langToggle').textContent = lang === 'vi' ? 'EN' : 'VI';
+    document.querySelectorAll('[data-vi]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val !== null) el.innerHTML = val;
+    });
+    document.documentElement.lang = lang === 'vi' ? 'vi' : 'en';
+  }
+</script>
+</body>
 </html>
