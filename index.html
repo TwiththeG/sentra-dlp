@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sentra DLP — Người bảo vệ thầm lặng</title>
+    <title>Sentra DLP — Silent Guardian of Your Data</title>
     <meta
       name="description"
       content="Sentra DLP là tiện ích Chrome bảo vệ dữ liệu cá nhân trong thời gian thực. Phát hiện rò rỉ, chặn tracker, ngăn canvas fingerprinting."
@@ -54,6 +54,7 @@
         overflow-x: hidden;
       }
 
+      /* ── Background grid ── */
       body::before {
         content: "";
         position: fixed;
@@ -129,39 +130,6 @@
       .nav-links a:hover {
         color: var(--text);
       }
-
-      /* Language toggle */
-      .lang-toggle {
-        display: flex;
-        align-items: center;
-        background: var(--bg2);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        overflow: hidden;
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-      }
-      .lang-btn {
-        padding: 6px 12px;
-        cursor: pointer;
-        transition: all 0.2s;
-        color: var(--muted);
-        background: transparent;
-        border: none;
-        font-family: var(--font);
-        font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-      }
-      .lang-btn.active {
-        background: var(--teal-dim);
-        color: var(--teal);
-      }
-      .lang-btn:hover:not(.active) {
-        color: var(--text);
-      }
-
       .btn-outline {
         display: inline-flex;
         align-items: center;
@@ -224,14 +192,13 @@
         text-transform: uppercase;
         margin-bottom: 28px;
       }
-      .hero-badge .dot-pulse {
+      .hero-badge span {
         width: 6px;
         height: 6px;
         border-radius: 50%;
         background: var(--teal);
         animation: pulse 2s infinite;
         display: inline-block;
-        flex-shrink: 0;
       }
       @keyframes pulse {
         0%,
@@ -244,6 +211,7 @@
           transform: scale(1.3);
         }
       }
+
       .hero h1 {
         font-size: clamp(2.2rem, 5vw, 3.6rem);
         font-weight: 800;
@@ -345,7 +313,7 @@
       .stat-lbl {
         font-size: 0.72rem;
         font-weight: 600;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         color: var(--muted);
         margin-top: 4px;
         text-transform: uppercase;
@@ -377,93 +345,6 @@
         margin-top: 10px;
         line-height: 1.7;
         max-width: 540px;
-      }
-
-      /* ── Story section ── */
-      .story-section {
-        padding: 80px 24px;
-        max-width: 1100px;
-        margin: 0 auto;
-        border-top: 1px solid var(--border);
-      }
-      .story-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 48px;
-        margin-top: 48px;
-        align-items: center;
-      }
-      .story-text h3 {
-        font-size: 1.35rem;
-        font-weight: 700;
-        line-height: 1.4;
-        margin-bottom: 16px;
-      }
-      .story-text p {
-        color: var(--muted);
-        line-height: 1.8;
-        font-size: 0.95rem;
-        margin-bottom: 14px;
-      }
-      .story-text p:last-child {
-        margin-bottom: 0;
-      }
-      .story-quote {
-        background: var(--bg2);
-        border: 1px solid var(--border);
-        border-left: 3px solid var(--teal);
-        border-radius: var(--r);
-        padding: 32px;
-      }
-      .story-quote blockquote {
-        font-size: 1.05rem;
-        font-style: italic;
-        color: var(--text);
-        line-height: 1.75;
-        opacity: 0.9;
-      }
-      .story-quote cite {
-        display: block;
-        margin-top: 16px;
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.08em;
-        color: var(--teal);
-        font-style: normal;
-      }
-
-      /* ── How it works cards ── */
-      .flow-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-        margin-top: 48px;
-      }
-      .flow-card {
-        background: var(--bg2);
-        border: 1px solid var(--border);
-        border-radius: var(--r);
-        padding: 24px;
-        text-align: center;
-        transition: all 0.25s;
-      }
-      .flow-card:hover {
-        border-color: rgba(78, 209, 216, 0.25);
-        transform: translateY(-4px);
-      }
-      .flow-card-icon {
-        font-size: 2rem;
-        margin-bottom: 12px;
-      }
-      .flow-card-title {
-        font-size: 0.85rem;
-        font-weight: 700;
-        margin-bottom: 8px;
-      }
-      .flow-card-desc {
-        font-size: 0.78rem;
-        color: var(--muted);
-        line-height: 1.6;
       }
 
       /* ── Feature grid ── */
@@ -513,7 +394,8 @@
       .feature-title {
         font-size: 0.95rem;
         font-weight: 700;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
       }
       .feature-desc {
         font-size: 0.83rem;
@@ -568,7 +450,8 @@
       .arch-node-name {
         font-size: 0.78rem;
         font-weight: 700;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
         margin-top: 8px;
       }
       .arch-node-sub {
@@ -742,10 +625,6 @@
           border-right: none;
           border-bottom: 1px solid var(--border);
         }
-        .story-grid {
-          grid-template-columns: 1fr;
-          gap: 32px;
-        }
         .preview-body {
           grid-template-columns: 1fr;
         }
@@ -760,19 +639,6 @@
           align-items: flex-start;
         }
       }
-
-      /* ── i18n ── */
-      [data-lang="en"] { display: none !important; }
-      html[lang="en"] [data-lang="vi"] { display: none !important; }
-      html[lang="en"] span[data-lang="en"],
-      html[lang="en"] cite[data-lang="en"] { display: inline !important; }
-      html[lang="en"] a[data-lang="en"] { display: inline-flex !important; }
-      html[lang="en"] div[data-lang="en"],
-      html[lang="en"] p[data-lang="en"],
-      html[lang="en"] h1[data-lang="en"],
-      html[lang="en"] h2[data-lang="en"],
-      html[lang="en"] h3[data-lang="en"],
-      html[lang="en"] blockquote[data-lang="en"] { display: block !important; }
     </style>
   </head>
   <body>
@@ -804,53 +670,27 @@
         <span class="brand-text">SENTRA <span>DLP</span></span>
       </a>
       <div class="nav-links">
-        <a href="#story" data-lang="vi">Câu chuyện</a>
-        <a href="#story" data-lang="en">Our story</a>
-        <a href="#features" data-lang="vi">Tính năng</a>
-        <a href="#features" data-lang="en">Features</a>
-        <a href="#architecture" data-lang="vi">Kiến trúc</a>
-        <a href="#architecture" data-lang="en">Architecture</a>
-        <a href="#dashboard" data-lang="vi">Dashboard</a>
-        <a href="#dashboard" data-lang="en">Dashboard</a>
-        <div class="lang-toggle">
-          <button class="lang-btn active" id="btn-vi" onclick="setLang('vi')">
-            VI
-          </button>
-          <button class="lang-btn" id="btn-en" onclick="setLang('en')">
-            EN
-          </button>
-        </div>
+        <a href="#features">TÍNH NĂNG</a>
+        <a href="#architecture">KIẾN TRÚC</a>
+        <a href="#dashboard">DASHBOARD</a>
+        <a href="#tech">CÔNG NGHỆ</a>
         <a
           class="btn-outline"
           href="http://104.219.55.50:3456/dashboard"
           target="_blank"
-          >Live dashboard →</a
+          >LIVE DASHBOARD →</a
         >
       </div>
     </nav>
 
     <!-- ── HERO ── -->
     <div class="hero">
-      <div class="hero-badge">
-        <span class="dot-pulse"></span>
-        <span data-lang="vi">Bảo vệ quyền riêng tư</span>
-        <span data-lang="en">Privacy protection</span>
-      </div>
-      <h1 data-lang="vi">
-        An toàn trên mạng —<br />không phải là <em>đặc quyền</em>
-      </h1>
-      <h1 data-lang="en">
-        Staying safe online<br />shouldn't be a <em>privilege</em>
-      </h1>
-      <p data-lang="vi">
-        Mỗi ngày bạn lướt web, hàng chục trang web thu thập dữ liệu về bạn mà
-        không hỏi một câu. Sentra DLP đứng giữa bạn và điều đó — âm thầm, liên
-        tục, không cần bạn làm gì thêm.
-      </p>
-      <p data-lang="en">
-        Every day you browse the web, dozens of sites collect data about you
-        without asking. Sentra DLP stands between you and that — quietly,
-        continuously, without you lifting a finger.
+      <div class="hero-badge"><span></span> Luận Văn Tốt Nghiệp 2026</div>
+      <h1>Bảo Vệ Dữ Liệu Cá Nhân<br />với <em>Trí Tuệ Nhân Tạo</em></h1>
+      <p>
+        Sentra DLP là tiện ích Chrome thế hệ mới, phát hiện và ngăn chặn rò rỉ
+        dữ liệu, theo dõi trái phép, và canvas fingerprinting trong thời gian
+        thực — tích hợp hệ thống phản ứng tự động SOAR.
       </p>
       <div class="hero-actions">
         <a
@@ -863,8 +703,7 @@
               d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"
             />
           </svg>
-          <span data-lang="vi">Xem live dashboard</span>
-          <span data-lang="en">Open live dashboard</span>
+          XEM LIVE DASHBOARD
         </a>
         <a
           class="btn-outline"
@@ -876,7 +715,7 @@
               d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"
             />
           </svg>
-          GitHub
+          GITHUB
         </a>
       </div>
 
@@ -909,184 +748,30 @@
       <div class="stats-bar">
         <div class="stat-item">
           <div class="stat-val">6</div>
-          <div class="stat-lbl" data-lang="vi">Loại mối đe dọa</div>
-          <div class="stat-lbl" data-lang="en">Threat types detected</div>
+          <div class="stat-lbl">Loại Mối Đe Dọa Phát Hiện</div>
         </div>
         <div class="stat-item">
           <div class="stat-val">2</div>
-          <div class="stat-lbl">SOAR playbooks</div>
+          <div class="stat-lbl">SOAR Playbooks</div>
         </div>
         <div class="stat-item">
           <div class="stat-val">&lt;50ms</div>
-          <div class="stat-lbl" data-lang="vi">Thời gian phát hiện</div>
-          <div class="stat-lbl" data-lang="en">Detection time</div>
+          <div class="stat-lbl">Thời Gian Phát Hiện</div>
         </div>
         <div class="stat-item">
           <div class="stat-val">100%</div>
-          <div class="stat-lbl">Client-side detection</div>
+          <div class="stat-lbl">Client-side Detection</div>
         </div>
       </div>
     </div>
 
-    <!-- ── STORY ── -->
-    <section id="story" class="story-section">
-      <div class="section-tag" data-lang="vi">Câu chuyện</div>
-      <div class="section-tag" data-lang="en">The story</div>
-      <div class="section-title" data-lang="vi">Tại sao Sentra ra đời?</div>
-      <div class="section-title" data-lang="en">Why Sentra exists</div>
-
-      <div class="story-grid">
-        <div class="story-text">
-          <h3 data-lang="vi">Mỗi lần bạn lướt web, ai đó đang lắng nghe</h3>
-          <h3 data-lang="en">Every time you browse, someone is listening</h3>
-          <p data-lang="vi">
-            Có một điều ít người để ý: khi bạn mở một trang tin tức, vào một
-            shop online, hay chỉ tìm kiếm một bài nhạc — hàng chục đoạn script
-            vô hình đang chạy nền, ghi lại mọi thứ về bạn. Thiết bị bạn dùng.
-            Màn hình hiển thị. Cách bạn cuộn trang.
-          </p>
-          <p data-lang="en">
-            There's something most people don't notice: when you open a news
-            site, browse an online shop, or just look up a song — dozens of
-            invisible scripts run in the background, recording everything about
-            you. The device you use. Your screen. How you scroll.
-          </p>
-          <p data-lang="vi">
-            Không ai hỏi ý kiến bạn. Không có nút "từ chối" thực sự. Dữ liệu đó
-            được bán đi, tổng hợp lại, và dùng để xây dựng một "hồ sơ kỹ thuật
-            số" về bạn mà chính bạn cũng không biết trông như thế nào.
-          </p>
-          <p data-lang="en">
-            Nobody asks for your permission. There's no real "decline" button.
-            That data gets sold, aggregated, and used to build a digital profile
-            of you — one you've never seen.
-          </p>
-          <p data-lang="vi">
-            Sentra ra đời vì một niềm tin đơn giản:
-            <strong>mọi người đều xứng đáng được an toàn khi lướt web</strong> —
-            dù họ có hiểu về công nghệ hay không.
-          </p>
-          <p data-lang="en">
-            Sentra was built on a simple belief:
-            <strong>everyone deserves to browse safely</strong> — whether or not
-            they understand technology.
-          </p>
-        </div>
-
-        <div class="story-quote">
-          <blockquote data-lang="vi">
-            "Internet không nên là nơi bạn phải cảnh giác từng bước.
-            Tôi muốn nó trở thành không gian bạn có thể tự do khám phá —
-            mà không lo dữ liệu của mình bị âm thầm mang đi."
-          </blockquote>
-          <blockquote data-lang="en">
-            "The internet shouldn't be a place where you have to watch your
-            every step. I want it to be a space you can freely explore —
-            without worrying that your data is being quietly taken away."
-          </blockquote>
-          <cite>— Tác giả, Sentra DLP</cite>
-        </div>
-      </div>
-
-      <!-- How it works -->
-      <div style="margin-top: 64px">
-        <div class="section-tag" data-lang="vi">Cách Sentra bảo vệ bạn</div>
-        <div class="section-tag" data-lang="en">How Sentra protects you</div>
-        <div class="flow-cards">
-          <div class="flow-card">
-            <div class="flow-card-icon">👁️</div>
-            <div class="flow-card-title" data-lang="vi">Giám sát hành vi</div>
-            <div class="flow-card-title" data-lang="en">
-              Behavior monitoring
-            </div>
-            <div class="flow-card-desc" data-lang="vi">
-              Tiện ích chạy ngầm trong trình duyệt, liên tục kiểm tra hành vi
-              bất thường trên mọi trang bạn truy cập.
-            </div>
-            <div class="flow-card-desc" data-lang="en">
-              The extension runs silently in the browser, continuously scanning
-              for abnormal behavior on every page you visit.
-            </div>
-          </div>
-          <div class="flow-card">
-            <div class="flow-card-icon">🔍</div>
-            <div class="flow-card-title" data-lang="vi">Phân tích rủi ro</div>
-            <div class="flow-card-title" data-lang="en">Risk analysis</div>
-            <div class="flow-card-desc" data-lang="vi">
-              Hành vi đáng nghi được phân loại theo mức độ: Cao, Trung bình hoặc
-              Thấp — để bạn biết điều gì quan trọng.
-            </div>
-            <div class="flow-card-desc" data-lang="en">
-              Suspicious behavior is classified by risk level: High, Medium, or
-              Low — so you know what matters.
-            </div>
-          </div>
-          <div class="flow-card">
-            <div class="flow-card-icon">🛡️</div>
-            <div class="flow-card-title" data-lang="vi">Ngăn chặn tức thì</div>
-            <div class="flow-card-title" data-lang="en">Instant blocking</div>
-            <div class="flow-card-desc" data-lang="vi">
-              Vi phạm bị chặn ngay lập tức — trước khi bất kỳ dữ liệu nào rời
-              khỏi thiết bị của bạn.
-            </div>
-            <div class="flow-card-desc" data-lang="en">
-              Violations are blocked immediately — before any data can leave
-              your device.
-            </div>
-          </div>
-          <div class="flow-card">
-            <div class="flow-card-icon">🔔</div>
-            <div class="flow-card-title" data-lang="vi">
-              Cảnh báo người dùng
-            </div>
-            <div class="flow-card-title" data-lang="en">User notification</div>
-            <div class="flow-card-desc" data-lang="vi">
-              Bạn nhận thông báo chi tiết: loại rủi ro, mức nghiêm trọng và
-              trang web gây ra. Cảnh báo cao còn gửi qua Telegram.
-            </div>
-            <div class="flow-card-desc" data-lang="en">
-              You get a detailed alert: risk type, severity, and the offending
-              site. High-severity alerts are also sent via Telegram.
-            </div>
-          </div>
-          <div class="flow-card">
-            <div class="flow-card-icon">📋</div>
-            <div class="flow-card-title" data-lang="vi">
-              Ghi nhật ký & thống kê
-            </div>
-            <div class="flow-card-title" data-lang="en">
-              Logging & statistics
-            </div>
-            <div class="flow-card-desc" data-lang="vi">
-              Mọi sự kiện được lưu lại và hiển thị trực quan để bạn theo dõi
-              lịch sử bảo mật của mình.
-            </div>
-            <div class="flow-card-desc" data-lang="en">
-              Every event is stored and visualized so you can review your
-              personal security history at any time.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ── FEATURES ── -->
-    <section id="features" style="border-top: 1px solid var(--border)">
-      <div class="section-tag" data-lang="vi">Tính năng</div>
-      <div class="section-tag" data-lang="en">Features</div>
-      <div class="section-title" data-lang="vi">
-        Bảo vệ toàn diện,<br />mọi lớp rủi ro
-      </div>
-      <div class="section-title" data-lang="en">
-        Comprehensive protection<br />across every risk layer
-      </div>
-      <div class="section-sub" data-lang="vi">
-        Tiện ích phân tích trình duyệt theo thời gian thực, phân loại mối nguy
+    <section id="features">
+      <div class="section-tag">Tính Năng</div>
+      <div class="section-title">Bảo Vệ Toàn Diện<br />Mọi Lớp Rủi Ro</div>
+      <div class="section-sub">
+        Extension phân tích trình duyệt theo thời gian thực, phân loại mối nguy
         theo mức độ và gửi cảnh báo tức thì.
-      </div>
-      <div class="section-sub" data-lang="en">
-        The extension analyzes your browser in real time, classifies threats by
-        severity, and sends instant alerts.
       </div>
 
       <div class="feature-grid">
@@ -1097,16 +782,12 @@
           <div class="feature-icon" style="background: rgba(239, 68, 68, 0.12)">
             🔒
           </div>
-          <div class="feature-title">DLP engine</div>
-          <div class="feature-desc" data-lang="vi">
+          <div class="feature-title">DLP Engine</div>
+          <div class="feature-desc">
             Phát hiện thẻ tín dụng (Luhn check), CMND/CCCD, email nhạy cảm bị
             gửi qua form không an toàn.
           </div>
-          <div class="feature-desc" data-lang="en">
-            Detects credit cards (Luhn check), national IDs, and sensitive
-            emails submitted through insecure forms.
-          </div>
-          <span class="sev-badge sev-h">High severity</span>
+          <span class="sev-badge sev-h">HIGH SEVERITY</span>
         </div>
         <div
           class="feature-card"
@@ -1118,16 +799,12 @@
           >
             🌐
           </div>
-          <div class="feature-title">WebRTC IP leak</div>
-          <div class="feature-desc" data-lang="vi">
+          <div class="feature-title">WebRTC IP Leak</div>
+          <div class="feature-desc">
             Chặn RTCPeerConnection lộ địa chỉ IP thật qua STUN server ngay cả
             khi dùng VPN.
           </div>
-          <div class="feature-desc" data-lang="en">
-            Blocks RTCPeerConnection from leaking your real IP through STUN
-            servers — even when using a VPN.
-          </div>
-          <span class="sev-badge sev-h">High severity</span>
+          <span class="sev-badge sev-h">HIGH SEVERITY</span>
         </div>
         <div
           class="feature-card"
@@ -1139,16 +816,12 @@
           >
             🎨
           </div>
-          <div class="feature-title">Canvas fingerprint</div>
-          <div class="feature-desc" data-lang="vi">
-            Phát hiện Fingerprintjs2, CanvasBlocker và các script lấy unique
+          <div class="feature-title">Canvas Fingerprint</div>
+          <div class="feature-desc">
+            Phát hiện Fingerprintjs2, CanvasBlocker, và các script lấy unique
             hash từ GPU renderer.
           </div>
-          <div class="feature-desc" data-lang="en">
-            Detects Fingerprintjs2, CanvasBlocker, and scripts that extract
-            unique hashes from your GPU renderer.
-          </div>
-          <span class="sev-badge sev-m">Medium severity</span>
+          <span class="sev-badge sev-m">MEDIUM SEVERITY</span>
         </div>
         <div
           class="feature-card"
@@ -1160,16 +833,12 @@
           >
             📡
           </div>
-          <div class="feature-title">Tracker shield</div>
-          <div class="feature-desc" data-lang="vi">
+          <div class="feature-title">Tracker Shield</div>
+          <div class="feature-desc">
             Chặn Google Analytics, Facebook Pixel, Criteo, Outbrain và hàng chục
             SDK theo dõi quảng cáo.
           </div>
-          <div class="feature-desc" data-lang="en">
-            Blocks Google Analytics, Facebook Pixel, Criteo, Outbrain, and
-            dozens of ad-tracking SDKs.
-          </div>
-          <span class="sev-badge sev-m">Medium severity</span>
+          <span class="sev-badge sev-m">MEDIUM SEVERITY</span>
         </div>
         <div
           class="feature-card"
@@ -1181,16 +850,12 @@
           >
             🍪
           </div>
-          <div class="feature-title">Cookie monitor</div>
-          <div class="feature-desc" data-lang="vi">
-            Giám sát cookie bên thứ ba từ doubleclick.net, fbcdn.net,
-            taboola.com chia sẻ dữ liệu phiên.
+          <div class="feature-title">Cookie Monitor</div>
+          <div class="feature-desc">
+            Giám sát cookie bên thứ 3 từ doubleclick.net, fbcdn.net, taboola.com
+            chia sẻ dữ liệu phiên.
           </div>
-          <div class="feature-desc" data-lang="en">
-            Monitors third-party cookies from doubleclick.net, fbcdn.net, and
-            taboola.com sharing session data.
-          </div>
-          <span class="sev-badge sev-l">Low severity</span>
+          <span class="sev-badge sev-l">LOW SEVERITY</span>
         </div>
         <div
           class="feature-card"
@@ -1202,97 +867,67 @@
           >
             💾
           </div>
-          <div class="feature-title">Storage abuse</div>
-          <div class="feature-desc" data-lang="vi">
+          <div class="feature-title">Storage Abuse</div>
+          <div class="feature-desc">
             Phát hiện localStorage / IndexedDB lưu device_id, browser
-            fingerprint mà không có sự đồng ý.
+            fingerprint không cần đồng ý.
           </div>
-          <div class="feature-desc" data-lang="en">
-            Detects localStorage / IndexedDB storing device IDs and browser
-            fingerprints without consent.
-          </div>
-          <span class="sev-badge sev-m">Medium severity</span>
+          <span class="sev-badge sev-m">MEDIUM SEVERITY</span>
         </div>
       </div>
     </section>
 
     <!-- ── ARCHITECTURE ── -->
     <section id="architecture" style="border-top: 1px solid var(--border)">
-      <div class="section-tag" data-lang="vi">Cách hoạt động</div>
-      <div class="section-tag" data-lang="en">How it works</div>
-      <div class="section-title" data-lang="vi">
-        Bạn lướt web —<br />Sentra lo phần còn lại
-      </div>
-      <div class="section-title" data-lang="en">
-        You browse —<br />Sentra handles the rest
-      </div>
-      <div class="section-sub" data-lang="vi">
-        Mọi thứ diễn ra tự động trong nền. Bạn chỉ nhận thông báo khi có điều gì đó thực sự đáng lo ngại.
-      </div>
-      <div class="section-sub" data-lang="en">
-        Everything happens automatically in the background. You only get notified when something is genuinely worth your attention.
+      <div class="section-tag">Kiến Trúc Hệ Thống</div>
+      <div class="section-title">Từ Trình Duyệt<br />Đến Phản Ứng Tự Động</div>
+      <div class="section-sub">
+        Hành trình của một sự kiện bảo mật — từ lúc phát hiện đến khi SOAR phân
+        tích và tạo alert.
       </div>
 
       <div class="arch-flow">
         <div class="arch-node">
           <div class="arch-node-icon">🌐</div>
-          <div class="arch-node-name" data-lang="vi">Bạn lướt web</div>
-          <div class="arch-node-name" data-lang="en">You browse</div>
-          <div class="arch-node-sub" data-lang="vi">Bất kỳ trang nào</div>
-          <div class="arch-node-sub" data-lang="en">Any website</div>
+          <div class="arch-node-name">Chrome Extension</div>
+          <div class="arch-node-sub">Content Script detect</div>
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node">
-          <div class="arch-node-icon">🔍</div>
-          <div class="arch-node-name" data-lang="vi">Extension quét</div>
-          <div class="arch-node-name" data-lang="en">Extension scans</div>
-          <div class="arch-node-sub" data-lang="vi">Phát hiện bất thường</div>
-          <div class="arch-node-sub" data-lang="en">Detects anomalies</div>
+          <div class="arch-node-icon">⚡</div>
+          <div class="arch-node-name">Node.js Backend</div>
+          <div class="arch-node-sub">POST /api/v1/events</div>
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node">
-          <div class="arch-node-icon">⚖️</div>
-          <div class="arch-node-name" data-lang="vi">Tính điểm rủi ro</div>
-          <div class="arch-node-name" data-lang="en">Risk scored</div>
-          <div class="arch-node-sub" data-lang="vi">Cao / Trung bình / Thấp</div>
-          <div class="arch-node-sub" data-lang="en">High / Medium / Low</div>
+          <div class="arch-node-icon">🔀</div>
+          <div class="arch-node-name">Shuffle SOAR</div>
+          <div class="arch-node-sub">Webhook Playbook</div>
+        </div>
+        <div class="arch-arrow">→</div>
+        <div class="arch-node">
+          <div class="arch-node-icon">📊</div>
+          <div class="arch-node-name">Risk Analyzer</div>
+          <div class="arch-node-sub">Score ≥ 70 → Alert</div>
         </div>
         <div class="arch-arrow">→</div>
         <div class="arch-node">
           <div class="arch-node-icon">🔔</div>
-          <div class="arch-node-name" data-lang="vi">Bạn được cảnh báo</div>
-          <div class="arch-node-name" data-lang="en">You're alerted</div>
-          <div class="arch-node-sub" data-lang="vi">Popup + icon đổi màu</div>
-          <div class="arch-node-sub" data-lang="en">Popup + icon color change</div>
-        </div>
-        <div class="arch-arrow">→</div>
-        <div class="arch-node">
-          <div class="arch-node-icon">📋</div>
-          <div class="arch-node-name" data-lang="vi">Sự kiện được lưu</div>
-          <div class="arch-node-name" data-lang="en">Event logged</div>
-          <div class="arch-node-sub" data-lang="vi">Xem lại trên dashboard</div>
-          <div class="arch-node-sub" data-lang="en">Review on dashboard</div>
+          <div class="arch-node-name">Telegram Bot</div>
+          <div class="arch-node-sub">@SentryDLP_bot</div>
         </div>
       </div>
     </section>
 
     <!-- ── DASHBOARD ── -->
     <section id="dashboard" style="border-top: 1px solid var(--border)">
-      <div class="section-tag" data-lang="vi">Live dashboard</div>
-      <div class="section-tag" data-lang="en">Live dashboard</div>
-      <div class="section-title" data-lang="vi">
-        Quan sát mọi hoạt động<br />trong thời gian thực
+      <div class="section-tag">Live Dashboard</div>
+      <div class="section-title">
+        Quan Sát Mọi Hoạt Động<br />Trong Thời Gian Thực
       </div>
-      <div class="section-title" data-lang="en">
-        Monitor all activity<br />in real time
-      </div>
-      <div class="section-sub" data-lang="vi">
-        Dashboard tập hợp sự kiện từ tất cả người dùng, hiển thị biểu đồ, bảng
-        sự kiện và cho phép xuất báo cáo Word/CSV.
-      </div>
-      <div class="section-sub" data-lang="en">
-        The dashboard aggregates events from all users, displays charts, event
-        tables, and lets you export Word/CSV reports.
+      <div class="section-sub">
+        Dashboard web tập hợp sự kiện từ tất cả người dùng, hiển thị biểu đồ,
+        bảng sự kiện, và cho phép xuất báo cáo Word/CSV.
       </div>
 
       <div class="preview-wrap">
@@ -1305,18 +940,15 @@
         <div class="preview-body">
           <div class="preview-card">
             <div class="preview-num" style="color: var(--accent)">24</div>
-            <div class="preview-lbl" data-lang="vi">Tổng sự kiện</div>
-            <div class="preview-lbl" data-lang="en">Total events</div>
+            <div class="preview-lbl">Tổng Sự Kiện</div>
           </div>
           <div class="preview-card">
             <div class="preview-num" style="color: var(--danger)">8</div>
-            <div class="preview-lbl" data-lang="vi">Mức cao hôm nay</div>
-            <div class="preview-lbl" data-lang="en">High severity today</div>
+            <div class="preview-lbl">Mức Cao Hôm Nay</div>
           </div>
           <div class="preview-card">
             <div class="preview-num" style="color: var(--success)">3</div>
-            <div class="preview-lbl" data-lang="vi">Người dùng online</div>
-            <div class="preview-lbl" data-lang="en">Users online</div>
+            <div class="preview-lbl">Người Dùng Online</div>
           </div>
         </div>
       </div>
@@ -1324,18 +956,12 @@
 
     <!-- ── TECH ── -->
     <section id="tech" style="border-top: 1px solid var(--border)">
-      <div class="section-tag" data-lang="vi">Công nghệ</div>
-      <div class="section-tag" data-lang="en">Tech stack</div>
-      <div class="section-title" data-lang="vi">
-        Stack hiện đại,<br />triển khai thực tế
-      </div>
-      <div class="section-title" data-lang="en">
-        Modern stack,<br />real-world deployment
-      </div>
+      <div class="section-tag">Công Nghệ</div>
+      <div class="section-title">Stack Hiện Đại,<br />Triển Khai Thực Tế</div>
       <div class="tech-list">
         <span class="tech-tag"
           ><span class="tech-dot" style="background: #f7df1e"></span>Chrome
-          extension MV3</span
+          Extension MV3</span
         >
         <span class="tech-tag"
           ><span class="tech-dot" style="background: #68a063"></span>Node.js +
@@ -1368,36 +994,580 @@
       </div>
     </section>
 
+    <!-- ── ABOUT ── -->
+    <section id="about" style="border-top: 1px solid var(--border)">
+      <div class="section-tag">Giới Thiệu</div>
+      <div class="section-title">Thông Tin Dự Án</div>
+      <div
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 28px;
+          margin-top: 40px;
+        "
+      >
+        <!-- Cách hoạt động -->
+        <div
+          style="
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            padding: 28px;
+          "
+        >
+          <div
+            style="
+              font-size: 0.7rem;
+              font-weight: 800;
+              letter-spacing: 0.12em;
+              color: var(--teal);
+              text-transform: uppercase;
+              margin-bottom: 20px;
+            "
+          >
+            Cách Hoạt Động
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <div style="display: flex; gap: 14px; align-items: flex-start">
+              <div
+                style="
+                  min-width: 28px;
+                  height: 28px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--teal));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 0.75rem;
+                  font-weight: 800;
+                  flex-shrink: 0;
+                "
+              >
+                1
+              </div>
+              <div>
+                <div style="font-size: 0.82rem; font-weight: 700">
+                  Giám sát hành vi
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--muted);
+                    margin-top: 3px;
+                    line-height: 1.6;
+                  "
+                >
+                  Tiện ích hoạt động ngầm, liên tục kiểm tra các hành vi bất
+                  thường trên mỗi trang web.
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: flex-start">
+              <div
+                style="
+                  min-width: 28px;
+                  height: 28px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--teal));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 0.75rem;
+                  font-weight: 800;
+                  flex-shrink: 0;
+                "
+              >
+                2
+              </div>
+              <div>
+                <div style="font-size: 0.82rem; font-weight: 700">
+                  Phân tích rủi ro
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--muted);
+                    margin-top: 3px;
+                    line-height: 1.6;
+                  "
+                >
+                  Phân loại theo mức nguy hiểm: Cao, Trung bình hoặc Thấp.
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: flex-start">
+              <div
+                style="
+                  min-width: 28px;
+                  height: 28px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--teal));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 0.75rem;
+                  font-weight: 800;
+                  flex-shrink: 0;
+                "
+              >
+                3
+              </div>
+              <div>
+                <div style="font-size: 0.82rem; font-weight: 700">
+                  Ngăn chặn tức thì
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--muted);
+                    margin-top: 3px;
+                    line-height: 1.6;
+                  "
+                >
+                  Vi phạm bị chặn ngay trước khi bất kỳ dữ liệu nào rời khỏi
+                  thiết bị.
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: flex-start">
+              <div
+                style="
+                  min-width: 28px;
+                  height: 28px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--teal));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 0.75rem;
+                  font-weight: 800;
+                  flex-shrink: 0;
+                "
+              >
+                4
+              </div>
+              <div>
+                <div style="font-size: 0.82rem; font-weight: 700">
+                  Cảnh báo &amp; SOAR
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--muted);
+                    margin-top: 3px;
+                    line-height: 1.6;
+                  "
+                >
+                  Thông báo chi tiết qua popup + Telegram. Mức Cao kích hoạt
+                  SOAR Playbook tự động.
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 14px; align-items: flex-start">
+              <div
+                style="
+                  min-width: 28px;
+                  height: 28px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--teal));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-size: 0.75rem;
+                  font-weight: 800;
+                  flex-shrink: 0;
+                "
+              >
+                5
+              </div>
+              <div>
+                <div style="font-size: 0.82rem; font-weight: 700">
+                  Ghi nhật ký &amp; Thống kê
+                </div>
+                <div
+                  style="
+                    font-size: 0.78rem;
+                    color: var(--muted);
+                    margin-top: 3px;
+                    line-height: 1.6;
+                  "
+                >
+                  Mọi sự kiện được lưu và hiển thị trực quan để theo dõi lịch sử
+                  bảo mật cá nhân.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thông tin nhóm -->
+        <div style="display: flex; flex-direction: column; gap: 16px">
+          <div
+            style="
+              background: var(--bg2);
+              border: 1px solid var(--border);
+              border-radius: var(--r);
+              padding: 24px;
+            "
+          >
+            <div
+              style="
+                font-size: 0.7rem;
+                font-weight: 800;
+                letter-spacing: 0.12em;
+                color: var(--teal);
+                text-transform: uppercase;
+                margin-bottom: 16px;
+              "
+            >
+              Học Viên Thực Hiện
+            </div>
+            <div style="display: flex; gap: 14px; align-items: center">
+              <div
+                style="
+                  width: 44px;
+                  height: 44px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--teal));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: 800;
+                  font-size: 1.1rem;
+                  flex-shrink: 0;
+                "
+              >
+                T
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 0.95rem">
+                  Trần Lê Duy Tùng
+                </div>
+                <div
+                  style="
+                    font-size: 0.75rem;
+                    color: var(--muted);
+                    margin-top: 3px;
+                  "
+                >
+                  Lớp LT07 · Khoa Công nghệ và An toàn thông tin
+                </div>
+                <div style="font-size: 0.75rem; color: var(--muted)">
+                  Học viện Kỹ thuật và Công nghệ CAND
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              background: var(--bg2);
+              border: 1px solid var(--border);
+              border-radius: var(--r);
+              padding: 24px;
+            "
+          >
+            <div
+              style="
+                font-size: 0.7rem;
+                font-weight: 800;
+                letter-spacing: 0.12em;
+                color: var(--teal);
+                text-transform: uppercase;
+                margin-bottom: 16px;
+              "
+            >
+              Giảng Viên Hướng Dẫn
+            </div>
+            <div style="display: flex; gap: 14px; align-items: center">
+              <div
+                style="
+                  width: 44px;
+                  height: 44px;
+                  border-radius: 50%;
+                  background: rgba(32, 91, 148, 0.3);
+                  border: 1px solid var(--border);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: 800;
+                  font-size: 1.1rem;
+                  flex-shrink: 0;
+                "
+              >
+                M
+              </div>
+              <div>
+                <div style="font-weight: 700; font-size: 0.95rem">
+                  TS. Nguyễn Văn Minh
+                </div>
+                <div
+                  style="
+                    font-size: 0.75rem;
+                    color: var(--muted);
+                    margin-top: 3px;
+                  "
+                >
+                  Khoa Công nghệ và An toàn thông tin
+                </div>
+                <div style="font-size: 0.75rem; color: var(--muted)">
+                  Học viện Kỹ thuật và Công nghệ CAND
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              background: var(--bg2);
+              border: 1px solid var(--border);
+              border-radius: var(--r);
+              padding: 24px;
+            "
+          >
+            <div
+              style="
+                font-size: 0.7rem;
+                font-weight: 800;
+                letter-spacing: 0.12em;
+                color: var(--teal);
+                text-transform: uppercase;
+                margin-bottom: 14px;
+              "
+            >
+              Phiên Bản
+            </div>
+            <div style="display: flex; gap: 28px; margin-bottom: 14px">
+              <div>
+                <div
+                  style="
+                    font-size: 0.68rem;
+                    color: var(--muted);
+                    text-transform: uppercase;
+                    letter-spacing: 0.08em;
+                  "
+                >
+                  Extension
+                </div>
+                <div
+                  style="
+                    font-size: 0.95rem;
+                    font-weight: 700;
+                    color: var(--teal);
+                  "
+                >
+                  v2.1.0
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    font-size: 0.68rem;
+                    color: var(--muted);
+                    text-transform: uppercase;
+                    letter-spacing: 0.08em;
+                  "
+                >
+                  Dashboard
+                </div>
+                <div
+                  style="
+                    font-size: 0.95rem;
+                    font-weight: 700;
+                    color: var(--teal);
+                  "
+                >
+                  v2.0.0
+                </div>
+              </div>
+              <div>
+                <div
+                  style="
+                    font-size: 0.68rem;
+                    color: var(--muted);
+                    text-transform: uppercase;
+                    letter-spacing: 0.08em;
+                  "
+                >
+                  Manifest
+                </div>
+                <div
+                  style="
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    color: var(--muted);
+                  "
+                >
+                  MV3 · Chrome 90+
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px">
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >Chrome Extension MV3</span
+              >
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >JavaScript ES2022</span
+              >
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >Node.js 18</span
+              >
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >Express.js</span
+              >
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >Shuffle SOAR</span
+              >
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >Telegram Bot</span
+              >
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >Chart.js 4</span
+              >
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >WebRTC API</span
+              >
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >Canvas API</span
+              >
+              <span
+                style="
+                  padding: 3px 9px;
+                  border-radius: 6px;
+                  background: rgba(78, 209, 216, 0.1);
+                  border: 1px solid rgba(78, 209, 216, 0.2);
+                  font-size: 0.7rem;
+                  font-weight: 600;
+                  color: var(--teal);
+                "
+                >PM2</span
+              >
+            </div>
+          </div>
+
+          <div
+            style="
+              text-align: center;
+              padding: 14px;
+              background: rgba(78, 209, 216, 0.05);
+              border: 1px solid rgba(78, 209, 216, 0.12);
+              border-radius: 10px;
+              font-size: 0.75rem;
+              color: var(--muted);
+              line-height: 1.8;
+            "
+          >
+            Đồ án tốt nghiệp &nbsp;·&nbsp; Hoàn toàn miễn phí &nbsp;·&nbsp; Phi
+            thương mại<br />
+            Mọi quyền thuộc về tác giả và Học viện Kỹ thuật và Công nghệ CAND<br />
+            <span style="color: var(--teal); font-weight: 600">© 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── CTA ── -->
     <div class="cta-section">
       <div class="cta-box">
-        <h2 data-lang="vi">Bắt đầu bảo vệ<br />quyền riêng tư của bạn</h2>
-        <h2 data-lang="en">Start protecting<br />your privacy today</h2>
-        <p data-lang="vi">
-          Sentra hoạt động âm thầm trong nền — bạn không cần cài đặt gì thêm.
-          Chỉ cần cài và để nó lo phần còn lại.
-        </p>
-        <p data-lang="en">
-          Sentra works silently in the background — no configuration needed.
-          Just install it and let it handle the rest.
+        <h2>Sentra — Silent Guardian<br />of Your Data</h2>
+        <p>
+          Hệ thống bảo mật dữ liệu cá nhân thế hệ mới, kết hợp trí tuệ nhân tạo
+          và tự động hóa SOAR cho trải nghiệm an toàn nhất.
         </p>
         <div class="cta-actions">
           <a
             class="btn-primary"
             href="http://104.219.55.50:3456/dashboard"
             target="_blank"
+            >XEM DASHBOARD LIVE</a
           >
-            <span data-lang="vi">Xem dashboard live</span>
-            <span data-lang="en">Open live dashboard</span>
-          </a>
           <a
             class="btn-outline"
-            href="https://twiththeg.github.io/privacy"
+            href="https://github.com/TwiththeG/privacy"
             target="_blank"
+            >PRIVACY POLICY</a
           >
-            <span data-lang="vi">Chính sách riêng tư</span>
-            <span data-lang="en">Privacy policy</span>
-          </a>
         </div>
       </div>
     </div>
@@ -1430,21 +1600,11 @@
         </svg>
         <span style="font-weight: 700; letter-spacing: 0.06em">SENTRA DLP</span>
       </div>
-      <span data-lang="vi">Bảo vệ quyền riêng tư người dùng trên Internet</span>
-      <span data-lang="en">Protecting user privacy on the Internet</span>
+      <span
+        >Luận Văn Tốt Nghiệp CNTT 2026 &mdash; Bảo vệ quyền riêng tư người
+        dùng</span
+      >
       <span style="font-family: var(--mono); font-size: 0.72rem">v2.0.0</span>
     </footer>
-
-    <script>
-      function setLang(lang) {
-        document.documentElement.lang = lang;
-        document
-          .getElementById("btn-vi")
-          .classList.toggle("active", lang === "vi");
-        document
-          .getElementById("btn-en")
-          .classList.toggle("active", lang === "en");
-      }
-    </script>
   </body>
 </html>
