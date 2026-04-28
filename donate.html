@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Ủng hộ Sentra DLP</title>
+<title data-vi="Ủng hộ Sentra DLP" data-en="Support Sentra DLP">Ủng hộ Sentra DLP</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -11,7 +11,7 @@
   --bg:#060a12;--s1:#0d1421;--s2:#111827;
   --navy:#205B94;--teal:#4ED1D8;--teal-d:rgba(78,209,216,.12);
   --fg:#f1f5f9;--muted:#94a3b8;--border:rgba(255,255,255,.07);
-  --f:'Plus Jakarta Sans',sans-serif;--r:14px;
+  --f:'Plus Jakarta Sans',sans-serif;--m:'JetBrains Mono',monospace;--r:14px;
 }
 body{font-family:var(--f);background:var(--bg);color:var(--fg);font-size:16px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
 body::before{content:'';position:fixed;inset:0;z-index:-2;
@@ -27,8 +27,13 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:15px 4
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-text{font-weight:800;font-size:.9rem;letter-spacing:.06em;color:var(--fg)}
 .brand-text span{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:14px}
 .back-link{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s}
 .back-link:hover{color:var(--teal)}
+.lang-btn{padding:4px 11px;border-radius:6px;border:1px solid var(--border);
+  background:rgba(255,255,255,.05);color:var(--teal);font-family:var(--m);
+  font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s}
+.lang-btn:hover{border-color:var(--teal);background:var(--teal-d)}
 
 .container{max-width:1080px;margin:0 auto;padding:60px 24px;flex:1;display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:start}
 
@@ -48,7 +53,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:15px 4
 .d-footer{text-align:center;font-size:.82rem;color:var(--muted)}
 .d-footer span{color:var(--teal);font-weight:600}
 
-footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-items:center;justify-content:space-between;font-size:.77rem;color:var(--muted);flex-wrap:wrap;gap:12px}
+footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center;color:var(--muted);font-size:.82rem;line-height:1.9}
+footer strong{color:var(--teal);font-weight:700;font-size:.9rem;letter-spacing:.05em}
+footer a{color:var(--teal);text-decoration:none}
+footer a:hover{text-decoration:underline}
 
 @media(max-width:900px){
   .container{grid-template-columns:1fr;padding:40px 16px}
@@ -70,53 +78,68 @@ footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-i
     </svg>
     <span class="brand-text">SENTRA <span>DLP</span></span>
   </a>
-  <a class="back-link" href="index.html">← Trở về Trang chủ</a>
+  <div class="nav-right">
+    <a class="back-link" href="index.html" data-vi="← Trang chủ" data-en="← Home">← Trang chủ</a>
+    <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
+  </div>
 </nav>
 
 <div class="container">
   <div class="about-section">
-    <h1>Ủng hộ sự phát triển của<br/><em>Sentra DLP</em></h1>
-    <p>Sentra DLP được xây dựng với mục tiêu mang lại quyền riêng tư cho tất cả mọi người, hoàn toàn miễn phí và không thu thập bất kỳ dữ liệu nào. Nếu bạn thấy công cụ này hữu ích và muốn đóng góp để giúp dự án tiếp tục duy trì và phát triển, mọi sự ủng hộ của bạn đều vô cùng quý giá.</p>
-    
+    <h1 data-vi="Ủng hộ sự phát triển của<br/><em>Sentra DLP</em>"
+        data-en="Support the development of<br/><em>Sentra DLP</em>">
+      Ủng hộ sự phát triển của<br/><em>Sentra DLP</em>
+    </h1>
+    <p data-vi="Sentra DLP được xây dựng với mục tiêu mang lại quyền riêng tư cho tất cả mọi người, hoàn toàn miễn phí và không thu thập bất kỳ dữ liệu nào. Nếu bạn thấy công cụ này hữu ích và muốn góp phần giúp dự án tiếp tục duy trì và phát triển, mọi sự ủng hộ của bạn đều vô cùng quý giá."
+       data-en="Sentra DLP was built with the goal of bringing online privacy to everyone, completely free and without collecting any data. If you find this tool useful and want to help keep the project alive and growing, every bit of support means the world.">
+      Sentra DLP được xây dựng với mục tiêu mang lại quyền riêng tư cho tất cả mọi người, hoàn toàn miễn phí và không thu thập bất kỳ dữ liệu nào. Nếu bạn thấy công cụ này hữu ích và muốn góp phần giúp dự án tiếp tục duy trì và phát triển, mọi sự ủng hộ của bạn đều vô cùng quý giá.
+    </p>
+
     <ul class="feature-list">
-      <li>Duy trì máy chủ backend và hệ thống dashboard</li>
-      <li>Phát triển các tính năng bảo mật mới</li>
-      <li>Giữ cho dự án luôn miễn phí và độc lập</li>
-      <li>Không bao giờ có quảng cáo hay thu thập dữ liệu</li>
+      <li data-vi="Duy trì máy chủ backend và hệ thống dashboard" data-en="Maintain backend server and dashboard system">Duy trì máy chủ backend và hệ thống dashboard</li>
+      <li data-vi="Phát triển các tính năng bảo mật mới" data-en="Develop new security features">Phát triển các tính năng bảo mật mới</li>
+      <li data-vi="Giữ cho dự án luôn miễn phí và độc lập" data-en="Keep the project free and independent">Giữ cho dự án luôn miễn phí và độc lập</li>
+      <li data-vi="Không bao giờ có quảng cáo hay thu thập dữ liệu" data-en="Never have ads or collect data">Không bao giờ có quảng cáo hay thu thập dữ liệu</li>
     </ul>
 
-    <p style="margin-top: 40px; font-size: 0.9rem; font-style: italic;">"Một ly cà phê từ bạn là động lực rất lớn để tôi tiếp tục cống hiến cho cộng đồng."</p>
+    <p style="margin-top:40px;font-size:.92rem;font-style:italic"
+       data-vi='"Một ly cà phê từ bạn là động lực rất lớn để tôi tiếp tục cống hiến cho cộng đồng."'
+       data-en='"A coffee from you is a huge motivation for me to keep giving back to the community."'>
+      "Một ly cà phê từ bạn là động lực rất lớn để tôi tiếp tục cống hiến cho cộng đồng."
+    </p>
   </div>
 
   <div class="donate-card">
-    <div class="d-title">Buy me a coffee ☕</div>
-    <div class="d-desc">Quét mã QR bằng ứng dụng ngân hàng</div>
-    
+    <div class="d-title" data-vi="Mời tôi một ly cà phê" data-en="Buy me a coffee">Mời tôi một ly cà phê</div>
+    <div class="d-desc" data-vi="Quét mã QR bằng ứng dụng ngân hàng" data-en="Scan QR code with your banking app">Quét mã QR bằng ứng dụng ngân hàng</div>
+
     <div class="qr-container">
-      <!-- Thay đổi 'qr.png' thành đường dẫn tới ảnh QR của bạn -->
       <img src="qr.jpg" alt="QR Code Tài Khoản Ngân Hàng">
     </div>
 
     <div class="d-footer">
-      Cảm ơn bạn đã <span>ủng hộ Sentra DLP</span>!
+      <span data-vi="Cảm ơn bạn đã ủng hộ Sentra DLP!" data-en="Thank you for supporting Sentra DLP!">Cảm ơn bạn đã ủng hộ Sentra DLP!</span>
     </div>
   </div>
 </div>
 
 <footer>
-  <div style="display:flex; flex-direction:column; gap: 8px;">
-    <div style="display:flex;align-items:center;gap:9px">
-      <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
-        <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
-        <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
-      </svg>
-      <span style="font-weight:700;letter-spacing:.05em">SENTRA DLP</span>
-    </div>
-    <span style="font-size:.76rem;color:var(--muted);">Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân · © 2026</span>
-  </div>
-  <span>Bảo vệ quyền riêng tư trên không gian mạng</span>
+  <p><strong>SENTRA DLP</strong></p>
+  <p style="margin-top:6px" data-vi="Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân" data-en="Non-commercial · Free · No personal data collected">Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân</p>
+  <p style="margin-top:10px">© 2026 &nbsp;·&nbsp; <a href="index.html" data-vi="Trang chủ" data-en="Home">Trang chủ</a> &nbsp;·&nbsp; <a href="http://104.219.55.50:3456/dashboard">Dashboard</a></p>
 </footer>
 
+<script>
+  let lang = 'vi';
+  function toggleLang() {
+    lang = lang === 'vi' ? 'en' : 'vi';
+    document.getElementById('langToggle').textContent = lang === 'vi' ? 'EN' : 'VI';
+    document.querySelectorAll('[data-vi]').forEach(el => {
+      const v = el.getAttribute('data-' + lang);
+      if (v !== null) el.innerHTML = v;
+    });
+    document.documentElement.lang = lang;
+  }
+</script>
 </body>
 </html>
