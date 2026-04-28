@@ -31,12 +31,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:15px 4
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-text{font-weight:800;font-size:.9rem;letter-spacing:.06em;color:var(--fg)}
 .brand-text span{color:var(--teal)}
-.nav-links{display:flex;align-items:center;gap:22px}
+.nav-links{display:flex;align-items:center;gap:20px}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--fg)}
-.nav-demo{border:1px solid var(--teal);color:var(--teal);padding:6px 14px;border-radius:7px;
+.nav-sep{width:1px;height:16px;background:var(--border);flex-shrink:0}
+.nav-demo{border:1px solid var(--teal);color:var(--teal);padding:5px 13px;border-radius:7px;
   font-size:.8rem;font-weight:700;text-decoration:none;transition:all .2s}
 .nav-demo:hover{background:var(--teal-d)}
+.nav-donate{color:var(--teal);text-decoration:none;font-size:.8rem;font-weight:600;transition:color .2s}
+.nav-donate:hover{color:var(--fg)}
 .lang-btn{padding:4px 11px;border-radius:6px;border:1px solid var(--border);
   background:rgba(255,255,255,.05);color:var(--teal);font-family:var(--m);
   font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s}
@@ -186,10 +189,12 @@ footer a:hover{text-decoration:underline}
     <span class="brand-text">SENTRA <span>DLP</span></span>
   </a>
   <div class="nav-links">
-    <a href="#story"    data-vi="Câu chuyện"   data-en="My story">Câu chuyện</a>
-    <a href="#features" data-vi="Tính năng"    data-en="Features">Tính năng</a>
+    <a href="#story"       data-vi="Câu chuyện" data-en="My story">Câu chuyện</a>
+    <a href="#features"    data-vi="Tính năng"  data-en="Features">Tính năng</a>
     <a href="#how-it-works" data-vi="Cách dùng" data-en="How it works">Cách dùng</a>
-    <a href="#dashboard" data-vi="Dashboard"   data-en="Dashboard">Dashboard</a>
+    <a href="#dashboard"   data-vi="Dashboard"  data-en="Dashboard">Dashboard</a>
+    <div class="nav-sep"></div>
+    <a class="nav-donate" href="donate.html" data-vi="Ủng hộ tác giả" data-en="Support">Ủng hộ tác giả</a>
     <a class="nav-demo" href="http://104.219.55.50:3456/dashboard" target="_blank">Live demo →</a>
   </div>
   <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
