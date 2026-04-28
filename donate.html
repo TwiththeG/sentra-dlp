@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ủng hộ Sentra DLP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060a12;--s1:#0d1421;--s2:#111827;
+  --navy:#205B94;--teal:#4ED1D8;--teal-d:rgba(78,209,216,.12);
+  --fg:#f1f5f9;--muted:#94a3b8;--border:rgba(255,255,255,.07);
+  --f:'Plus Jakarta Sans',sans-serif;--r:14px;
+}
+body{font-family:var(--f);background:var(--bg);color:var(--fg);font-size:16px;line-height:1.7;min-height:100vh;display:flex;flex-direction:column}
+body::before{content:'';position:fixed;inset:0;z-index:-2;
+  background:linear-gradient(rgba(78,209,216,.025) 1px,transparent 1px) 0 0/60px 60px,
+             linear-gradient(90deg,rgba(78,209,216,.025) 1px,transparent 1px) 0 0/60px 60px}
+body::after{content:'';position:fixed;top:-300px;left:50%;transform:translateX(-50%);
+  width:800px;height:500px;z-index:-1;
+  background:radial-gradient(ellipse,rgba(32,91,148,.22) 0%,transparent 70%);pointer-events:none}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:15px 48px;
+  background:rgba(6,10,18,.88);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-text{font-weight:800;font-size:.9rem;letter-spacing:.06em;color:var(--fg)}
+.brand-text span{color:var(--teal)}
+.back-link{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s}
+.back-link:hover{color:var(--teal)}
+
+.container{max-width:1080px;margin:0 auto;padding:60px 24px;flex:1;display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:start}
+
+.about-section{padding:20px 0}
+.about-section h1{font-size:clamp(2rem,4vw,2.8rem);font-weight:800;line-height:1.2;margin-bottom:16px;letter-spacing:-.03em}
+.about-section h1 em{font-style:normal;color:var(--teal)}
+.about-section p{color:var(--muted);font-size:1.05rem;line-height:1.8;margin-bottom:24px}
+.about-section .feature-list{list-style:none;margin-bottom:30px}
+.about-section .feature-list li{position:relative;padding-left:30px;margin-bottom:12px;color:var(--muted);font-size:.95rem}
+.about-section .feature-list li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:800}
+
+.donate-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:32px;box-shadow:0 20px 40px rgba(0,0,0,.4);position:sticky;top:100px}
+.d-title{font-size:1.3rem;font-weight:700;margin-bottom:8px;text-align:center}
+.d-desc{font-size:.88rem;color:var(--muted);text-align:center;margin-bottom:24px}
+.qr-container{background:#fff;padding:16px;border-radius:12px;margin-bottom:24px;display:flex;justify-content:center}
+.qr-container img{max-width:100%;height:auto;border-radius:8px;display:block}
+.d-footer{text-align:center;font-size:.82rem;color:var(--muted)}
+.d-footer span{color:var(--teal);font-weight:600}
+
+footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;align-items:center;justify-content:space-between;font-size:.77rem;color:var(--muted);flex-wrap:wrap;gap:12px}
+
+@media(max-width:900px){
+  .container{grid-template-columns:1fr;padding:40px 16px}
+  .donate-card{position:static}
+}
+@media(max-width:600px){
+  nav{padding:12px 16px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="index.html">
+    <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
+      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
+      <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+    </svg>
+    <span class="brand-text">SENTRA <span>DLP</span></span>
+  </a>
+  <a class="back-link" href="index.html">← Trở về Trang chủ</a>
+</nav>
+
+<div class="container">
+  <div class="about-section">
+    <h1>Ủng hộ sự phát triển của<br/><em>Sentra DLP</em></h1>
+    <p>Sentra DLP được xây dựng với mục tiêu mang lại quyền riêng tư cho tất cả mọi người, hoàn toàn miễn phí và không thu thập bất kỳ dữ liệu nào. Nếu bạn thấy công cụ này hữu ích và muốn đóng góp để giúp dự án tiếp tục duy trì và phát triển, mọi sự ủng hộ của bạn đều vô cùng quý giá.</p>
+    
+    <ul class="feature-list">
+      <li>Duy trì máy chủ backend và hệ thống dashboard</li>
+      <li>Phát triển các tính năng bảo mật mới</li>
+      <li>Giữ cho dự án luôn miễn phí và độc lập</li>
+      <li>Không bao giờ có quảng cáo hay thu thập dữ liệu</li>
+    </ul>
+
+    <p style="margin-top: 40px; font-size: 0.9rem; font-style: italic;">"Một ly cà phê từ bạn là động lực rất lớn để tôi tiếp tục cống hiến cho cộng đồng."</p>
+  </div>
+
+  <div class="donate-card">
+    <div class="d-title">Buy me a coffee ☕</div>
+    <div class="d-desc">Quét mã QR bằng ứng dụng ngân hàng</div>
+    
+    <div class="qr-container">
+      <!-- Thay đổi 'qr.png' thành đường dẫn tới ảnh QR của bạn -->
+      <img src="qr.png" alt="QR Code Tài Khoản Ngân Hàng">
+    </div>
+
+    <div class="d-footer">
+      Cảm ơn bạn đã <span>ủng hộ Sentra DLP</span>!
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="display:flex; flex-direction:column; gap: 8px;">
+    <div style="display:flex;align-items:center;gap:9px">
+      <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
+        <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
+        <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+      </svg>
+      <span style="font-weight:700;letter-spacing:.05em">SENTRA DLP</span>
+    </div>
+    <span style="font-size:.76rem;color:var(--muted);">Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân · © 2026</span>
+  </div>
+  <span>Bảo vệ quyền riêng tư trên không gian mạng</span>
+</footer>
+
+</body>
+</html>
