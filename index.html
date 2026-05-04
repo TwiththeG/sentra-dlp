@@ -31,15 +31,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:15px 4
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-text{font-weight:800;font-size:.9rem;letter-spacing:.06em;color:var(--fg)}
 .brand-text span{color:var(--teal)}
-.nav-links{display:flex;align-items:center;gap:20px}
+.nav-links{display:flex;align-items:center;gap:22px}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--fg)}
-.nav-sep{width:1px;height:16px;background:var(--border);flex-shrink:0}
-.nav-demo{border:1px solid var(--teal);color:var(--teal);padding:5px 13px;border-radius:7px;
+.nav-demo{border:1px solid var(--teal);color:var(--teal);padding:6px 14px;border-radius:7px;
   font-size:.8rem;font-weight:700;text-decoration:none;transition:all .2s}
 .nav-demo:hover{background:var(--teal-d)}
-.nav-donate{color:var(--teal);text-decoration:none;font-size:.8rem;font-weight:600;transition:color .2s}
-.nav-donate:hover{color:var(--fg)}
 .lang-btn{padding:4px 11px;border-radius:6px;border:1px solid var(--border);
   background:rgba(255,255,255,.05);color:var(--teal);font-family:var(--m);
   font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s}
@@ -160,11 +157,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:15px 4
 .cta-acts{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
 
 /* FOOTER */
-footer{border-top:1px solid var(--border);padding:32px 24px;
-  text-align:center;color:var(--muted);font-size:.82rem;line-height:1.9}
-footer strong{color:var(--teal);font-weight:700;font-size:.9rem;letter-spacing:.05em}
-footer a{color:var(--teal);text-decoration:none}
-footer a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--border);padding:24px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.77rem;color:var(--muted);flex-wrap:wrap;gap:12px}
 
 /* RESPONSIVE */
 @media(max-width:860px){
@@ -172,7 +167,7 @@ footer a:hover{text-decoration:underline}
   .hero{padding:52px 16px}.stats{flex-direction:column}
   .stat{border-right:none;border-bottom:1px solid var(--border)}
   .story-layout{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}
-  .pbody{grid-template-columns:1fr}
+  .pbody{grid-template-columns:1fr}footer{flex-direction:column;align-items:flex-start}
   .story-wrap,.section-wrap{padding:52px 16px}
 }
 </style>
@@ -189,13 +184,11 @@ footer a:hover{text-decoration:underline}
     <span class="brand-text">SENTRA <span>DLP</span></span>
   </a>
   <div class="nav-links">
-    <a href="#story"       data-vi="Câu chuyện" data-en="My story">Câu chuyện</a>
-    <a href="#features"    data-vi="Tính năng"  data-en="Features">Tính năng</a>
+    <a href="#story"    data-vi="Câu chuyện"   data-en="My story">Câu chuyện</a>
+    <a href="#features" data-vi="Tính năng"    data-en="Features">Tính năng</a>
     <a href="#how-it-works" data-vi="Cách dùng" data-en="How it works">Cách dùng</a>
-    <a href="#dashboard"   data-vi="Xem thống kê"  data-en="Statistics">Xem thống kê</a>
-    <div class="nav-sep"></div>
-    <a class="nav-donate" href="donate.html" data-vi="Ủng hộ tác giả" data-en="Support">Ủng hộ tác giả</a>
-    
+    <a href="#dashboard" data-vi="Dashboard"   data-en="Dashboard">Dashboard</a>
+    <a class="nav-demo" href="https://104-219-55-50.sslip.io:9443/dashboard.html" target="_blank">Live demo →</a>
   </div>
   <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
 </nav>
@@ -213,7 +206,7 @@ footer a:hover{text-decoration:underline}
   </p>
   <div class="hero-actions">
     <a class="btn-p" href="https://104-219-55-50.sslip.io:9443/dashboard.html" target="_blank">
-      <span data-vi="Xem thống kê" data-en="View statistics">Xem thống kê</span>
+      <span data-vi="Xem dashboard" data-en="View dashboard">Xem dashboard</span>
     </a>
     <a class="btn-o" href="#story" data-vi="Câu chuyện →" data-en="My story →">Câu chuyện →</a>
   </div>
@@ -383,7 +376,7 @@ footer a:hover{text-decoration:underline}
   <div class="preview">
     <div class="pbar">
       <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
-      <div class="purl">104-219-55-50.sslip.io:9443/dashboard.html</div>
+      <div class="purl">104.219.55.50:3456/dashboard</div>
     </div>
     <div class="pbody">
       <div class="pcard"><div class="pnum" style="color:var(--blue)">24</div><div class="plbl" data-vi="Tổng sự kiện" data-en="Total events">Tổng sự kiện</div></div>
@@ -393,7 +386,36 @@ footer a:hover{text-decoration:underline}
   </div>
 </div>
 
-
+<!-- TECH + ABOUT -->
+<div class="section-wrap">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+    <div>
+      <h2 class="section-h" style="font-size:1.5rem" data-vi="Công nghệ" data-en="Technology">Công nghệ</h2>
+      <div class="tech-list" style="margin-top:20px">
+        <span class="tc"><span style="background:#f7df1e"></span>Chrome Extension MV3</span>
+        <span class="tc"><span style="background:#68a063"></span>Node.js 18</span>
+        <span class="tc"><span style="background:#4ED1D8"></span>Shuffle SOAR</span>
+        <span class="tc"><span style="background:#24a1de"></span>Telegram Bot</span>
+        <span class="tc"><span style="background:#3b82f6"></span>Chart.js 4</span>
+        <span class="tc"><span style="background:#10b981"></span>PM2 + VPS</span>
+        <span class="tc"><span style="background:#8b5cf6"></span>Helmet.js</span>
+        <span class="tc"><span style="background:#f59e0b"></span>JS ES2022</span>
+      </div>
+    </div>
+    <div>
+      <h2 class="section-h" style="font-size:1.5rem" data-vi="Phiên bản" data-en="Versions">Phiên bản</h2>
+      <div class="about-grid" style="margin-top:20px;grid-template-columns:1fr">
+        <div class="acard">
+          <div class="kv"><span class="kk">Extension</span><span class="kv-v">v2.1.0</span></div>
+          <div class="kv"><span class="kk">Dashboard</span><span class="kv-v">v2.0.0</span></div>
+          <div class="kv"><span class="kk">Manifest</span><span class="kv-v" style="color:var(--muted)">MV3 · Chrome 90+</span></div>
+          <div class="kv"><span class="kk">Backend</span><span class="kv-v" style="color:var(--muted)">Node.js 18</span></div>
+        </div>
+      </div>
+      <p style="font-size:.76rem;color:var(--muted);margin-top:12px;line-height:1.8" data-vi="Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân · © 2026" data-en="Non-commercial · Free · No personal data collected · © 2026">Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân · © 2026</p>
+    </div>
+  </div>
+</div>
 
 <!-- CTA -->
 <div class="cta-wrap">
@@ -402,20 +424,31 @@ footer a:hover{text-decoration:underline}
     <p data-vi="Miễn phí. Không cần đăng ký. Cài xong là dùng được ngay." data-en="Free. No sign-up. Works immediately after installation.">Miễn phí. Không cần đăng ký. Cài xong là dùng được ngay.</p>
     <div class="cta-acts">
       <a class="btn-p" href="https://104-219-55-50.sslip.io:9443/dashboard.html" target="_blank">
-        <span data-vi="Xem thống kê trực tiếp" data-en="View live statistics">Xem thống kê trực tiếp</span>
+        <span data-vi="Xem dashboard live" data-en="View live dashboard">Xem dashboard live</span>
       </a>
       <a class="btn-o" href="https://TwiththeG.github.io/privacy/" target="_blank">
         <span data-vi="Chính sách bảo mật" data-en="Privacy policy">Chính sách bảo mật</span>
       </a>
-      <a class="btn-o" href="donate.html" data-vi="Ủng hộ" data-en="Support">Ủng hộ</a>
     </div>
   </div>
 </div>
 
 <footer>
-  <p><strong data-vi="SENTRA DLP" data-en="SENTRA DLP">SENTRA DLP</strong></p>
-  <p style="margin-top:6px" data-vi="Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân" data-en="Non-commercial · Free · No personal data collected">Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân</p>
-  <p style="margin-top:10px">© 2026 &nbsp;·&nbsp; <a href="https://TwiththeG.github.io/privacy/" target="_blank" data-vi="Chính sách bảo mật" data-en="Privacy policy">Chính sách bảo mật</a> &nbsp;·&nbsp; <a href="https://104-219-55-50.sslip.io:9443/dashboard.html" target="_blank" data-vi="Xem thống kê" data-en="Statistics">Xem thống kê</a></p>
+  <div style="display:flex;align-items:center;gap:9px">
+    <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
+      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
+      <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+    </svg>
+    <span style="font-weight:700;letter-spacing:.05em">SENTRA DLP</span>
+  </div>
+  <span data-vi="Bảo vệ quyền riêng tư trên không gian mạng" data-en="Protecting privacy online">Bảo vệ quyền riêng tư trên không gian mạng</span>
+  <div style="display:flex;gap:14px">
+    <a href="https://TwiththeG.github.io/privacy/" target="_blank" style="color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4ED1D8'" onmouseout="this.style.color=''">
+      <span data-vi="Chính sách bảo mật" data-en="Privacy policy">Chính sách bảo mật</span>
+    </a>
+    <a href="https://104-219-55-50.sslip.io:9443/dashboard.html" target="_blank" style="color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4ED1D8'" onmouseout="this.style.color=''">Dashboard</a>
+  </div>
 </footer>
 
 <script>
