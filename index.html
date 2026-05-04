@@ -17,7 +17,7 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--f);background:var(--bg);color:var(--fg);overflow-x:hidden;font-size:16px;line-height:1.7}
-body::before{content:'';position:fixed;inset:0;z-index:-2;
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:linear-gradient(rgba(78,209,216,.025) 1px,transparent 1px) 0 0/60px 60px,
              linear-gradient(90deg,rgba(78,209,216,.025) 1px,transparent 1px) 0 0/60px 60px}
 body::after{content:'';position:fixed;top:-300px;left:50%;transform:translateX(-50%);
@@ -61,7 +61,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:15px 4
 .shield-wrap{margin:44px auto 0;position:relative;width:140px;height:140px}
 .shield-wrap svg{width:100%;height:100%;filter:drop-shadow(0 0 24px rgba(78,209,216,.4))}
 .ring{position:absolute;border-radius:50%;border:1px solid rgba(78,209,216,.14);
-  top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite}
+  top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite;pointer-events:none}
 .r1{width:190px;height:190px}.r2{width:250px;height:250px;animation-delay:.5s}.r3{width:310px;height:310px;animation-delay:1s}
 @keyframes rp{0%,100%{opacity:.55}50%{opacity:.1}}
 
