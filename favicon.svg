@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="64" height="64">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <filter id="gl" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <!-- No background rect: transparent outside shield -->
+  <!-- Shield fill + glow stroke -->
+  <path d="M50 5 L90 22 L90 55 C90 75 72 90 50 97 C28 90 10 75 10 55 L10 22 Z"
+        fill="#0f2847" stroke="url(#g1)" stroke-width="2.5" filter="url(#gl)"/>
+  <!-- Left highlight -->
+  <path d="M50 5 L50 97 C28 90 10 75 10 55 L10 22 Z" fill="rgba(59,130,246,0.12)"/>
+  <!-- Right highlight -->
+  <path d="M50 5 L90 22 L90 55 C90 75 72 90 50 97 Z" fill="rgba(6,182,212,0.06)"/>
+  <!-- S letter with glow -->
+  <text x="50" y="70" text-anchor="middle"
+        font-family="Plus Jakarta Sans,Arial Black,sans-serif"
+        font-size="54" font-weight="900" fill="#60a5fa" filter="url(#gl)">S</text>
+</svg>
