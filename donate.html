@@ -74,9 +74,18 @@ footer a:hover{text-decoration:underline}
 <nav>
   <a class="brand" href="index.html">
     <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
-      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
-      <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+      <defs>
+        <linearGradient id="dng" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#06b6d4"/>
+        </linearGradient>
+        <filter id="dngl" x="-25%" y="-25%" width="150%" height="150%">
+          <feGaussianBlur stdDeviation="2.5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <path d="M50 5 L90 22 L90 55 C90 75 72 90 50 97 C28 90 10 75 10 55 L10 22 Z" fill="#0f2847" stroke="url(#dng)" stroke-width="2.5" filter="url(#dngl)"/>
+      <path d="M50 5 L50 97 C28 90 10 75 10 55 L10 22 Z" fill="rgba(59,130,246,0.12)"/>
+      <text x="50" y="70" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="54" fill="#60a5fa" filter="url(#dngl)">S</text>
     </svg>
     <span class="brand-text">SENTRA <span>DLP</span></span>
   </a>
