@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="fill" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield shape: transparent bg, gradient fill -->
+  <path d="M50 5 L90 22 L90 55 C90 75 72 90 50 97 C28 90 10 75 10 55 L10 22 Z"
+        fill="url(#fill)" stroke="url(#stroke)" stroke-width="3" stroke-linejoin="round"/>
+  <!-- Left inner highlight -->
+  <path d="M50 8 L50 93 C30 86 14 72 14 55 L14 24 Z"
+        fill="rgba(255,255,255,0.15)"/>
+  <!-- S letter -->
+  <text x="50" y="71" font-family="Arial Black, Arial" font-weight="900"
+        font-size="54" fill="white" text-anchor="middle">S</text>
+</svg>
