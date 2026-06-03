@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Chính sách bảo mật — Sentra DLP</title>
+<meta name="description" content="Chính sách bảo mật của Sentra DLP Chrome Extension."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060a12;--bg2:#0d1421;--bg3:#111827;
+  --teal:#4ED1D8;--teal-dim:rgba(78,209,216,.12);
+  --navy:#205B94;--text:#f1f5f9;--muted:#94a3b8;
+  --border:rgba(255,255,255,.07);--font:'Plus Jakarta Sans',sans-serif;
+  --mono:'JetBrains Mono',monospace;--r:10px;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;line-height:1.7}
+body::before{content:'';position:fixed;inset:0;z-index:-2;
+  background-image:linear-gradient(rgba(78,209,216,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(78,209,216,.025) 1px,transparent 1px);
+  background-size:60px 60px}
+body::after{content:'';position:fixed;top:-300px;left:50%;transform:translateX(-50%);
+  width:800px;height:500px;z-index:-1;
+  background:radial-gradient(ellipse at center,rgba(32,91,148,.2) 0%,transparent 70%);pointer-events:none}
+
+nav{display:flex;align-items:center;justify-content:space-between;
+  padding:16px 48px;background:rgba(6,10,18,.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand-text{font-weight:800;font-size:.95rem;letter-spacing:.05em;color:var(--text)}
+.brand-text span{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.back-link{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s}
+.back-link:hover{color:var(--teal)}
+.lang-btn{padding:5px 12px;border-radius:6px;border:1px solid var(--border);
+  background:rgba(255,255,255,.05);color:var(--teal);font-family:var(--mono);
+  font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s}
+.lang-btn:hover{border-color:var(--teal);background:var(--teal-dim)}
+
+.container{max-width:720px;margin:0 auto;padding:60px 24px 80px}
+
+header{text-align:center;margin-bottom:52px;padding-bottom:36px;border-bottom:1px solid var(--border)}
+.header-icon{width:56px;height:56px;margin:0 auto 16px}
+h1{font-size:clamp(2.1rem,5vw,2.8rem);font-weight:800;letter-spacing:-.03em;margin-bottom:12px;line-height:1.15}
+.subtitle{color:var(--muted);font-size:.88rem}
+.badge{display:inline-block;margin-top:14px;padding:3px 12px;border-radius:5px;
+  background:rgba(78,209,216,.1);border:1px solid rgba(78,209,216,.2);
+  color:var(--teal);font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.08em}
+
+section{margin-bottom:38px}
+h2{font-size:.75rem;font-weight:700;color:var(--teal);text-transform:uppercase;
+  letter-spacing:.12em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+p{color:var(--muted);margin-bottom:10px;font-size:.9rem;line-height:1.8}
+ul{color:var(--muted);padding-left:20px;font-size:.9rem;line-height:1.8}
+li{margin-bottom:5px}
+strong{color:var(--text);font-weight:600}
+.highlight{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px 22px;margin:16px 0}
+.highlight p{margin:0}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+
+footer{text-align:center;padding-top:36px;border-top:1px solid var(--border);
+  color:var(--muted);font-size:.8rem;line-height:1.8}
+footer a{color:var(--teal)}
+
+@media(max-width:640px){nav{padding:13px 16px}.container{padding:40px 16px 60px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="https://TwiththeG.github.io/sentra-dlp/">
+    <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
+      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
+      <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+    </svg>
+    <span class="brand-text">SENTRA <span>DLP</span></span>
+  </a>
+  <div class="nav-right">
+    <a class="back-link" href="https://TwiththeG.github.io/sentra-dlp/" data-vi="← Trang chủ" data-en="← Home">← Trang chủ</a>
+    <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<div class="container">
+  <header>
+    <svg class="header-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
+      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
+      <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+    </svg>
+    <h1 data-vi="Chính sách bảo mật" data-en="Privacy Policy">Chính sách bảo mật</h1>
+    <p class="subtitle" data-vi="Sentra DLP Chrome Extension" data-en="Sentra DLP Chrome Extension">Sentra DLP Chrome Extension</p>
+    <div class="badge" data-vi="CẬP NHẬT: THÁNG 4, 2026" data-en="UPDATED: APRIL 2026">CẬP NHẬT: THÁNG 4, 2026</div>
+  </header>
+
+  <section>
+    <h2 data-vi="Tổng quan" data-en="Overview">Tổng quan</h2>
+    <div class="highlight">
+      <p data-vi="<strong>Sentra DLP không thu thập, không lưu trữ, và không chia sẻ bất kỳ dữ liệu cá nhân nào của người dùng.</strong> Mọi phân tích đều diễn ra ngay trên thiết bị của bạn."
+         data-en="<strong>Sentra DLP does not collect, store, or share any personal data from users.</strong> All analysis takes place directly on your device.">
+        <strong>Sentra DLP không thu thập, không lưu trữ, và không chia sẻ bất kỳ dữ liệu cá nhân nào của người dùng.</strong> Mọi phân tích đều diễn ra ngay trên thiết bị của bạn.
+      </p>
+    </div>
+    <p data-vi="Chính sách này áp dụng cho tiện ích mở rộng Sentra DLP trên trình duyệt Chrome và mọi dịch vụ liên quan."
+       data-en="This policy applies to the Sentra DLP Chrome extension and all associated services.">
+      Chính sách này áp dụng cho tiện ích mở rộng Sentra DLP trên trình duyệt Chrome và mọi dịch vụ liên quan.
+    </p>
+  </section>
+
+  <section>
+    <h2 data-vi="Dữ liệu chúng tôi KHÔNG thu thập" data-en="Data we do NOT collect">Dữ liệu chúng tôi KHÔNG thu thập</h2>
+    <ul>
+      <li data-vi="Tên, địa chỉ email, hay bất kỳ thông tin định danh cá nhân nào" data-en="Name, email address, or any personal identifying information">Tên, địa chỉ email, hay bất kỳ thông tin định danh cá nhân nào</li>
+      <li data-vi="Lịch sử duyệt web hay URL bạn đã truy cập" data-en="Browsing history or URLs you have visited">Lịch sử duyệt web hay URL bạn đã truy cập</li>
+      <li data-vi="Nội dung form, mật khẩu, hay thông tin thẻ thanh toán" data-en="Form content, passwords, or payment card information">Nội dung form, mật khẩu, hay thông tin thẻ thanh toán</li>
+      <li data-vi="Địa chỉ IP hay số nhận dạng thiết bị" data-en="IP address or device identifiers">Địa chỉ IP hay số nhận dạng thiết bị</li>
+      <li data-vi="Cookie hay dữ liệu phiên làm việc" data-en="Cookies or session data">Cookie hay dữ liệu phiên làm việc</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 data-vi="Dữ liệu sự kiện bảo mật" data-en="Security event data">Dữ liệu sự kiện bảo mật</h2>
+    <p data-vi="Khi Sentra DLP phát hiện một sự kiện bảo mật (ví dụ: tracker, rò rỉ dữ liệu), thông tin sau được ghi lại:"
+       data-en="When Sentra DLP detects a security event (e.g., tracker, data leak), the following information is recorded:">
+      Khi Sentra DLP phát hiện một sự kiện bảo mật (ví dụ: tracker, rò rỉ dữ liệu), thông tin sau được ghi lại:
+    </p>
+    <ul>
+      <li data-vi="<strong>Loại sự kiện</strong>: danh mục mối đe dọa được phát hiện (không phải nội dung)" data-en="<strong>Event type</strong>: detected threat category (not the content)"><strong>Loại sự kiện</strong>: danh mục mối đe dọa được phát hiện (không phải nội dung)</li>
+      <li data-vi="<strong>Tên miền</strong>: URL của trang web (không bao gồm đường dẫn hay tham số)" data-en="<strong>Domain name</strong>: website URL (without path or query parameters)"><strong>Tên miền</strong>: URL của trang web (không bao gồm đường dẫn hay tham số)</li>
+      <li data-vi="<strong>Mức độ nghiêm trọng</strong>: thấp / trung bình / cao" data-en="<strong>Severity level</strong>: low / medium / high"><strong>Mức độ nghiêm trọng</strong>: thấp / trung bình / cao</li>
+      <li data-vi="<strong>Dấu thời gian</strong>: thời điểm phát hiện" data-en="<strong>Timestamp</strong>: detection time"><strong>Dấu thời gian</strong>: thời điểm phát hiện</li>
+    </ul>
+    <p data-vi="Dữ liệu này được sử dụng để hiển thị trên Dashboard bảo mật và <strong>không chứa bất kỳ thông tin cá nhân nào</strong>."
+       data-en="This data is used to display on the security Dashboard and <strong>contains no personal information whatsoever</strong>.">
+      Dữ liệu này được sử dụng để hiển thị trên Dashboard bảo mật và <strong>không chứa bất kỳ thông tin cá nhân nào</strong>.
+    </p>
+  </section>
+
+  <section>
+    <h2 data-vi="Quyền của bạn" data-en="Your rights">Quyền của bạn</h2>
+    <p data-vi="Vì Sentra DLP không thu thập dữ liệu cá nhân, không có dữ liệu nào để yêu cầu truy cập, chỉnh sửa hay xóa. Bạn có thể gỡ cài đặt tiện ích bất cứ lúc nào để dừng hoàn toàn mọi hoạt động của Sentra DLP."
+       data-en="Since Sentra DLP does not collect personal data, there is no data to request access to, modify or delete. You can uninstall the extension at any time to completely stop all Sentra DLP activity.">
+      Vì Sentra DLP không thu thập dữ liệu cá nhân, không có dữ liệu nào để yêu cầu truy cập, chỉnh sửa hay xóa. Bạn có thể gỡ cài đặt tiện ích bất cứ lúc nào để dừng hoàn toàn mọi hoạt động của Sentra DLP.
+    </p>
+  </section>
+
+  <section>
+    <h2 data-vi="Dịch vụ bên thứ 3" data-en="Third-party services">Dịch vụ bên thứ 3</h2>
+    <p data-vi="Sentra DLP tích hợp với các dịch vụ sau để phục vụ hoạt động của hệ thống:" data-en="Sentra DLP integrates with the following services in support of system operations:">Sentra DLP tích hợp với các dịch vụ sau để phục vụ hoạt động của hệ thống:</p>
+    <ul>
+      <li data-vi="<strong>Dashboard SOAR</strong> (104.219.55.50:3456): Nhận và lưu sự kiện bảo mật ẩn danh" data-en="<strong>SOAR Dashboard</strong> (104.219.55.50:3456): Receives and stores anonymized security events"><strong>Dashboard SOAR</strong> (104.219.55.50:3456): Nhận và lưu sự kiện bảo mật ẩn danh</li>
+      <li data-vi="<strong>Telegram Bot</strong>: Gửi thông báo cảnh báo (không bao gồm thông tin cá nhân)" data-en="<strong>Telegram Bot</strong>: Sends alert notifications (no personal information included)"><strong>Telegram Bot</strong>: Gửi thông báo cảnh báo (không bao gồm thông tin cá nhân)</li>
+    </ul>
+    <p data-vi="Không có dữ liệu cá nhân nào được chia sẻ với bất kỳ bên thứ ba nào khác." data-en="No personal data is shared with any other third parties.">Không có dữ liệu cá nhân nào được chia sẻ với bất kỳ bên thứ ba nào khác.</p>
+  </section>
+
+  <section>
+    <h2 data-vi="Thay đổi chính sách" data-en="Policy changes">Thay đổi chính sách</h2>
+    <p data-vi="Sentra DLP có thể cập nhật chính sách này khi cần thiết. Mọi thay đổi quan trọng sẽ được thông báo qua ghi chú phát hành của tiện ích. Việc tiếp tục sử dụng tiện ích sau khi cập nhật đồng nghĩa với việc bạn chấp nhận chính sách mới."
+       data-en="Sentra DLP may update this policy as needed. Any significant changes will be communicated via the extension's release notes. Continued use of the extension after an update constitutes acceptance of the revised policy.">
+      Sentra DLP có thể cập nhật chính sách này khi cần thiết. Mọi thay đổi quan trọng sẽ được thông báo qua ghi chú phát hành của tiện ích. Việc tiếp tục sử dụng tiện ích sau khi cập nhật đồng nghĩa với việc bạn chấp nhận chính sách mới.
+    </p>
+  </section>
+
+  <footer>
+    <p><strong style="color:var(--teal)">SENTRA DLP</strong></p>
+    <p style="margin-top:6px" data-vi="Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân" data-en="Non-commercial · Free · No personal data collected">Phi thương mại · Miễn phí · Không thu thập dữ liệu cá nhân</p>
+    <p style="margin-top:10px">© 2026 &nbsp;·&nbsp; <a href="https://TwiththeG.github.io/sentra-dlp/" data-vi="Trang chủ" data-en="Home">Trang chủ</a> &nbsp;·&nbsp; <a href="http://104.219.55.50:3456/dashboard">Dashboard</a></p>
+  </footer>
+</div>
+
+<script>
+  let lang = 'vi';
+  function toggleLang() {
+    lang = lang === 'vi' ? 'en' : 'vi';
+    document.getElementById('langToggle').textContent = lang === 'vi' ? 'EN' : 'VI';
+    document.querySelectorAll('[data-vi]').forEach(el => {
+      const val = el.getAttribute('data-' + lang);
+      if (val !== null) el.innerHTML = val;
+    });
+    document.documentElement.lang = lang;
+  }
+</script>
+</body>
+</html>
