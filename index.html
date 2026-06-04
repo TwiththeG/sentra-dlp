@@ -1997,12 +1997,15 @@
 
         // ─── Overview ────────────────────────────
         async function loadOverview() {
+          console.log('[Sentra Dashboard] API_BASE:', API_BASE);
+          console.log('[Sentra Dashboard] Fetching:', API_BASE + '/api/v1/stats');
           const d = await api("/api/v1/stats");
+          console.log('[Sentra Dashboard] Response:', d);
           if (!d?.success) {
             document.getElementById("ov-events-body").innerHTML = `
         <div class="empty-state"><div class="empty-icon">⚠️</div>
         <div class="empty-text">${t("backend_error")}</div>
-        <div class="empty-sub">${t("backend_check")}</div></div>`;
+        <div class="empty-sub">API: ${API_BASE || '(relative)'} — ${t("backend_check")}</div></div>`;
             return;
           }
           overviewData = d;
