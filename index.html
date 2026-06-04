@@ -1919,6 +1919,11 @@
 
         // ─── API Base URL ────────────────────────────────────
         // Tự phát hiện: GitHub Pages → HTTPS VPS; VPS trực tiếp → relative
+        // Migration: xóa URL cũ dùng raw IP (SSL không hợp lệ)
+        const _oldApiBase = localStorage.getItem('sentra_api_base');
+        if (_oldApiBase && _oldApiBase.includes('104.219.55.50')) {
+          localStorage.removeItem('sentra_api_base');
+        }
         const API_BASE = (() => {
           const h = window.location.hostname;
           const stored = localStorage.getItem('sentra_api_base');
