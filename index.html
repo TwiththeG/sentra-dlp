@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sentra DLP ΓÇö Security Dashboard</title>
+    <title>Sentra DLP — Security Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -67,7 +67,7 @@
         overflow-x: hidden;
       }
 
-      /* ΓöÇΓöÇ Grid overlay ΓöÇΓöÇ */
+      /* ── Grid overlay ── */
       body::before {
         content: "";
         position: fixed;
@@ -84,7 +84,7 @@
         z-index: 0;
       }
 
-      /* ΓöÇΓöÇ Ambient glow ΓöÇΓöÇ */
+      /* ── Ambient glow ── */
       body::after {
         content: "";
         position: fixed;
@@ -102,7 +102,7 @@
         z-index: 0;
       }
 
-      /* ΓöÇΓöÇ Navbar ΓöÇΓöÇ */
+      /* ── Navbar ── */
       .navbar {
         position: sticky;
         top: 0;
@@ -137,7 +137,7 @@
         color: var(--primary);
       }
 
-      /* ΓöÇΓöÇ Language toggle ΓöÇΓöÇ */
+      /* ── Language toggle ── */
       .lang-toggle {
         display: flex;
         background: rgba(255, 255, 255, 0.05);
@@ -232,7 +232,7 @@
         color: var(--text-muted);
       }
 
-      /* ΓöÇΓöÇ Main content ΓöÇΓöÇ */
+      /* ── Main content ── */
       .main {
         position: relative;
         z-index: 1;
@@ -241,7 +241,7 @@
         padding: 24px 24px 40px;
       }
 
-      /* ΓöÇΓöÇ Metric row ΓöÇΓöÇ */
+      /* ── Metric row ── */
       .metric-row {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -306,7 +306,7 @@
         margin-top: 5px;
       }
 
-      /* ΓöÇΓöÇ Tab panels ΓöÇΓöÇ */
+      /* ── Tab panels ── */
       .tab-panel {
         display: none;
         animation: fadeIn 0.2s ease;
@@ -325,7 +325,7 @@
         }
       }
 
-      /* ΓöÇΓöÇ Cards ΓöÇΓöÇ */
+      /* ── Cards ── */
       .card {
         background: var(--bg-card);
         border: 1px solid var(--border);
@@ -351,7 +351,7 @@
         padding: 20px;
       }
 
-      /* ΓöÇΓöÇ Grid layouts ΓöÇΓöÇ */
+      /* ── Grid layouts ── */
       .grid-2 {
         display: grid;
         grid-template-columns: 1fr 2fr;
@@ -370,13 +370,13 @@
         }
       }
 
-      /* ΓöÇΓöÇ Chart wrapper ΓöÇΓöÇ */
+      /* ── Chart wrapper ── */
       .chart-wrap {
         position: relative;
         height: 200px;
       }
 
-      /* ΓöÇΓöÇ Table ΓöÇΓöÇ */
+      /* ── Table ── */
       .sentra-table {
         width: 100%;
         border-collapse: collapse;
@@ -403,7 +403,7 @@
         border-bottom: none;
       }
 
-      /* ΓöÇΓöÇ Empty state ΓöÇΓöÇ */
+      /* ── Empty state ── */
       .empty-state {
         text-align: center;
         padding: 40px 20px;
@@ -423,7 +423,7 @@
         opacity: 0.7;
       }
 
-      /* ΓöÇΓöÇ Badge ΓöÇΓöÇ */
+      /* ── Badge ── */
       .badge {
         display: inline-flex;
         align-items: center;
@@ -447,7 +447,7 @@
         color: #10b981;
       }
 
-      /* ΓöÇΓöÇ Progress bar ΓöÇΓöÇ */
+      /* ── Progress bar ── */
       .prog-bar {
         height: 5px;
         border-radius: 3px;
@@ -461,7 +461,7 @@
         transition: width 0.6s ease;
       }
 
-      /* ΓöÇΓöÇ Event list ΓöÇΓöÇ */
+      /* ── Event list ── */
       .event-list {
         display: flex;
         flex-direction: column;
@@ -544,7 +544,7 @@
         white-space: nowrap;
       }
 
-      /* ΓöÇΓöÇ Filter bar ΓöÇΓöÇ */
+      /* ── Filter bar ── */
       .filter-bar {
         display: flex;
         gap: 8px;
@@ -579,7 +579,7 @@
         color: var(--primary);
       }
 
-      /* ΓöÇΓöÇ Reports ΓöÇΓöÇ */
+      /* ── Reports ── */
       .period-bar {
         display: flex;
         gap: 6px;
@@ -619,7 +619,7 @@
         color: var(--text-muted);
       }
 
-      /* ΓöÇΓöÇ Btn ΓöÇΓöÇ */
+      /* ── Btn ── */
       .btn {
         display: inline-flex;
         align-items: center;
@@ -666,7 +666,7 @@
         cursor: not-allowed;
       }
 
-      /* ΓöÇΓöÇ Scroll ΓöÇΓöÇ */
+      /* ── Scroll ── */
       ::-webkit-scrollbar {
         width: 5px;
       }
@@ -681,7 +681,7 @@
         background: rgba(59, 130, 246, 0.5);
       }
 
-      /* ΓöÇΓöÇ Type breakdown ΓöÇΓöÇ */
+      /* ── Type breakdown ── */
       .type-row {
         display: flex;
         align-items: center;
@@ -706,7 +706,7 @@
         text-align: right;
       }
 
-      /* ΓöÇΓöÇ Compare badge ΓöÇΓöÇ */
+      /* ── Compare badge ── */
       .delta {
         font-size: 0.7rem;
         font-weight: 700;
@@ -725,7 +725,7 @@
         background: rgba(100, 116, 139, 0.12);
         color: #64748b;
       }
-      /* ΓöÇΓöÇ Info panel (how it works) ΓöÇΓöÇ */
+      /* ── Info panel (how it works) ── */
       .info-panel {
         background: rgba(59, 130, 246, 0.07);
         border: 1px solid rgba(59, 130, 246, 0.18);
@@ -775,7 +775,7 @@
         color: rgba(255, 255, 255, 0.2);
         font-size: 0.9rem;
       }
-      /* ΓöÇΓöÇ Report KPI row ΓöÇΓöÇ */
+      /* ── Report KPI row ── */
       .rpt-kpi-row {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -816,7 +816,7 @@
         color: var(--text-muted);
         opacity: .7;
       }
-      /* ΓöÇΓöÇ Active user card pulse ΓöÇΓöÇ */
+      /* ── Active user card pulse ── */
       .metric-card .active-live-dot {
         display: inline-block;
         width: 8px;
@@ -828,7 +828,7 @@
         vertical-align: middle;
       }
 
-      /* ΓöÇΓöÇ Hero Stats Banner ΓöÇΓöÇ */
+      /* ── Hero Stats Banner ── */
       .hero-banner {
         position: relative;
         display: flex;
@@ -929,10 +929,10 @@
         .hero-stat-sep { display: none; }
       }
 
-      /* ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ
-         PREMIUM GLOBAL OVERRIDES ΓÇö ├üp dß╗Ñng hero style
-         l├¬n to├án bß╗Ö dashboard
-         ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ */
+      /* ══════════════════════════════════════════════
+         PREMIUM GLOBAL OVERRIDES — Áp dụng hero style
+         lên toàn bộ dashboard
+         ══════════════════════════════════════════════ */
 
       /* Updated design tokens */
       :root {
@@ -943,7 +943,7 @@
         --grad-blue:    linear-gradient(135deg, #60a5fa 0%, #34d399 100%);
       }
 
-      /* ΓöÇΓöÇ Metric cards ΓÇö glassmorphism upgrade ΓöÇΓöÇ */
+      /* ── Metric cards — glassmorphism upgrade ── */
       .metric-card {
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
@@ -994,7 +994,7 @@
         opacity: 0.75;
       }
 
-      /* ΓöÇΓöÇ Cards ΓÇö glass upgrade ΓöÇΓöÇ */
+      /* ── Cards — glass upgrade ── */
       .card {
         background: var(--glass-bg);
         border: 1px solid var(--glass-border);
@@ -1016,7 +1016,7 @@
       }
       .card-body { padding: 22px; }
 
-      /* ΓöÇΓöÇ Nav tabs ΓÇö gradient active pill ΓöÇΓöÇ */
+      /* ── Nav tabs — gradient active pill ── */
       .nav-tab.active {
         background: linear-gradient(135deg,
           rgba(59,130,246,0.22) 0%,
@@ -1030,7 +1030,7 @@
         backdrop-filter: blur(10px);
       }
 
-      /* ΓöÇΓöÇ Table ΓÇö premium rows ΓöÇΓöÇ */
+      /* ── Table — premium rows ── */
       .sentra-table th {
         padding: 10px 16px;
         font-size: 0.72rem;
@@ -1051,7 +1051,7 @@
         background: rgba(59,130,246,0.07);
       }
 
-      /* ΓöÇΓöÇ Filter bar chips ΓöÇΓöÇ */
+      /* ── Filter bar chips ── */
       .filter-chip {
         border: 1px solid var(--glass-border) !important;
         background: rgba(255,255,255,0.04) !important;
@@ -1070,7 +1070,7 @@
         box-shadow: 0 0 0 1px rgba(59,130,246,0.2) !important;
       }
 
-      /* ΓöÇΓöÇ Report KPI cards ΓöÇΓöÇ */
+      /* ── Report KPI cards ── */
       .rpt-kpi-card {
         background: var(--glass-bg) !important;
         border: 1px solid var(--glass-border) !important;
@@ -1091,7 +1091,7 @@
         font-weight: 800 !important;
       }
 
-      /* ΓöÇΓöÇ Event list items ΓöÇΓöÇ */
+      /* ── Event list items ── */
       .ev-item {
         border: 1px solid var(--glass-border) !important;
         border-radius: 12px !important;
@@ -1108,7 +1108,7 @@
       .ev-item.sev-medium { border-left: 3px solid #f59e0b !important; }
       .ev-item.sev-low    { border-left: 3px solid #10b981 !important; }
 
-      /* ΓöÇΓöÇ Ambient glow upgrades ΓöÇΓöÇ */
+      /* ── Ambient glow upgrades ── */
       body::after {
         width: 800px;
         height: 600px;
@@ -1123,7 +1123,7 @@
     <!-- Navbar -->
     <nav class="navbar">
       <div class="nav-brand">
-        <!-- Sentra DLP Shield Logo ΓÇö dark navy shield + bold cyan S -->
+        <!-- Sentra DLP Shield Logo — dark navy shield + bold cyan S -->
         <svg
           class="nav-shield"
           viewBox="0 0 40 44"
@@ -1131,13 +1131,13 @@
           xmlns="http://www.w3.org/2000/svg"
         >
           <defs>
-            <!-- Hai m├áu xanh nhß║ít/─æß║¡m 2 b├¬n: cyan-blue tr├íi ΓåÆ navy phß║úi -->
+            <!-- Hai màu xanh nhạt/đậm 2 bên: cyan-blue trái → navy phải -->
             <linearGradient id="shGrad" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
               <stop offset="0%"   stop-color="#5bb8ff" />
               <stop offset="40%"  stop-color="#1a72d4" />
               <stop offset="100%" stop-color="#0c1e4a" />
             </linearGradient>
-            <!-- Edge glow b├¬n tr├íi (xanh nhß║ít) -->
+            <!-- Edge glow bên trái (xanh nhạt) -->
             <linearGradient id="shEdge" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
               <stop offset="0%"   stop-color="#93d4ff" stop-opacity="0.5" />
               <stop offset="30%"  stop-color="#ffffff" stop-opacity="0" />
@@ -1169,7 +1169,7 @@
           <path d="M20 2 L4 9 V22 C4 31.5 11 38.5 20 42 C29 38.5 36 31.5 36 22 V9 Z"
                 fill="none" stroke="rgba(150,210,255,0.35)" stroke-width="0.9" />
 
-          <!-- Bold S ΓÇö stroke trick: draw twice (outline then fill) for max boldness -->
+          <!-- Bold S — stroke trick: draw twice (outline then fill) for max boldness -->
           <text x="20" y="30"
                 text-anchor="middle"
                 dominant-baseline="auto"
@@ -1202,7 +1202,7 @@
           id="tab-overview"
           data-i18n="tab_overview"
         >
-          Tß╗òng quan
+          Tổng quan
         </button>
         <button
           class="nav-tab"
@@ -1210,7 +1210,7 @@
           id="tab-events"
           data-i18n="tab_events"
         >
-          Sß╗▒ kiß╗çn
+          Sự kiện
         </button>
         <button
           class="nav-tab"
@@ -1218,7 +1218,7 @@
           id="tab-reports"
           data-i18n="tab_reports"
         >
-          B├ío c├ío
+          Báo cáo
         </button>
       </div>
 
@@ -1232,19 +1232,19 @@
           </button>
         </div>
         <div class="live-dot-wrap"><span class="live-dot"></span> LIVE</div>
-        <span class="last-update" id="last-update">ΓÇö</span>
+        <span class="last-update" id="last-update">—</span>
       </div>
     </nav>
 
     <div class="main">
-      <!-- ΓöÇΓöÇ Hero Stats Banner ΓöÇΓöÇ -->
+      <!-- ── Hero Stats Banner ── -->
       <div class="hero-banner" id="hero-banner">
         <div class="hero-bg-glow"></div>
         <div class="hero-left">
-          <div class="hero-eyebrow">≡ƒ¢í∩╕Å <span data-i18n="hero_eyebrow">SENTRA DLP ΓÇö Bß║óO Vß╗å THß╗░C THß╗£I</span> &nbsp;<span style="font-size:0.65rem;opacity:0.6;font-family:var(--mono)">v2.5.10</span></div>
+          <div class="hero-eyebrow">🛡️ <span data-i18n="hero_eyebrow">SENTRA DLP — BẢO VỆ THỰC THỜI</span> &nbsp;<span style="font-size:0.65rem;opacity:0.6;font-family:var(--mono)">v2.5.10</span></div>
           <div class="hero-big-number" id="hero-tracker-count">0</div>
-          <div class="hero-big-label" data-i18n="hero_trackers_label">Tracker &amp; Mß╗æi ─Ée Dß╗ìa ─É├ú Chß║╖n</div>
-          <div class="hero-sub-label" data-i18n="hero_trackers_sub">Tß╗òng hß╗úp tß╗½ to├án bß╗Ö ng╞░ß╗¥i d├╣ng Sentra</div>
+          <div class="hero-big-label" data-i18n="hero_trackers_label">Tracker &amp; Mối Đe Dọa Đã Chặn</div>
+          <div class="hero-sub-label" data-i18n="hero_trackers_sub">Tổng hợp từ toàn bộ người dùng Sentra</div>
         </div>
         <div class="hero-divider-v"></div>
         <div class="hero-right">
@@ -1254,13 +1254,13 @@
           </div>
           <div class="hero-stat-sep"></div>
           <div class="hero-stat-item">
-            <div class="hero-stat-val" id="hero-users-count">ΓÇö</div>
-            <div class="hero-stat-label" data-i18n="hero_users">Ng╞░ß╗¥i d├╣ng Active</div>
+            <div class="hero-stat-val" id="hero-users-count">—</div>
+            <div class="hero-stat-label" data-i18n="hero_users">Người dùng Active</div>
           </div>
           <div class="hero-stat-sep"></div>
           <div class="hero-stat-item">
-            <div class="hero-stat-val" id="hero-events-count">ΓÇö</div>
-            <div class="hero-stat-label" data-i18n="hero_events">Sß╗▒ kiß╗çn ghi nhß║¡n</div>
+            <div class="hero-stat-val" id="hero-events-count">—</div>
+            <div class="hero-stat-label" data-i18n="hero_events">Sự kiện ghi nhận</div>
           </div>
         </div>
       </div>
@@ -1268,49 +1268,49 @@
       <!-- Metric cards -->
       <div class="metric-row" id="metric-row">
         <div class="metric-card" style="--c: #3b82f6">
-          <div class="metric-icon">≡ƒ¢í∩╕Å</div>
-          <div class="metric-val" id="m-total">ΓÇö</div>
-          <div class="metric-label" data-i18n="m_total">Tß╗òng sß╗▒ kiß╗çn</div>
+          <div class="metric-icon">🛡️</div>
+          <div class="metric-val" id="m-total">—</div>
+          <div class="metric-label" data-i18n="m_total">Tổng sự kiện</div>
           <div class="metric-sub" id="m-total-sub" data-i18n="m_total_sub">
-            To├án lß╗ïch sß╗¡
+            Toàn lịch sử
           </div>
         </div>
         <div class="metric-card" style="--c: #ef4444">
-          <div class="metric-icon">≡ƒö┤</div>
-          <div class="metric-val" id="m-high">ΓÇö</div>
-          <div class="metric-label" data-i18n="m_high">Mß╗⌐c CAO h├┤m nay</div>
-          <div class="metric-sub" id="m-today-sub">ΓÇö</div>
+          <div class="metric-icon">🔴</div>
+          <div class="metric-val" id="m-high">—</div>
+          <div class="metric-label" data-i18n="m_high">Mức CAO hôm nay</div>
+          <div class="metric-sub" id="m-today-sub">—</div>
         </div>
         <div class="metric-card" style="--c: #f59e0b">
-          <div class="metric-icon">≡ƒôà</div>
-          <div class="metric-val" id="m-month">ΓÇö</div>
-          <div class="metric-label" data-i18n="m_month">Th├íng n├áy</div>
-          <div class="metric-sub" id="m-month-sub">ΓÇö</div>
+          <div class="metric-icon">📅</div>
+          <div class="metric-val" id="m-month">—</div>
+          <div class="metric-label" data-i18n="m_month">Tháng này</div>
+          <div class="metric-sub" id="m-month-sub">—</div>
         </div>
         <div class="metric-card" style="--c: #10b981">
-          <div class="metric-icon">≡ƒÜ¿</div>
-          <div class="metric-val" id="m-reports">ΓÇö</div>
-          <div class="metric-label" data-i18n="m_reports">URL b├ío c├ío</div>
-          <div class="metric-sub" data-i18n="m_reports_sub">tß╗½ ng╞░ß╗¥i d├╣ng</div>
+          <div class="metric-icon">🚨</div>
+          <div class="metric-val" id="m-reports">—</div>
+          <div class="metric-label" data-i18n="m_reports">URL báo cáo</div>
+          <div class="metric-sub" data-i18n="m_reports_sub">từ người dùng</div>
         </div>
         <!-- 5th: Live Active Users -->
         <div class="metric-card" style="--c: #10b981">
-          <div class="metric-icon"><span class="active-live-dot"></span>≡ƒæÑ</div>
-          <div class="metric-val" id="m-active-users">ΓÇö</div>
-          <div class="metric-label" data-i18n="m_active">─Éang sß╗¡ dß╗Ñng</div>
+          <div class="metric-icon"><span class="active-live-dot"></span>👥</div>
+          <div class="metric-val" id="m-active-users">—</div>
+          <div class="metric-label" data-i18n="m_active">Đang sử dụng</div>
           <div class="metric-sub" data-i18n="m_active_sub">
-            ng╞░ß╗¥i d├╣ng online
+            người dùng online
           </div>
         </div>
       </div>
 
-      <!-- ΓöÇΓöÇΓöÇΓöÇΓöÇ TAB: OVERVIEW ΓöÇΓöÇΓöÇΓöÇΓöÇ -->
+      <!-- ───── TAB: OVERVIEW ───── -->
       <div id="panel-overview" class="tab-panel active">
         <div class="grid-2" style="margin-bottom: 16px">
           <div class="card">
             <div class="card-header">
               <span class="card-title" data-i18n="ov_type_title"
-                >≡ƒôè Ph├ón loß║íi sß╗▒ kiß╗çn</span
+                >📊 Phân loại sự kiện</span
               >
             </div>
             <div class="card-body">
@@ -1320,7 +1320,7 @@
           <div class="card">
             <div class="card-header">
               <span class="card-title" data-i18n="ov_7days_title"
-                >≡ƒôê 7 ng├áy gß║ºn nhß║Ñt</span
+                >📈 7 ngày gần nhất</span
               >
             </div>
             <div class="card-body">
@@ -1333,14 +1333,14 @@
           <div class="card">
             <div class="card-header">
               <span class="card-title" data-i18n="ov_domains_title"
-                >≡ƒÅå Top Domains</span
+                >🏆 Top Domains</span
               >
             </div>
             <div class="card-body" id="body-domains">
               <div class="empty-state">
-                <div class="empty-icon">≡ƒîÉ</div>
+                <div class="empty-icon">🌐</div>
                 <div class="empty-text" data-i18n="no_data">
-                  Ch╞░a c├│ dß╗» liß╗çu
+                  Chưa có dữ liệu
                 </div>
               </div>
             </div>
@@ -1348,7 +1348,7 @@
           <div class="card">
             <div class="card-header">
               <span class="card-title" data-i18n="ov_sev_title"
-                >≡ƒöì Ph├ón mß╗⌐c nghi├¬m trß╗ìng</span
+                >🔍 Phân mức nghiêm trọng</span
               >
             </div>
             <div class="card-body">
@@ -1362,7 +1362,7 @@
         <div class="card">
           <div class="card-header">
             <span class="card-title" data-i18n="ov_recent_title"
-              >≡ƒòÉ Sß╗▒ kiß╗çn gß║ºn nhß║Ñt</span
+              >🕐 Sự kiện gần nhất</span
             >
             <span
               style="font-size: 0.72rem; color: var(--text-muted)"
@@ -1371,33 +1371,33 @@
           </div>
           <div id="ov-events-body">
             <div class="empty-state">
-              <div class="empty-icon">≡ƒôí</div>
-              <div class="empty-text" data-i18n="loading">─Éang tß║úi...</div>
+              <div class="empty-icon">📡</div>
+              <div class="empty-text" data-i18n="loading">Đang tải...</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ΓöÇΓöÇΓöÇΓöÇΓöÇ TAB: EVENTS ΓöÇΓöÇΓöÇΓöÇΓöÇ -->
+      <!-- ───── TAB: EVENTS ───── -->
       <div id="panel-events" class="tab-panel">
 
         <div class="filter-bar">
-          <span class="filter-label" data-i18n="filter_severity">Mß╗⌐c ─æß╗Ö:</span>
+          <span class="filter-label" data-i18n="filter_severity">Mức độ:</span>
           <button
             class="filter-chip active"
             onclick="setSevFilter('ALL', this)"
             data-i18n="filter_all"
           >
-            Tß║Ñt cß║ú
+            Tất cả
           </button>
           <button class="filter-chip" onclick="setSevFilter('HIGH', this)">
-            ≡ƒö┤ HIGH
+            🔴 HIGH
           </button>
           <button class="filter-chip" onclick="setSevFilter('MEDIUM', this)">
-            ≡ƒƒí MEDIUM
+            🟡 MEDIUM
           </button>
           <button class="filter-chip" onclick="setSevFilter('LOW', this)">
-            ≡ƒƒó LOW
+            🟢 LOW
           </button>
           <span
             style="
@@ -1411,42 +1411,42 @@
         <div class="card">
           <div id="events-list">
             <div class="empty-state">
-              <div class="empty-icon">≡ƒôí</div>
-              <div class="empty-text" data-i18n="loading">─Éang tß║úi...</div>
+              <div class="empty-icon">📡</div>
+              <div class="empty-text" data-i18n="loading">Đang tải...</div>
               <div class="empty-sub" data-i18n="ev_auto_refresh">
-                Tß╗▒ ─æß╗Öng cß║¡p nhß║¡t mß╗ùi 15 gi├óy
+                Tự động cập nhật mỗi 15 giây
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- ΓöÇΓöÇΓöÇΓöÇΓöÇ TAB: REPORTS ΓöÇΓöÇΓöÇΓöÇΓöÇ -->
+      <!-- ───── TAB: REPORTS ───── -->
       <div id="panel-reports" class="tab-panel">
-        <!-- Analytics KPI row ΓÇö  user_count + risk score + detection split -->
+        <!-- Analytics KPI row —  user_count + risk score + detection split -->
         <div class="rpt-kpi-row" id="rpt-kpi-row">
           <div class="rpt-kpi-card">
-            <div class="rpt-kpi-icon">≡ƒæÑ</div>
-            <div class="rpt-kpi-val" id="rpt-users">ΓÇö</div>
-            <div class="rpt-kpi-label" data-i18n="rpt_users">Ng╞░ß╗¥i d├╣ng</div>
+            <div class="rpt-kpi-icon">👥</div>
+            <div class="rpt-kpi-val" id="rpt-users">—</div>
+            <div class="rpt-kpi-label" data-i18n="rpt_users">Người dùng</div>
             <div class="rpt-kpi-sub" id="rpt-users-delta"></div>
           </div>
           <div class="rpt-kpi-card">
-            <div class="rpt-kpi-icon">≡ƒîÉ</div>
-            <div class="rpt-kpi-val" id="rpt-domains">ΓÇö</div>
-            <div class="rpt-kpi-label" data-i18n="rpt_domains">Domain bß╗ï ph├ít hiß╗çn</div>
+            <div class="rpt-kpi-icon">🌐</div>
+            <div class="rpt-kpi-val" id="rpt-domains">—</div>
+            <div class="rpt-kpi-label" data-i18n="rpt_domains">Domain bị phát hiện</div>
             <div class="rpt-kpi-sub" data-i18n="rpt_domains_sub">unique URLs</div>
           </div>
           <div class="rpt-kpi-card risk-card" id="rpt-risk-card">
-            <div class="rpt-kpi-icon">ΓÜá∩╕Å</div>
-            <div class="rpt-kpi-val" id="rpt-risk">ΓÇö</div>
+            <div class="rpt-kpi-icon">⚠️</div>
+            <div class="rpt-kpi-val" id="rpt-risk">—</div>
             <div class="rpt-kpi-label" data-i18n="rpt_risk">Risk Score TB</div>
             <div class="rpt-kpi-sub" id="rpt-risk-delta"></div>
           </div>
           <div class="rpt-kpi-card">
-            <div class="rpt-kpi-icon">≡ƒñû</div>
-            <div class="rpt-kpi-val" id="rpt-auto">ΓÇö</div>
-            <div class="rpt-kpi-label" data-i18n="rpt_auto">Tß╗▒ ─æß╗Öng ph├ít hiß╗çn</div>
+            <div class="rpt-kpi-icon">🤖</div>
+            <div class="rpt-kpi-val" id="rpt-auto">—</div>
+            <div class="rpt-kpi-label" data-i18n="rpt_auto">Tự động phát hiện</div>
             <div class="rpt-kpi-sub" id="rpt-manual-sub"></div>
           </div>
         </div>
@@ -1458,7 +1458,7 @@
               onclick="setPeriod('day', this)"
               data-i18n="period_day"
             >
-              ≡ƒôà H├┤m nay
+              📅 Hôm nay
             </button>
             <button
               class="period-tab"
@@ -1466,7 +1466,7 @@
               onclick="setPeriod('month', this)"
               data-i18n="period_month"
             >
-              ≡ƒôå Th├íng n├áy
+              📆 Tháng này
             </button>
             <button
               class="period-tab"
@@ -1474,7 +1474,7 @@
               onclick="setPeriod('quarter', this)"
               data-i18n="period_quarter"
             >
-              ≡ƒôè Qu├╜ n├áy
+              📊 Quý này
             </button>
           </div>
           <div style="display: flex; gap: 8px; align-items: center">
@@ -1484,16 +1484,16 @@
               onclick="exportCSV()"
               data-i18n="btn_export"
             >
-              Γ¼ç Xuß║Ñt CSV
+              ⬇ Xuất CSV
             </button>
             <button
               class="btn btn-word"
               onclick="exportWord()"
               data-i18n="btn_export_word"
               id="btn-export-word"
-              title="Xuß║Ñt b├ío c├ío Word chuy├¬n nghiß╗çp"
+              title="Xuất báo cáo Word chuyên nghiệp"
             >
-              ≡ƒôä Xuß║Ñt Word
+              📄 Xuất Word
             </button>
           </div>
         </div>
@@ -1501,29 +1501,29 @@
         <!-- Report metric cards -->
         <div class="metric-row" id="rpt-metrics" style="margin-bottom: 16px">
           <div class="metric-card" style="--c: #3b82f6">
-            <div class="metric-icon">≡ƒôî</div>
-            <div class="metric-val" id="r-total">ΓÇö</div>
-            <div class="metric-label" data-i18n="m_total">Tß╗òng sß╗▒ kiß╗çn</div>
+            <div class="metric-icon">📌</div>
+            <div class="metric-val" id="r-total">—</div>
+            <div class="metric-label" data-i18n="m_total">Tổng sự kiện</div>
             <div class="metric-sub" id="r-delta-total"></div>
           </div>
           <div class="metric-card" style="--c: #ef4444">
-            <div class="metric-icon">≡ƒö┤</div>
-            <div class="metric-val" id="r-high">ΓÇö</div>
-            <div class="metric-label" data-i18n="sev_high">Mß╗⌐c CAO</div>
+            <div class="metric-icon">🔴</div>
+            <div class="metric-val" id="r-high">—</div>
+            <div class="metric-label" data-i18n="sev_high">Mức CAO</div>
             <div class="metric-sub" id="r-delta-high"></div>
           </div>
           <div class="metric-card" style="--c: #f59e0b">
-            <div class="metric-icon">≡ƒƒí</div>
-            <div class="metric-val" id="r-medium">ΓÇö</div>
+            <div class="metric-icon">🟡</div>
+            <div class="metric-val" id="r-medium">—</div>
             <div class="metric-label" data-i18n="sev_medium">
-              Mß╗⌐c Trung b├¼nh
+              Mức Trung bình
             </div>
             <div class="metric-sub"></div>
           </div>
           <div class="metric-card" style="--c: #10b981">
-            <div class="metric-icon">≡ƒƒó</div>
-            <div class="metric-val" id="r-low">ΓÇö</div>
-            <div class="metric-label" data-i18n="sev_low">Mß╗⌐c Thß║Ñp</div>
+            <div class="metric-icon">🟢</div>
+            <div class="metric-val" id="r-low">—</div>
+            <div class="metric-label" data-i18n="sev_low">Mức Thấp</div>
             <div class="metric-sub"></div>
           </div>
         </div>
@@ -1532,14 +1532,14 @@
           <div class="card">
             <div class="card-header">
               <span class="card-title" data-i18n="rpt_type_list"
-                >≡ƒôï Loß║íi sß╗▒ kiß╗çn</span
+                >📋 Loại sự kiện</span
               >
             </div>
             <div class="card-body" id="r-type-list">
               <div class="empty-state">
-                <div class="empty-icon">≡ƒôè</div>
+                <div class="empty-icon">📊</div>
                 <div class="empty-text" data-i18n="no_data">
-                  Ch╞░a c├│ dß╗» liß╗çu
+                  Chưa có dữ liệu
                 </div>
               </div>
             </div>
@@ -1550,7 +1550,7 @@
                 class="card-title"
                 id="r-timeline-title"
                 data-i18n="rpt_timeline"
-                >ΓÅ▒ Biß╗âu ─æß╗ô thß╗¥i gian</span
+                >⏱ Biểu đồ thời gian</span
               >
             </div>
             <div class="card-body">
@@ -1562,10 +1562,10 @@
         <div class="card">
           <div class="card-header">
             <span class="card-title" data-i18n="rpt_top_domains"
-              >≡ƒÅå Top Domains bß╗ï ph├ít hiß╗çn</span
+              >🏆 Top Domains bị phát hiện</span
             >
             <button class="btn" onclick="exportCSV()" data-i18n="btn_export">
-              Γ¼ç Xuß║Ñt CSV
+              ⬇ Xuất CSV
             </button>
           </div>
           <table class="sentra-table">
@@ -1573,8 +1573,8 @@
               <tr>
                 <th>#</th>
                 <th>Domain</th>
-                <th data-i18n="th_count">Sß╗æ lß║ºn</th>
-                <th data-i18n="th_ratio">Tß╗╖ lß╗ç</th>
+                <th data-i18n="th_count">Số lần</th>
+                <th data-i18n="th_ratio">Tỷ lệ</th>
               </tr>
             </thead>
             <tbody id="r-domains"></tbody>
@@ -1596,99 +1596,99 @@
     <!-- /main -->
 
     <script>
-        // ΓöÇΓöÇΓöÇ i18n Dictionary ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── i18n Dictionary ─────────────────────
         const I18N = {
           vi: {
-            tab_overview: "Tß╗òng quan",
-            tab_events: "Sß╗▒ kiß╗çn",
-            tab_reports: "B├ío c├ío",
-            m_total: "Tß╗òng sß╗▒ kiß╗çn",
-            m_total_sub: "To├án lß╗ïch sß╗¡",
-            m_high: "Mß╗⌐c CAO h├┤m nay",
-            m_month: "Th├íng n├áy",
-            m_reports: "URL b├ío c├ío",
-            m_reports_sub: "tß╗½ ng╞░ß╗¥i d├╣ng",
-            m_active: "─Éang sß╗¡ dß╗Ñng",
-            m_active_sub: "ng╞░ß╗¥i d├╣ng online",
-            hero_eyebrow: "SENTRA DLP ΓÇö Bß║óO Vß╗å THß╗░C THß╗£I",
-            hero_trackers_label: "Tracker & Mß╗æi ─Ée Dß╗ìa ─É├ú Chß║╖n",
-            hero_trackers_sub: "Tß╗òng hß╗úp tß╗½ to├án bß╗Ö ng╞░ß╗¥i d├╣ng Sentra",
+            tab_overview: "Tổng quan",
+            tab_events: "Sự kiện",
+            tab_reports: "Báo cáo",
+            m_total: "Tổng sự kiện",
+            m_total_sub: "Toàn lịch sử",
+            m_high: "Mức CAO hôm nay",
+            m_month: "Tháng này",
+            m_reports: "URL báo cáo",
+            m_reports_sub: "từ người dùng",
+            m_active: "Đang sử dụng",
+            m_active_sub: "người dùng online",
+            hero_eyebrow: "SENTRA DLP — BẢO VỆ THỰC THỜI",
+            hero_trackers_label: "Tracker & Mối Đe Dọa Đã Chặn",
+            hero_trackers_sub: "Tổng hợp từ toàn bộ người dùng Sentra",
             hero_rules: "Domain trong Ruleset",
-            hero_users: "Ng╞░ß╗¥i d├╣ng Active",
-            hero_events: "Sß╗▒ kiß╗çn ghi nhß║¡n",
-            ov_type_title: "≡ƒôè Ph├ón loß║íi sß╗▒ kiß╗çn",
-            ov_7days_title: "≡ƒôê 7 ng├áy gß║ºn nhß║Ñt",
-            ov_domains_title: "≡ƒÅå Top Domains",
-            ov_sev_title: "≡ƒöì Ph├ón mß╗⌐c nghi├¬m trß╗ìng",
-            ov_recent_title: "≡ƒòÉ Sß╗▒ kiß╗çn gß║ºn nhß║Ñt",
-            ev_info_title: "Nguy├¬n l├╜ hoß║ít ─æß╗Öng ΓÇö Tab Sß╗▒ kiß╗çn",
-            ev_step1_bold: "Tiß╗çn ├¡ch ph├ít hiß╗çn",
-            ev_step1_text: "r├▓ rß╗ë / tracker tr├¬n tr├¼nh duyß╗çt ng╞░ß╗¥i d├╣ng",
-            ev_step2_text: "gß╗¡i event JSON l├¬n backend",
-            ev_step3_text: "l╞░u in-memory (tß╗æi ─æa 500 bß║ún ghi)",
-            ev_step4_text: "Dashboard tß╗▒ cß║¡p nhß║¡t",
-            ev_step4_interval: "mß╗ùi 15 gi├óy",
-            ev_step5_text: "cß║únh b├ío tß╗⌐c th├¼ nß║┐u mß╗⌐c = CAO",
-            filter_severity: "Mß╗⌐c ─æß╗Ö:",
-            filter_all: "Tß║Ñt cß║ú",
-            ev_auto_refresh: "Tß╗▒ ─æß╗Öng cß║¡p nhß║¡t mß╗ùi 15 gi├óy",
-            rpt_info_title: "Nguy├¬n l├╜ hoß║ít ─æß╗Öng ΓÇö Tab B├ío c├ío",
-            rpt_step1_bold: "Chß╗ìn kß╗│",
-            rpt_step1_text: ": H├┤m nay / Th├íng / Qu├╜",
-            rpt_step2_text: "tß╗òng hß╗úp sß╗▒ kiß╗çn theo mß╗æc thß╗¥i gian",
-            rpt_step3_text: "Backend t├¡nh",
+            hero_users: "Người dùng Active",
+            hero_events: "Sự kiện ghi nhận",
+            ov_type_title: "📊 Phân loại sự kiện",
+            ov_7days_title: "📈 7 ngày gần nhất",
+            ov_domains_title: "🏆 Top Domains",
+            ov_sev_title: "🔍 Phân mức nghiêm trọng",
+            ov_recent_title: "🕐 Sự kiện gần nhất",
+            ev_info_title: "Nguyên lý hoạt động — Tab Sự kiện",
+            ev_step1_bold: "Tiện ích phát hiện",
+            ev_step1_text: "rò rỉ / tracker trên trình duyệt người dùng",
+            ev_step2_text: "gửi event JSON lên backend",
+            ev_step3_text: "lưu in-memory (tối đa 500 bản ghi)",
+            ev_step4_text: "Dashboard tự cập nhật",
+            ev_step4_interval: "mỗi 15 giây",
+            ev_step5_text: "cảnh báo tức thì nếu mức = CAO",
+            filter_severity: "Mức độ:",
+            filter_all: "Tất cả",
+            ev_auto_refresh: "Tự động cập nhật mỗi 15 giây",
+            rpt_info_title: "Nguyên lý hoạt động — Tab Báo cáo",
+            rpt_step1_bold: "Chọn kỳ",
+            rpt_step1_text: ": Hôm nay / Tháng / Quý",
+            rpt_step2_text: "tổng hợp sự kiện theo mốc thời gian",
+            rpt_step3_text: "Backend tính",
             rpt_step3_text2: ", timeline, top domains",
-            rpt_step4_text: "So s├ính",
-            rpt_step4_text2: "vß╗¢i kß╗│ tr╞░ß╗¢c",
-            rpt_step5_bold: "Xuß║Ñt CSV",
-            rpt_step5_text: "mß╗Öt click ΓÇö tß║úi vß╗ü m├íy tß╗⌐c th├¼",
-            period_day: "≡ƒôà H├┤m nay",
-            period_month: "≡ƒôå Th├íng n├áy",
-            period_quarter: "≡ƒôè Qu├╜ n├áy",
-            btn_export: "Γ¼ç Xuß║Ñt CSV",
-            sev_high: "Mß╗⌐c CAO",
-            sev_medium: "Mß╗⌐c Trung b├¼nh",
-            sev_low: "Mß╗⌐c Thß║Ñp",
-            rpt_type_list: "≡ƒôï Loß║íi sß╗▒ kiß╗çn",
-            rpt_timeline: "ΓÅ▒ Biß╗âu ─æß╗ô thß╗¥i gian",
-            rpt_top_domains: "≡ƒÅå Top Domains bß╗ï ph├ít hiß╗çn",
-            th_count: "Sß╗æ lß║ºn",
-            th_ratio: "Tß╗╖ lß╗ç",
-            no_data: "Ch╞░a c├│ dß╗» liß╗çu",
-            loading: "─Éang tß║úi...",
+            rpt_step4_text: "So sánh",
+            rpt_step4_text2: "với kỳ trước",
+            rpt_step5_bold: "Xuất CSV",
+            rpt_step5_text: "một click — tải về máy tức thì",
+            period_day: "📅 Hôm nay",
+            period_month: "📆 Tháng này",
+            period_quarter: "📊 Quý này",
+            btn_export: "⬇ Xuất CSV",
+            sev_high: "Mức CAO",
+            sev_medium: "Mức Trung bình",
+            sev_low: "Mức Thấp",
+            rpt_type_list: "📋 Loại sự kiện",
+            rpt_timeline: "⏱ Biểu đồ thời gian",
+            rpt_top_domains: "🏆 Top Domains bị phát hiện",
+            th_count: "Số lần",
+            th_ratio: "Tỷ lệ",
+            no_data: "Chưa có dữ liệu",
+            loading: "Đang tải...",
             // dynamic strings
-            n_events_today: (n) => `${n} sß╗▒ kiß╗çn h├┤m nay`,
-            n_high: (n) => `${n} mß╗⌐c CAO`,
-            n_reports_url: (n) => `${n} URL b├ío c├ío`,
-            n_newest: (n) => `${n} mß╗¢i nhß║Ñt`,
-            n_events: (n) => `${n} sß╗▒ kiß╗çn`,
-            n_events_filtered: (n) => `${n} sß╗▒ kiß╗çn (─æ├ú lß╗ìc)`,
-            no_events: "Ch╞░a c├│ sß╗▒ kiß╗çn n├áo",
-            no_events_type: (sev) => `Kh├┤ng c├│ sß╗▒ kiß╗çn ${sev}`,
-            ext_running: "Tiß╗çn ├¡ch DLP chß║íy b├¼nh th╞░ß╗¥ng, ch╞░a ph├ít hiß╗çn r├▓ rß╗ë",
-            try_other: "Thß╗¡ chß╗ìn mß╗⌐c ─æß╗Ö kh├íc",
-            ext_will_log: "Khi tiß╗çn ├¡ch ph├ít hiß╗çn r├▓ rß╗ë dß╗» liß╗çu, ch├║ng sß║╜ xuß║Ñt hiß╗çn ß╗ƒ ─æ├óy",
-            backend_error: "Kh├┤ng thß╗â kß║┐t nß╗æi backend",
-            backend_check: "Kiß╗âm tra server tß║íi port 3456",
-            delta_vs: "so kß╗│ tr╞░ß╗¢c",
-            period_label_day: "H├┤m nay",
-            period_label_month: "Th├íng n├áy",
-            period_label_quarter: "Qu├╜ n├áy",
-            generated_at: (t) => `Tß║ío l├║c ${t}`,
-            timeline_hour: "ΓÅ▒ Theo giß╗¥ h├┤m nay",
-            timeline_day: "≡ƒôà Theo ng├áy",
-            timeline_month: "≡ƒôå Theo th├íng",
-            no_domain_data: "Ch╞░a c├│ dß╗» liß╗çu domain",
-            no_events_logged: "Ch╞░a c├│ sß╗▒ kiß╗çn n├áo ─æ╞░ß╗úc ghi nhß║¡n",
-            chart_label_events: "Sß╗▒ kiß╗çn",
-            rpt_users: "Ng╞░ß╗¥i d├╣ng",
-            rpt_domains: "Domain bß╗ï ph├ít hiß╗çn",
-            rpt_domains_sub: "t├¬n miß╗ün duy nhß║Ñt",
+            n_events_today: (n) => `${n} sự kiện hôm nay`,
+            n_high: (n) => `${n} mức CAO`,
+            n_reports_url: (n) => `${n} URL báo cáo`,
+            n_newest: (n) => `${n} mới nhất`,
+            n_events: (n) => `${n} sự kiện`,
+            n_events_filtered: (n) => `${n} sự kiện (đã lọc)`,
+            no_events: "Chưa có sự kiện nào",
+            no_events_type: (sev) => `Không có sự kiện ${sev}`,
+            ext_running: "Tiện ích DLP chạy bình thường, chưa phát hiện rò rỉ",
+            try_other: "Thử chọn mức độ khác",
+            ext_will_log: "Khi tiện ích phát hiện rò rỉ dữ liệu, chúng sẽ xuất hiện ở đây",
+            backend_error: "Không thể kết nối backend",
+            backend_check: "Kiểm tra server tại port 3456",
+            delta_vs: "so kỳ trước",
+            period_label_day: "Hôm nay",
+            period_label_month: "Tháng này",
+            period_label_quarter: "Quý này",
+            generated_at: (t) => `Tạo lúc ${t}`,
+            timeline_hour: "⏱ Theo giờ hôm nay",
+            timeline_day: "📅 Theo ngày",
+            timeline_month: "📆 Theo tháng",
+            no_domain_data: "Chưa có dữ liệu domain",
+            no_events_logged: "Chưa có sự kiện nào được ghi nhận",
+            chart_label_events: "Sự kiện",
+            rpt_users: "Người dùng",
+            rpt_domains: "Domain bị phát hiện",
+            rpt_domains_sub: "tên miền duy nhất",
             rpt_risk: "Risk Score TB",
-            rpt_auto: "Tß╗▒ ─æß╗Öng ph├ít hiß╗çn",
-            rpt_manual: "b├ío c├ío thß╗º c├┤ng",
-            rpt_users_period: "trong kß╗│ n├áy",
-            no_data: "Ch╞░a c├│ dß╗» liß╗çu",
+            rpt_auto: "Tự động phát hiện",
+            rpt_manual: "báo cáo thủ công",
+            rpt_users_period: "trong kỳ này",
+            no_data: "Chưa có dữ liệu",
           },
           en: {
             tab_overview: "Overview",
@@ -1702,18 +1702,18 @@
             m_reports_sub: "from users",
             m_active: "Active users",
             m_active_sub: "online now",
-            hero_eyebrow: "SENTRA DLP ΓÇö REAL-TIME PROTECTION",
+            hero_eyebrow: "SENTRA DLP — REAL-TIME PROTECTION",
             hero_trackers_label: "Trackers & Threats Blocked",
             hero_trackers_sub: "Aggregated across all Sentra users",
             hero_rules: "Domains in Ruleset",
             hero_users: "Active Users",
             hero_events: "Events Recorded",
-            ov_type_title: "≡ƒôè Event Types",
-            ov_7days_title: "≡ƒôê Last 7 days",
-            ov_domains_title: "≡ƒÅå Top Domains",
-            ov_sev_title: "≡ƒöì Severity Breakdown",
-            ov_recent_title: "≡ƒòÉ Recent Events",
-            ev_info_title: "How it works ΓÇö Events Tab",
+            ov_type_title: "📊 Event Types",
+            ov_7days_title: "📈 Last 7 days",
+            ov_domains_title: "🏆 Top Domains",
+            ov_sev_title: "🔍 Severity Breakdown",
+            ov_recent_title: "🕐 Recent Events",
+            ev_info_title: "How it works — Events Tab",
             ev_step1_bold: "Extension detects",
             ev_step1_text: "leaks / trackers in user's browser",
             ev_step2_text: "sends event JSON to backend",
@@ -1724,7 +1724,7 @@
             filter_severity: "Severity:",
             filter_all: "All",
             ev_auto_refresh: "Auto-refresh every 15 seconds",
-            rpt_info_title: "How it works ΓÇö Reports Tab",
+            rpt_info_title: "How it works — Reports Tab",
             rpt_step1_bold: "Select period",
             rpt_step1_text: ": Today / Month / Quarter",
             rpt_step2_text: "aggregates events by timestamp",
@@ -1733,17 +1733,17 @@
             rpt_step4_text: "Compare",
             rpt_step4_text2: "with previous period",
             rpt_step5_bold: "Export CSV",
-            rpt_step5_text: "one click ΓÇö instant download",
-            period_day: "≡ƒôà Today",
-            period_month: "≡ƒôå This month",
-            period_quarter: "≡ƒôè This quarter",
-            btn_export: "Γ¼ç Export CSV",
+            rpt_step5_text: "one click — instant download",
+            period_day: "📅 Today",
+            period_month: "📆 This month",
+            period_quarter: "📊 This quarter",
+            btn_export: "⬇ Export CSV",
             sev_high: "HIGH",
             sev_medium: "MEDIUM",
             sev_low: "LOW",
-            rpt_type_list: "≡ƒôï Event Types",
-            rpt_timeline: "ΓÅ▒ Timeline",
-            rpt_top_domains: "≡ƒÅå Top Detected Domains",
+            rpt_type_list: "📋 Event Types",
+            rpt_timeline: "⏱ Timeline",
+            rpt_top_domains: "🏆 Top Detected Domains",
             th_count: "Count",
             th_ratio: "Ratio",
             no_data: "No data yet",
@@ -1767,9 +1767,9 @@
             period_label_month: "This month",
             period_label_quarter: "This quarter",
             generated_at: (t) => `Generated at ${t}`,
-            timeline_hour: "ΓÅ▒ By hour today",
-            timeline_day: "≡ƒôà By day",
-            timeline_month: "≡ƒôå By month",
+            timeline_hour: "⏱ By hour today",
+            timeline_day: "📅 By day",
+            timeline_month: "📆 By month",
             no_domain_data: "No domain data",
             no_events_logged: "No events logged",
             chart_label_events: "Events",
@@ -1784,7 +1784,7 @@
           },
         };
 
-        // ΓöÇΓöÇΓöÇ Language State ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Language State ───────────────────────
         let currentLang = localStorage.getItem("dashLang") || "vi";
 
         function t(key, ...args) {
@@ -1811,25 +1811,25 @@
           applyLanguage();
         }
 
-        // ΓöÇΓöÇΓöÇ Constants ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Constants ──────────────────────────
         const TYPE_ICON_RAW = {
-          DLP_LEAK: "≡ƒöÉ", WEBRTC_IP_LEAK: "≡ƒôí", CANVAS_FINGERPRINT: "≡ƒÄ¿",
-          TRACKER_DETECTED: "≡ƒò╡∩╕Å", NAVIGATOR_PROBE: "≡ƒöì", THIRD_PARTY_COOKIE: "≡ƒì¬",
-          LOCAL_STORAGE_ABUSE: "≡ƒÆ╛", USER_REPORT: "≡ƒÜ¿",
+          DLP_LEAK: "🔐", WEBRTC_IP_LEAK: "📡", CANVAS_FINGERPRINT: "🎨",
+          TRACKER_DETECTED: "🕵️", NAVIGATOR_PROBE: "🔍", THIRD_PARTY_COOKIE: "🍪",
+          LOCAL_STORAGE_ABUSE: "💾", USER_REPORT: "🚨",
         };
         function getTypeIcon(type) {
-          return TYPE_ICON_RAW[(type || "").toUpperCase()] || "≡ƒôî";
+          return TYPE_ICON_RAW[(type || "").toUpperCase()] || "📌";
         }
         const TYPE_NAME = {
           vi: {
-            DLP_LEAK: "R├▓ rß╗ë Dß╗» liß╗çu",
+            DLP_LEAK: "Rò rỉ Dữ liệu",
             WEBRTC_IP_LEAK: "WebRTC IP Leak",
             CANVAS_FINGERPRINT: "Canvas Fingerprint",
             TRACKER_DETECTED: "Tracker Script",
             NAVIGATOR_PROBE: "Navigator Probe",
             THIRD_PARTY_COOKIE: "Third-party Cookie",
             LOCAL_STORAGE_ABUSE: "LocalStorage Abuse",
-            USER_REPORT: "B├ío c├ío URL",
+            USER_REPORT: "Báo cáo URL",
           },
           en: {
             DLP_LEAK: "Data Leak",
@@ -1857,7 +1857,7 @@
           "#14b8a6",
         ];
 
-        // ΓöÇΓöÇΓöÇ State ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── State ──────────────────────────────
         let currentTab = "overview";
         let sevFilter = "ALL";
         let currentPeriod = "day";
@@ -1865,9 +1865,9 @@
         let reportData = null;
         let charts = {};
 
-        // ΓöÇΓöÇΓöÇ Helpers ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Helpers ────────────────────────────
         function fmtTime(iso) {
-          if (!iso) return "ΓÇö";
+          if (!iso) return "—";
           return new Date(iso).toLocaleString("vi-VN", {
             timeZone: "Asia/Ho_Chi_Minh",
             hour: "2-digit",
@@ -1883,7 +1883,7 @@
         function sevBadge(sev) {
           const s = (sev || "").toUpperCase();
           const c = s === "HIGH" ? "high" : s === "MEDIUM" ? "medium" : "low";
-          const i = s === "HIGH" ? "≡ƒö┤" : s === "MEDIUM" ? "≡ƒƒí" : "≡ƒƒó";
+          const i = s === "HIGH" ? "🔴" : s === "MEDIUM" ? "🟡" : "🟢";
           const label = s === "HIGH" ? t("sev_high") : s === "MEDIUM" ? t("sev_medium") : t("sev_low");
           return `<span class="badge badge-${c}">${i} ${label || s || "N/A"}</span>`;
         }
@@ -1893,8 +1893,8 @@
           return `<div class="ev-icon ${c}">${getTypeIcon(type)}</div>`;
         }
         function deltaHtml(d) {
-          if (d == null) return '<span class="delta delta-same">ΓÇö N/A</span>';
-          const a = d > 0 ? "Γû▓" : d < 0 ? "Γû╝" : "ΓöÇ";
+          if (d == null) return '<span class="delta delta-same">— N/A</span>';
+          const a = d > 0 ? "▲" : d < 0 ? "▼" : "─";
           const c = d > 0 ? "up" : d < 0 ? "down" : "same";
           return `<span class="delta delta-${c}">${a} ${Math.abs(d)}% ${t("delta_vs")}</span>`;
         }
@@ -1917,17 +1917,17 @@
           gridColor: "rgba(255,255,255,0.04)",
         };
 
-        // ΓöÇΓöÇΓöÇ API Base URL ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
-        // Tß╗▒ ph├ít hiß╗çn: GitHub Pages ΓåÆ HTTPS VPS; VPS trß╗▒c tiß║┐p ΓåÆ relative
+        // ─── API Base URL ────────────────────────────────────
+        // Tự phát hiện: GitHub Pages → HTTPS VPS; VPS trực tiếp → relative
         const API_BASE = (() => {
           const h = window.location.hostname;
           const stored = localStorage.getItem('sentra_api_base');
           if (stored) return stored;
           if (h === '104.219.55.50' || h === 'localhost' || h === '127.0.0.1') return '';
-          return 'https://104.219.55.50:9443'; // GitHub Pages ΓåÆ HTTPS VPS
+          return 'https://104.219.55.50:9443'; // GitHub Pages → HTTPS VPS
         })();
 
-        // ΓöÇΓöÇΓöÇ API ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── API ────────────────────────────────
         async function api(path) {
           try {
             const r = await fetch(API_BASE + path);
@@ -1939,7 +1939,7 @@
           }
         }
 
-        // ΓöÇΓöÇΓöÇ Tab switching ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Tab switching ───────────────────────
         function switchTab(tab) {
           document
             .querySelectorAll(".tab-panel")
@@ -1960,7 +1960,7 @@
           if (tab === "reports") loadReport();
         }
 
-        // ΓöÇΓöÇΓöÇ Hero Stats ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Hero Stats ──────────────────────────
         function countUp(el, target, duration) {
           duration = duration || 1800;
           const start = parseInt((el.textContent || '0').replace(/[^0-9]/g, '')) || 0;
@@ -1984,18 +1984,18 @@
           if (trackerEl && data.tracker_total !== undefined) {
             countUp(trackerEl, data.tracker_total);
           }
-          if (usersEl) usersEl.textContent = data.activeUsers ?? 'ΓÇö';
+          if (usersEl) usersEl.textContent = data.activeUsers ?? '—';
           if (eventsEl && data.overview?.total_events !== undefined) {
             eventsEl.textContent = data.overview.total_events.toLocaleString('vi-VN');
           }
         }
 
-        // ΓöÇΓöÇΓöÇ Overview ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Overview ────────────────────────────
         async function loadOverview() {
           const d = await api("/api/v1/stats");
           if (!d?.success) {
             document.getElementById("ov-events-body").innerHTML = `
-        <div class="empty-state"><div class="empty-icon">ΓÜá∩╕Å</div>
+        <div class="empty-state"><div class="empty-icon">⚠️</div>
         <div class="empty-text">${t("backend_error")}</div>
         <div class="empty-sub">${t("backend_check")}</div></div>`;
             return;
@@ -2059,7 +2059,7 @@
             });
           } else {
             document.getElementById("c-type").closest(".card-body").innerHTML =
-              `<div class="empty-state"><div class="empty-icon">≡ƒôè</div><div class="empty-text">${t("no_data")}</div><div class="empty-sub">${t("ext_will_log")}</div></div>`;
+              `<div class="empty-state"><div class="empty-icon">📊</div><div class="empty-text">${t("no_data")}</div><div class="empty-sub">${t("ext_will_log")}</div></div>`;
           }
 
           // Chart: 7 days bar
@@ -2143,7 +2143,7 @@
           const totalEv = ov.total_events || 1;
           const domEl = document.getElementById("body-domains");
           if (domains.length === 0) {
-            domEl.innerHTML = `<div class="empty-state"><div class="empty-icon">≡ƒîÉ</div><div class="empty-text">${t("no_domain_data")}</div></div>`;
+            domEl.innerHTML = `<div class="empty-state"><div class="empty-icon">🌐</div><div class="empty-text">${t("no_domain_data")}</div></div>`;
           } else {
             domEl.innerHTML = domains
               .slice(0, 7)
@@ -2164,7 +2164,7 @@
           document.getElementById("ov-ev-count").textContent =
             recents.length > 0 ? t("n_newest", recents.length) : "";
           if (recents.length === 0) {
-            ovBody.innerHTML = `<div class="empty-state"><div class="empty-icon">Γ£à</div><div class="empty-text">${t("no_events_logged")}</div><div class="empty-sub">${t("ext_will_log")}</div></div>`;
+            ovBody.innerHTML = `<div class="empty-state"><div class="empty-icon">✅</div><div class="empty-text">${t("no_events_logged")}</div><div class="empty-sub">${t("ext_will_log")}</div></div>`;
           } else {
             ovBody.innerHTML = `<div class="event-list">${recents
               .slice(0, 8)
@@ -2174,7 +2174,7 @@
           ${evIcon(e.type, e.severity)}
           <div class="ev-body">
             <div class="ev-type">${typeName(e.type)}</div>
-            <div class="ev-detail">${e.detail || "ΓÇö"}</div>
+            <div class="ev-detail">${e.detail || "—"}</div>
             <div class="ev-meta">
               ${sevBadge(e.severity)}
               <span class="ev-url" title="${e.url || ""}">${e.url || "unknown"}</span>
@@ -2187,7 +2187,7 @@
           }
         }
 
-        // ΓöÇΓöÇΓöÇ Events ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Events ──────────────────────────────
         async function loadEvents() {
           const data = await api("/api/v1/events?limit=200");
           const allEvents = data?.events || [];
@@ -2206,7 +2206,7 @@
           const feed = document.getElementById("events-list");
           if (filtered.length === 0) {
             feed.innerHTML = `<div class="empty-state">
-        <div class="empty-icon">${sevFilter === "ALL" ? "Γ£à" : "≡ƒöì"}</div>
+        <div class="empty-icon">${sevFilter === "ALL" ? "✅" : "🔍"}</div>
         <div class="empty-text">${sevFilter === "ALL" ? t("no_events") : t("no_events_type", sevFilter)}</div>
         <div class="empty-sub">${sevFilter === "ALL" ? t("ext_running") : t("try_other")}</div>
       </div>`;
@@ -2220,7 +2220,7 @@
         ${evIcon(e.type, e.severity)}
         <div class="ev-body">
           <div class="ev-type">${typeName(e.type)}</div>
-          <div class="ev-detail">${e.detail || "ΓÇö"}</div>
+          <div class="ev-detail">${e.detail || "—"}</div>
           <div class="ev-meta">
             ${sevBadge(e.severity)}
             <span class="ev-url" title="${e.url || ""}">${e.url || "unknown"}</span>
@@ -2241,12 +2241,12 @@
           loadEvents();
         }
 
-        // ΓöÇΓöÇΓöÇ Reports ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Reports ─────────────────────────────
         async function loadReport() {
           const d = await api(`/api/v1/stats/report?period=${currentPeriod}`);
           if (!d?.success) {
             document.getElementById("r-domains").innerHTML =
-              `<tr><td colspan="4" style="text-align:center;padding:20px;color:var(--text-muted)">Kh├┤ng thß╗â tß║úi dß╗» liß╗çu b├ío c├ío</td></tr>`;
+              `<tr><td colspan="4" style="text-align:center;padding:20px;color:var(--text-muted)">Không thể tải dữ liệu báo cáo</td></tr>`;
             return;
           }
           reportData = d;
@@ -2259,7 +2259,7 @@
             quarter: t("period_label_quarter"),
           };
           document.getElementById("period-label").textContent =
-            `${periodLabels[currentPeriod]} ┬╖ ${d.label || ""}`;
+            `${periodLabels[currentPeriod]} · ${d.label || ""}`;
           document.getElementById("r-generated").textContent =
             t("generated_at", fmtTime(d.generated_at));
 
@@ -2271,16 +2271,16 @@
           document.getElementById("r-delta-total").innerHTML = deltaHtml(cmp.delta_pct);
           document.getElementById("r-delta-high").innerHTML = deltaHtml(cmp.delta_high);
 
-          // ΓöÇΓöÇ KPI cards: user / domain / risk / detection ΓöÇΓöÇ
-          document.getElementById("rpt-users").textContent = cur.user_count ?? "ΓÇö";
+          // ── KPI cards: user / domain / risk / detection ──
+          document.getElementById("rpt-users").textContent = cur.user_count ?? "—";
           document.getElementById("rpt-users-delta").innerHTML = cmp.delta_users != null
             ? deltaHtml(cmp.delta_users)
             : `<span style="color:var(--text-muted);font-size:.68rem">${t("rpt_users_period")}</span>`;
 
-          document.getElementById("rpt-domains").textContent = cur.unique_domains ?? "ΓÇö";
+          document.getElementById("rpt-domains").textContent = cur.unique_domains ?? "—";
 
           const risk = cur.avg_risk_score ?? null;
-          document.getElementById("rpt-risk").textContent = risk !== null ? risk : "ΓÇö";
+          document.getElementById("rpt-risk").textContent = risk !== null ? risk : "—";
           const riskCard = document.getElementById("rpt-risk-card");
           if (risk !== null) {
             const riskColor = risk >= 60 ? "#ef4444" : risk >= 35 ? "#f59e0b" : "#22c55e";
@@ -2289,10 +2289,10 @@
           }
           document.getElementById("rpt-risk-delta").innerHTML = cmp.delta_risk != null
             ? deltaHtml(cmp.delta_risk)
-            : `<span style="color:var(--text-muted);font-size:.68rem">0ΓÇô100</span>`;
+            : `<span style="color:var(--text-muted);font-size:.68rem">0–100</span>`;
 
           const det = cur.detection || {};
-          document.getElementById("rpt-auto").textContent = det.auto_detected ?? "ΓÇö";
+          document.getElementById("rpt-auto").textContent = det.auto_detected ?? "—";
           document.getElementById("rpt-manual-sub").textContent =
             det.user_reported != null ? `+ ${det.user_reported} ${t("rpt_manual")}` : "";
 
@@ -2363,7 +2363,7 @@
       </div>`,
                 )
                 .join("")
-            : `<div class="empty-state"><div class="empty-icon">≡ƒôè</div><div class="empty-text">${t("no_data")}</div></div>`;
+            : `<div class="empty-state"><div class="empty-icon">📊</div><div class="empty-text">${t("no_data")}</div></div>`;
 
           // Top domains table
           const doms = cur.top_domains || [];
@@ -2397,7 +2397,7 @@
           loadReport();
         }
 
-        // ΓöÇΓöÇΓöÇ CSV Export ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── CSV Export ────────────────────────
         function exportCSV() {
           if (!reportData) return;
           const cur = reportData.current;
@@ -2420,10 +2420,10 @@
           a.click();
         }
 
-        // ΓöÇΓöÇΓöÇ Word Export ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Word Export ────────────────────────
         async function exportWord() {
           const btn = document.getElementById("btn-export-word");
-          if (btn) { btn.disabled = true; btn.textContent = "ΓÅ│ ─Éang tß║ío..."; }
+          if (btn) { btn.disabled = true; btn.textContent = "⏳ Đang tạo..."; }
           try {
             const url = `${API_BASE}/api/v1/stats/export-docx?period=${currentPeriod}`;
             const resp = await fetch(url);
@@ -2437,9 +2437,9 @@
             link.click();
             URL.revokeObjectURL(link.href);
           } catch (err) {
-            alert(`Kh├┤ng thß╗â tß║ío file Word: ${err.message}`);
+            alert(`Không thể tạo file Word: ${err.message}`);
           } finally {
-            if (btn) { btn.disabled = false; btn.textContent = "≡ƒôä Xuß║Ñt Word"; applyLanguage(); }
+            if (btn) { btn.disabled = false; btn.textContent = "📄 Xuất Word"; applyLanguage(); }
           }
         }
 
@@ -2452,14 +2452,14 @@
           el.textContent = d && d.success ? d.activeUsers : "-";
         }
 
-        // ΓöÇΓöÇΓöÇ Auto refresh ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Auto refresh ────────────────────────
         setInterval(() => {
           if (currentTab === "events") loadEvents();
           if (currentTab === "overview") loadOverview();
         }, 15000);
         setInterval(loadActiveUsers, 30000);
 
-        // ΓöÇΓöÇΓöÇ Init ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇ
+        // ─── Init ────────────────────────────────
         (function () {
           applyLanguage();
           const p = new URLSearchParams(location.search);
@@ -2475,7 +2475,7 @@
           } else {
             loadOverview();
           }
-          loadActiveUsers(); // Tß║úi ngay khi mß╗ƒ dashboard
+          loadActiveUsers(); // Tải ngay khi mở dashboard
         })();
     </script>
   </body>
