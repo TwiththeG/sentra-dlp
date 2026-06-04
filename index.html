@@ -1923,8 +1923,8 @@
           const h = window.location.hostname;
           const stored = localStorage.getItem('sentra_api_base');
           if (stored) return stored;
-          if (h === '104.219.55.50' || h === 'localhost' || h === '127.0.0.1') return '';
-          return 'https://104.219.55.50:9443'; // GitHub Pages → HTTPS VPS
+          if (h === '104.219.55.50' || h === '104-219-55-50.sslip.io' || h === 'localhost' || h === '127.0.0.1') return '';
+          return 'https://104-219-55-50.sslip.io:9443'; // GitHub Pages → HTTPS VPS (sslip.io valid SSL)
         })();
 
         // ─── API ────────────────────────────────
