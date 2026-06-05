@@ -1,7 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NLEGWSC93K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-NLEGWSC93K');
+</script>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="/sentra-dlp/favicon.svg"/>
+<link rel="shortcut icon" href="/sentra-dlp/favicon.svg"/>
 <title>Sentra DLP</title>
 <meta name="description" content="Sentra DLP bß║úo vß╗ç quyß╗ün ri├¬ng t╞░ khi duyß╗çt web ΓÇö ph├ít hiß╗çn r├▓ rß╗ë dß╗» liß╗çu, tracker v├á fingerprinting trong thß╗¥i gian thß╗▒c."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -17,7 +27,7 @@
 }
 html{scroll-behavior:smooth}
 body{font-family:var(--f);background:var(--bg);color:var(--fg);overflow-x:hidden;font-size:16px;line-height:1.7}
-body::before{content:'';position:fixed;inset:0;z-index:-2;
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
   background:linear-gradient(rgba(78,209,216,.025) 1px,transparent 1px) 0 0/60px 60px,
              linear-gradient(90deg,rgba(78,209,216,.025) 1px,transparent 1px) 0 0/60px 60px}
 body::after{content:'';position:fixed;top:-300px;left:50%;transform:translateX(-50%);
@@ -31,15 +41,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:15px 4
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
 .brand-text{font-weight:800;font-size:.9rem;letter-spacing:.06em;color:var(--fg)}
 .brand-text span{color:var(--teal)}
-.nav-links{display:flex;align-items:center;gap:20px}
+.nav-links{display:flex;align-items:center;gap:22px}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:var(--fg)}
-.nav-sep{width:1px;height:16px;background:var(--border);flex-shrink:0}
-.nav-demo{border:1px solid var(--teal);color:var(--teal);padding:5px 13px;border-radius:7px;
+.nav-demo{border:1px solid var(--teal);color:var(--teal);padding:6px 14px;border-radius:7px;
   font-size:.8rem;font-weight:700;text-decoration:none;transition:all .2s}
 .nav-demo:hover{background:var(--teal-d)}
-.nav-donate{color:var(--teal);text-decoration:none;font-size:.8rem;font-weight:600;transition:color .2s}
-.nav-donate:hover{color:var(--fg)}
 .lang-btn{padding:4px 11px;border-radius:6px;border:1px solid var(--border);
   background:rgba(255,255,255,.05);color:var(--teal);font-family:var(--m);
   font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s}
@@ -64,7 +71,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:15px 4
 .shield-wrap{margin:44px auto 0;position:relative;width:140px;height:140px}
 .shield-wrap svg{width:100%;height:100%;filter:drop-shadow(0 0 24px rgba(78,209,216,.4))}
 .ring{position:absolute;border-radius:50%;border:1px solid rgba(78,209,216,.14);
-  top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite}
+  top:50%;left:50%;transform:translate(-50%,-50%);animation:rp 3s ease-in-out infinite;pointer-events:none}
 .r1{width:190px;height:190px}.r2{width:250px;height:250px;animation-delay:.5s}.r3{width:310px;height:310px;animation-delay:1s}
 @keyframes rp{0%,100%{opacity:.55}50%{opacity:.1}}
 
@@ -160,11 +167,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:15px 4
 .cta-acts{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
 
 /* FOOTER */
-footer{border-top:1px solid var(--border);padding:32px 24px;
-  text-align:center;color:var(--muted);font-size:.82rem;line-height:1.9}
-footer strong{color:var(--teal);font-weight:700;font-size:.9rem;letter-spacing:.05em}
-footer a{color:var(--teal);text-decoration:none}
-footer a:hover{text-decoration:underline}
+footer{border-top:1px solid var(--border);padding:24px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.77rem;color:var(--muted);flex-wrap:wrap;gap:12px}
 
 /* RESPONSIVE */
 @media(max-width:860px){
@@ -172,7 +177,7 @@ footer a:hover{text-decoration:underline}
   .hero{padding:52px 16px}.stats{flex-direction:column}
   .stat{border-right:none;border-bottom:1px solid var(--border)}
   .story-layout{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}
-  .pbody{grid-template-columns:1fr}
+  .pbody{grid-template-columns:1fr}footer{flex-direction:column;align-items:flex-start}
   .story-wrap,.section-wrap{padding:52px 16px}
 }
 </style>
@@ -182,20 +187,27 @@ footer a:hover{text-decoration:underline}
 <nav>
   <a class="brand" href="#">
     <svg width="28" height="28" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
-      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
-      <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+      <defs>
+        <linearGradient id="ng" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#06b6d4"/>
+        </linearGradient>
+        <filter id="ngl" x="-25%" y="-25%" width="150%" height="150%">
+          <feGaussianBlur stdDeviation="2.5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <path d="M50 5 L90 22 L90 55 C90 75 72 90 50 97 C28 90 10 75 10 55 L10 22 Z" fill="#0f2847" stroke="url(#ng)" stroke-width="2.5" filter="url(#ngl)"/>
+      <path d="M50 5 L50 97 C28 90 10 75 10 55 L10 22 Z" fill="rgba(59,130,246,0.12)"/>
+      <text x="50" y="70" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="54" fill="#60a5fa" filter="url(#ngl)">S</text>
     </svg>
     <span class="brand-text">SENTRA <span>DLP</span></span>
   </a>
   <div class="nav-links">
-    <a href="#story"       data-vi="C├óu chuyß╗çn" data-en="My story">C├óu chuyß╗çn</a>
-    <a href="#features"    data-vi="T├¡nh n─âng"  data-en="Features">T├¡nh n─âng</a>
+    <a href="#story"    data-vi="C├óu chuyß╗çn"   data-en="My story">C├óu chuyß╗çn</a>
+    <a href="#features" data-vi="T├¡nh n─âng"    data-en="Features">T├¡nh n─âng</a>
     <a href="#how-it-works" data-vi="C├ích d├╣ng" data-en="How it works">C├ích d├╣ng</a>
-    <a href="#dashboard"   data-vi="Dashboard"  data-en="Dashboard">Dashboard</a>
-    <div class="nav-sep"></div>
-    <a class="nav-donate" href="donate.html" data-vi="ß╗ªng hß╗Ö t├íc giß║ú" data-en="Support">ß╗ªng hß╗Ö t├íc giß║ú</a>
-    <a class="nav-demo" href="http://104.219.55.50:3456/dashboard" target="_blank">Live demo ΓåÆ</a>
+    <a href="#dashboard" data-vi="Dashboard"   data-en="Dashboard">Dashboard</a>
+    <a class="nav-demo" href="https://104-219-55-50.sslip.io:9443/dashboard.html" target="_blank">Live demo ΓåÆ</a>
   </div>
   <button class="lang-btn" id="langToggle" onclick="toggleLang()">EN</button>
 </nav>
@@ -212,7 +224,7 @@ footer a:hover{text-decoration:underline}
     Sentra DLP ├óm thß║ºm theo d├╡i mß╗ìi trang web bß║ín truy cß║¡p v├á cß║únh b├ío ngay khi ph├ít hiß╗çn nguy c╞í ΓÇö tracker, r├▓ rß╗ë dß╗» liß╗çu, fingerprinting. Miß╗àn ph├¡, kh├┤ng cß║ºn t├ái khoß║ún.
   </p>
   <div class="hero-actions">
-    <a class="btn-p" href="http://104.219.55.50:3456/dashboard" target="_blank">
+    <a class="btn-p" href="https://104-219-55-50.sslip.io:9443/dashboard.html" target="_blank">
       <span data-vi="Xem dashboard" data-en="View dashboard">Xem dashboard</span>
     </a>
     <a class="btn-o" href="#story" data-vi="C├óu chuyß╗çn ΓåÆ" data-en="My story ΓåÆ">C├óu chuyß╗çn ΓåÆ</a>
@@ -220,9 +232,19 @@ footer a:hover{text-decoration:underline}
   <div class="shield-wrap">
     <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
-      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
-      <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+      <defs>
+        <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#06b6d4"/>
+        </linearGradient>
+        <filter id="hgl" x="-25%" y="-25%" width="150%" height="150%">
+          <feGaussianBlur stdDeviation="2.5" result="b"/>
+          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <path d="M50 5 L90 22 L90 55 C90 75 72 90 50 97 C28 90 10 75 10 55 L10 22 Z" fill="#0f2847" stroke="url(#hg)" stroke-width="2.5" filter="url(#hgl)"/>
+      <path d="M50 5 L50 97 C28 90 10 75 10 55 L10 22 Z" fill="rgba(59,130,246,0.12)"/>
+      <path d="M50 5 L90 22 L90 55 C90 75 72 90 50 97 Z" fill="rgba(6,182,212,0.06)"/>
+      <text x="50" y="70" text-anchor="middle" font-family="Arial Black,sans-serif" font-weight="900" font-size="54" fill="#60a5fa" filter="url(#hgl)">S</text>
     </svg>
   </div>
   <div class="stats">
@@ -393,7 +415,36 @@ footer a:hover{text-decoration:underline}
   </div>
 </div>
 
-
+<!-- TECH + ABOUT -->
+<div class="section-wrap">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px">
+    <div>
+      <h2 class="section-h" style="font-size:1.5rem" data-vi="C├┤ng nghß╗ç" data-en="Technology">C├┤ng nghß╗ç</h2>
+      <div class="tech-list" style="margin-top:20px">
+        <span class="tc"><span style="background:#f7df1e"></span>Chrome Extension MV3</span>
+        <span class="tc"><span style="background:#68a063"></span>Node.js 18</span>
+        <span class="tc"><span style="background:#4ED1D8"></span>Shuffle SOAR</span>
+        <span class="tc"><span style="background:#24a1de"></span>Telegram Bot</span>
+        <span class="tc"><span style="background:#3b82f6"></span>Chart.js 4</span>
+        <span class="tc"><span style="background:#10b981"></span>PM2 + VPS</span>
+        <span class="tc"><span style="background:#8b5cf6"></span>Helmet.js</span>
+        <span class="tc"><span style="background:#f59e0b"></span>JS ES2022</span>
+      </div>
+    </div>
+    <div>
+      <h2 class="section-h" style="font-size:1.5rem" data-vi="Phi├¬n bß║ún" data-en="Versions">Phi├¬n bß║ún</h2>
+      <div class="about-grid" style="margin-top:20px;grid-template-columns:1fr">
+        <div class="acard">
+          <div class="kv"><span class="kk">Extension</span><span class="kv-v">v2.5.0</span></div>
+          <div class="kv"><span class="kk">Dashboard</span><span class="kv-v">v2.0.0</span></div>
+          <div class="kv"><span class="kk">Manifest</span><span class="kv-v" style="color:var(--muted)">MV3 ┬╖ Chrome 90+</span></div>
+          <div class="kv"><span class="kk">Backend</span><span class="kv-v" style="color:var(--muted)">Node.js 18</span></div>
+        </div>
+      </div>
+      <p style="font-size:.76rem;color:var(--muted);margin-top:12px;line-height:1.8" data-vi="Phi th╞░╞íng mß║íi ┬╖ Miß╗àn ph├¡ ┬╖ Kh├┤ng thu thß║¡p dß╗» liß╗çu c├í nh├ón ┬╖ ┬⌐ 2026" data-en="Non-commercial ┬╖ Free ┬╖ No personal data collected ┬╖ ┬⌐ 2026">Phi th╞░╞íng mß║íi ┬╖ Miß╗àn ph├¡ ┬╖ Kh├┤ng thu thß║¡p dß╗» liß╗çu c├í nh├ón ┬╖ ┬⌐ 2026</p>
+    </div>
+  </div>
+</div>
 
 <!-- CTA -->
 <div class="cta-wrap">
@@ -401,21 +452,32 @@ footer a:hover{text-decoration:underline}
     <h2 data-vi="Bß║úo vß╗ç quyß╗ün ri├¬ng t╞░ cß╗ºa bß║ín<br/>ngay h├┤m nay" data-en="Protect your privacy<br/>starting today">Bß║úo vß╗ç quyß╗ün ri├¬ng t╞░ cß╗ºa bß║ín<br/>ngay h├┤m nay</h2>
     <p data-vi="Miß╗àn ph├¡. Kh├┤ng cß║ºn ─æ─âng k├╜. C├ái xong l├á d├╣ng ─æ╞░ß╗úc ngay." data-en="Free. No sign-up. Works immediately after installation.">Miß╗àn ph├¡. Kh├┤ng cß║ºn ─æ─âng k├╜. C├ái xong l├á d├╣ng ─æ╞░ß╗úc ngay.</p>
     <div class="cta-acts">
-      <a class="btn-p" href="http://104.219.55.50:3456/dashboard" target="_blank">
+      <a class="btn-p" href="https://104-219-55-50.sslip.io:9443/dashboard.html" target="_blank">
         <span data-vi="Xem dashboard live" data-en="View live dashboard">Xem dashboard live</span>
       </a>
       <a class="btn-o" href="https://TwiththeG.github.io/privacy/" target="_blank">
         <span data-vi="Ch├¡nh s├ích bß║úo mß║¡t" data-en="Privacy policy">Ch├¡nh s├ích bß║úo mß║¡t</span>
       </a>
-      <a class="btn-o" href="donate.html" data-vi="ß╗ªng hß╗Ö" data-en="Support">ß╗ªng hß╗Ö</a>
     </div>
   </div>
 </div>
 
 <footer>
-  <p><strong data-vi="SENTRA DLP" data-en="SENTRA DLP">SENTRA DLP</strong></p>
-  <p style="margin-top:6px" data-vi="Phi th╞░╞íng mß║íi ┬╖ Miß╗àn ph├¡ ┬╖ Kh├┤ng thu thß║¡p dß╗» liß╗çu c├í nh├ón" data-en="Non-commercial ┬╖ Free ┬╖ No personal data collected">Phi th╞░╞íng mß║íi ┬╖ Miß╗àn ph├¡ ┬╖ Kh├┤ng thu thß║¡p dß╗» liß╗çu c├í nh├ón</p>
-  <p style="margin-top:10px">┬⌐ 2026 &nbsp;┬╖&nbsp; <a href="https://TwiththeG.github.io/privacy/" target="_blank" data-vi="Ch├¡nh s├ích bß║úo mß║¡t" data-en="Privacy policy">Ch├¡nh s├ích bß║úo mß║¡t</a> &nbsp;┬╖&nbsp; <a href="http://104.219.55.50:3456/dashboard" target="_blank">Dashboard</a></p>
+  <div style="display:flex;align-items:center;gap:9px">
+    <svg width="20" height="20" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 5 L10 20 V45 C10 65 25 85 50 95 C75 85 90 65 90 45 V20 Z" fill="#205B94"/>
+      <path d="M50 5 V95 C75 85 90 65 90 45 V20 L50 5 Z" fill="#133863"/>
+      <text x="50" y="72" font-family="sans-serif" font-weight="700" font-size="62" fill="#4ED1D8" text-anchor="middle">S</text>
+    </svg>
+    <span style="font-weight:700;letter-spacing:.05em">SENTRA DLP</span>
+  </div>
+  <span data-vi="Bß║úo vß╗ç quyß╗ün ri├¬ng t╞░ tr├¬n kh├┤ng gian mß║íng" data-en="Protecting privacy online">Bß║úo vß╗ç quyß╗ün ri├¬ng t╞░ tr├¬n kh├┤ng gian mß║íng</span>
+  <div style="display:flex;gap:14px">
+    <a href="https://TwiththeG.github.io/privacy/" target="_blank" style="color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4ED1D8'" onmouseout="this.style.color=''">
+      <span data-vi="Ch├¡nh s├ích bß║úo mß║¡t" data-en="Privacy policy">Ch├¡nh s├ích bß║úo mß║¡t</span>
+    </a>
+    <a href="https://104-219-55-50.sslip.io:9443/dashboard.html" target="_blank" style="color:var(--muted);text-decoration:none;transition:color .2s" onmouseover="this.style.color='#4ED1D8'" onmouseout="this.style.color=''">Dashboard</a>
+  </div>
 </footer>
 
 <script>
