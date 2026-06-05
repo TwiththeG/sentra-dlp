@@ -1124,73 +1124,7 @@
     <nav class="navbar">
       <div class="nav-brand">
         <!-- Sentra DLP Shield Logo — dark navy shield + bold cyan S -->
-        <svg
-          class="nav-shield"
-          viewBox="0 0 40 44"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <!-- Hai màu xanh nhạt/đậm 2 bên: cyan-blue trái → navy phải -->
-            <linearGradient id="shGrad" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
-              <stop offset="0%"   stop-color="#5bb8ff" />
-              <stop offset="40%"  stop-color="#1a72d4" />
-              <stop offset="100%" stop-color="#0c1e4a" />
-            </linearGradient>
-            <!-- Edge glow bên trái (xanh nhạt) -->
-            <linearGradient id="shEdge" x1="0" y1="0" x2="1" y2="0" gradientUnits="objectBoundingBox">
-              <stop offset="0%"   stop-color="#93d4ff" stop-opacity="0.5" />
-              <stop offset="30%"  stop-color="#ffffff" stop-opacity="0" />
-              <stop offset="70%"  stop-color="#ffffff" stop-opacity="0" />
-              <stop offset="100%" stop-color="#0a1830" stop-opacity="0.4" />
-            </linearGradient>
-            <!-- Inner top highlight for depth -->
-            <linearGradient id="shHL" x1="14" y1="4" x2="26" y2="18" gradientUnits="userSpaceOnUse">
-              <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.22" />
-              <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
-            </linearGradient>
-            <!-- Glow filter for the S -->
-            <filter id="sGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="1.2" result="blur" />
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-
-          <!-- Shield (pentagon-style, like extension icon) -->
-          <path d="M20 2 L4 9 V22 C4 31.5 11 38.5 20 42 C29 38.5 36 31.5 36 22 V9 Z"
-                fill="url(#shGrad)" />
-          <!-- Highlight overlay (top half only) -->
-          <path d="M20 2 L4 9 V22 C4 31.5 11 38.5 20 42 C29 38.5 36 31.5 36 22 V9 Z"
-                fill="url(#shHL)" />
-          <!-- Edge-tone overlay: bright-left / dark-right -->
-          <path d="M20 2 L4 9 V22 C4 31.5 11 38.5 20 42 C29 38.5 36 31.5 36 22 V9 Z"
-                fill="url(#shEdge)" />
-          <!-- Thin border -->
-          <path d="M20 2 L4 9 V22 C4 31.5 11 38.5 20 42 C29 38.5 36 31.5 36 22 V9 Z"
-                fill="none" stroke="rgba(150,210,255,0.35)" stroke-width="0.9" />
-
-          <!-- Bold S — stroke trick: draw twice (outline then fill) for max boldness -->
-          <text x="20" y="30"
-                text-anchor="middle"
-                dominant-baseline="auto"
-                font-family="'Arial Black','Impact',sans-serif"
-                font-size="22"
-                font-weight="900"
-                stroke="#0a1830"
-                stroke-width="3"
-                stroke-linejoin="round"
-                fill="#0a1830"
-          >S</text>
-          <text x="20" y="30"
-                text-anchor="middle"
-                dominant-baseline="auto"
-                font-family="'Arial Black','Impact',sans-serif"
-                font-size="22"
-                font-weight="900"
-                fill="#22d3ee"
-                filter="url(#sGlow)"
-          >S</text>
-        </svg>
+        <img src="../store_icon_128.png" class="nav-shield" alt="Sentra DLP" style="width:36px;height:36px;object-fit:contain;border-radius:8px;">
 
         <span class="nav-brand-text">SENTRA <span>DLP</span></span>
       </div>
@@ -1293,13 +1227,13 @@
           <div class="metric-label" data-i18n="m_reports">URL báo cáo</div>
           <div class="metric-sub" data-i18n="m_reports_sub">từ người dùng</div>
         </div>
-        <!-- 5th: Live Active Users -->
-        <div class="metric-card" style="--c: #10b981">
-          <div class="metric-icon"><span class="active-live-dot"></span>👥</div>
+        <!-- 5th: Total Usage Count -->
+        <div class="metric-card" style="--c: #8b5cf6">
+          <div class="metric-icon">📊</div>
           <div class="metric-val" id="m-active-users">—</div>
-          <div class="metric-label" data-i18n="m_active">Đang sử dụng</div>
+          <div class="metric-label" data-i18n="m_active">Tổng lần sử dụng</div>
           <div class="metric-sub" data-i18n="m_active_sub">
-            người dùng online
+            tích lũy toàn thời gian
           </div>
         </div>
       </div>
@@ -1608,8 +1542,8 @@
             m_month: "Tháng này",
             m_reports: "URL báo cáo",
             m_reports_sub: "từ người dùng",
-            m_active: "Đang sử dụng",
-            m_active_sub: "người dùng online",
+            m_active: "Tổng lần sử dụng",
+            m_active_sub: "tích lũy toàn thời gian",
             hero_eyebrow: "SENTRA DLP — BẢO VỆ THỰC THỜI",
             hero_trackers_label: "Tracker & Mối Đe Dọa Đã Chặn",
             hero_trackers_sub: "Tổng hợp từ toàn bộ người dùng Sentra",
@@ -1700,8 +1634,8 @@
             m_month: "This month",
             m_reports: "Reported URLs",
             m_reports_sub: "from users",
-            m_active: "Active users",
-            m_active_sub: "online now",
+            m_active: "Total Usage",
+            m_active_sub: "cumulative all time",
             hero_eyebrow: "SENTRA DLP — REAL-TIME PROTECTION",
             hero_trackers_label: "Trackers & Threats Blocked",
             hero_trackers_sub: "Aggregated across all Sentra users",
@@ -2022,8 +1956,8 @@
           document.getElementById("m-month-sub").textContent =
             t("n_high", ov.month_high);
           document.getElementById("m-reports").textContent = ov.total_reports;
-          if (document.getElementById("m-active-users") && d.activeUsers !== undefined)
-            document.getElementById("m-active-users").textContent = d.activeUsers;
+          if (document.getElementById("m-active-users") && d.totalUsageCount !== undefined)
+            document.getElementById("m-active-users").textContent = d.totalUsageCount.toLocaleString('vi-VN');
           document.getElementById("last-update").textContent = fmtTime(d.timestamp);
 
           // Update hero banner
